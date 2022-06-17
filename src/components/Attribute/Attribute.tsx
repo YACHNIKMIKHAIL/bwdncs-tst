@@ -1,73 +1,14 @@
 import React, {Component} from 'react';
-import styled from 'styled-components';
+import {
+    AttributeContainer,
+    AttributeNameContainer,
+    VariantsContainer,
+    OneVariant,
+    OneVariantWithColor
+} from './AttributeStyles';
 import {
     MainPageQuery_category_products_attributes as MainPageQueryCategoryProductsAttributes,
-} from '../graphql/__generated__/MainPageQuery';
-
-const AttributeContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-const AttributeNameContainer = styled.div`
-  padding-top: 40px;
-  padding-bottom: 7px;
-  font-family: Roboto Condensed, serif;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 17px;
-`;
-
-const VariantsContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-`;
-
-const OneVariant = styled.div<{ selected: boolean }>`
-  margin-right: 12px;
-  padding: 15px 20px;
-  border: 1px solid #1D1F22;
-  margin-top: 10px;
-
-  &:hover {
-    color: white;
-    background-color: black;
-    cursor: pointer;
-  }
-
-  ${({selected}) => selected && `
-    color: white;
-    background-color: black;
-    cursor: pointer;
-  `}
-`;
-
-const OneVariantWithColor = styled.div<{ selected: boolean, backColor: string }>`
-  margin-right: 12px;
-  padding: 15px 20px;
-  border: 1px solid #1D1F22;
-  margin-top: 10px;
-  width: 20px;
-  height: 20px;
-
-  &:hover {
-    color: white;
-    background-color: black;
-    cursor: pointer;
-  }
-
-  ${({backColor}) => `
-  background-color: ${backColor}
-  `}
-
-  ${({selected}) => selected && `
-    color: white;
-    border:6px red solid;
-    cursor: pointer;
-  `}
-
-`;
+} from '../../graphql/__generated__/MainPageQuery';
 
 interface AttributeProps {
     attribute: MainPageQueryCategoryProductsAttributes;
@@ -76,9 +17,9 @@ interface AttributeProps {
 }
 
 export class Attribute extends Component<AttributeProps> {
+
     render() {
         const attributeName = this.props?.attribute?.id;
-
         return (
             <AttributeContainer>
                 <AttributeNameContainer>

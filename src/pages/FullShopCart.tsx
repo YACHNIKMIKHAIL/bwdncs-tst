@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
-import Header from '../components/Header';
+import Header from '../components/Header/Header';
 import { CurrencyContext } from '../context/currency.context';
 import { ShopCartContext } from '../context/shopCart.context';
-import ProductInCart from "../components/ProductInCart";
+import ProductInCart from "../components/ProductInCart/ProductInCart";
 
 const MainDiv = styled.div`
   display: flex;
@@ -72,7 +72,7 @@ class FullShopCart extends Component<any, any> {
                 {this.state.showOverlay && <Overlay/>}
                 <ProductsBlock>
                   <Cart>Cart</Cart>
-                  {products.map((product) => (<ProductInCart product={product}/>))}
+                  {products.map((product,i) => (<ProductInCart product={product} key={i}/>))}
                 </ProductsBlock>
               </Container>
             </MainDiv>

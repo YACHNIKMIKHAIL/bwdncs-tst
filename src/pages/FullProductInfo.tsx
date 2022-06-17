@@ -4,9 +4,9 @@ import styled from 'styled-components';
 import {RouteComponentProps} from 'react-router-dom';
 import {sanitize} from 'dompurify'
 import {CurrencyContext} from '../context/currency.context';
-import Header from '../components/Header';
+import Header from '../components/Header/Header';
 import {GET_ALL_INFO} from '../graphql/query';
-import {Attribute} from '../components/Attribute';
+import {Attribute} from '../components/Attribute/Attribute';
 import {MainPageQuery, MainPageQuery_category_products as Product} from '../graphql/__generated__/MainPageQuery';
 import {ShopCartContext} from '../context/shopCart.context';
 import {getPrice} from '../Utils';
@@ -177,7 +177,7 @@ interface FullProductInfoProps {
 class FullProductInfo extends Component<ChildDataProps<RouteComponentProps<{}> & FullProductInfoProps, MainPageQuery, {}>> {
     static contextType = CurrencyContext;
 
-    state = {showOverlay: false, selectedAttributes: {} as any, mainPhoto: null, isSelected:false};
+    state = {showOverlay: false, selectedAttributes: {} as any, mainPhoto: null, isSelected: false};
 
     render() {
         const allProducts = this.props?.data?.category?.products;
@@ -185,6 +185,7 @@ class FullProductInfo extends Component<ChildDataProps<RouteComponentProps<{}> &
         if (!allProducts) {
             return null;
         }
+
 
         const product = fixProductName(this.props.history.location.search);
 
@@ -196,6 +197,7 @@ class FullProductInfo extends Component<ChildDataProps<RouteComponentProps<{}> &
         };
 
         const price = getPrice(productInfo?.prices!, this.context.currency);
+
 
         return (
             <ShopCartContext.Consumer>
@@ -233,20 +235,21 @@ class FullProductInfo extends Component<ChildDataProps<RouteComponentProps<{}> &
                                                         ...this.state.selectedAttributes,
                                                         [attribute!.id]: attributeItem,
                                                     },
-                                                    isSelected:true
+                                                    isSelected: true
                                                 });
                                             }}
                                             selectedAttribute={this.state.selectedAttributes[attribute!.id]}
                                             attribute={attribute!}
                                         />
                                     ))}
+
                                     <Price>
                                         <Word>PRICE:</Word>
                                         <Amount>{`${this.context.currency.symbol} ${price?.toString()}`}</Amount>
                                     </Price>
                                     <AddToCart
                                         onClick={() => {
-                                            if (!this.state.isSelected) {
+                                            if (!this.state.isSelected && productInfo?.attributes?.length !== 0) {
                                                 alert('Choise attribute')
                                             } else {
                                                 addProduct(productInfo?.name!, this.state.selectedAttributes, productInfo?.attributes, productInfo?.prices, compact(productInfo?.gallery));
