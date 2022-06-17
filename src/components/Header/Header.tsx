@@ -11,7 +11,8 @@ import ShopCardMini from '../ShopCartMini/ShopCartMini';
 import {MainPageQuery} from '../../graphql/__generated__/MainPageQuery';
 import {GET_ALL_INFO} from '../../graphql/query';
 import Name from '../Name/Name';
-import {MainContainer,
+import {
+    MainContainer,
     LogoStyle,
     Categories,
     CurrencyAndShopCart,
@@ -22,7 +23,8 @@ import {MainContainer,
     ArrowUpContainer,
     ShopCartContainer,
     NumberOfProducts,
-    ShopCartOpen} from "./HeaderStyles";
+    ShopCartOpen
+} from "./HeaderStyles";
 
 
 interface HeaderProps {

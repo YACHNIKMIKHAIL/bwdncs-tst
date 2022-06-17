@@ -1,35 +1,39 @@
 import React, {Component} from 'react';
 import {ChildDataProps, graphql, QueryControls} from '@apollo/client/react/hoc';
 import {
-    MainDiv,
-    Container,
-    Overlay,
-    ProductInfo,
-    AllPhotos,
-    Miniatures,
-    Miniature,
-    MainPhoto,
-    Photo,
-    Info,
-    ProductName,
-    Price,
-    Word,
-    Amount,
     AddToCart,
-    Description
+    AllPhotos,
+    Amount,
+    Container,
+    Description,
+    Info,
+    MainDiv,
+    MainPhoto,
+    Miniature,
+    Miniatures,
+    Overlay,
+    Photo,
+    Price,
+    ProductInfo,
+    ProductName,
+    Word
 } from './FullProductInfoStyle';
 import {RouteComponentProps} from 'react-router-dom';
 import {sanitize} from 'dompurify'
 import {CurrencyContext} from '../../context/currency.context';
 import Header from '../../components/Header/Header';
 import {GET_ALL_INFO} from '../../graphql/query';
-import {Attribute} from '../../components/Attribute/Attribute';
-import {MainPageQuery, MainPageQuery_category_products as Product} from '../../graphql/__generated__/MainPageQuery';
+import {
+    MainPageQuery,
+    MainPageQuery_category_products as Product,
+    MainPageQuery_category_products_attributes
+} from '../../graphql/__generated__/MainPageQuery';
 import {ShopCartContext} from '../../context/shopCart.context';
 import {getPrice} from '../../Utils';
 import {compact} from "lodash";
 
 const fixProductName = (str: string) => str.slice(1).split('%20').join(' ');
+
 
 interface FullProductInfoProps {
     data: MainPageQuery & QueryControls<MainPageQuery, {}>
@@ -38,7 +42,12 @@ interface FullProductInfoProps {
 class FullProductInfo extends Component<ChildDataProps<RouteComponentProps<{}> & FullProductInfoProps, MainPageQuery, {}>> {
     static contextType = CurrencyContext;
 
-    state = {showOverlay: false, selectedAttributes: {} as any, mainPhoto: null, isSelected: false};
+    state = {
+        showOverlay: false,
+        selectedAttributes: {} as any,
+        mainPhoto: null,
+        isSelected: false
+    };
 
     render() {
         const allProducts = this.props?.data?.category?.products;
@@ -46,7 +55,6 @@ class FullProductInfo extends Component<ChildDataProps<RouteComponentProps<{}> &
         if (!allProducts) {
             return null;
         }
-
 
         const product = fixProductName(this.props.history.location.search);
 
@@ -86,22 +94,24 @@ class FullProductInfo extends Component<ChildDataProps<RouteComponentProps<{}> &
                                 </AllPhotos>
                                 <Info>
                                     <ProductName>{productInfo?.name}</ProductName>
-                                    {productInfo?.attributes?.map((attribute: any) => (
-                                        <Attribute
-                                            key={attribute!.id}
-                                            onAttributeSelect={(attributeItem) => {
-                                                this.setState({
-                                                    selectedAttributes: {
-                                                        ...this.state.selectedAttributes,
-                                                        [attribute!.id]: attributeItem,
-                                                    },
-                                                    isSelected: true
-                                                });
-                                            }}
-                                            selectedAttribute={this.state.selectedAttributes[attribute!.id]}
-                                            attribute={attribute!}
+                                    {productInfo?.attributes?.map((attribute: MainPageQuery_category_products_attributes
+                                        | null) => {
+                                        return <Attribute
+                                        key={attribute!.id}
+                                        onAttributeSelect={(attributeItem) => {
+                                        this.setState({
+                                        selectedAttributes: {
+                                        ...this.state.selectedAttributes,
+                                        [attribute!.id]: attributeItem,
+                                    },
+                                        isSelected: true
+                                    });
+                                    }}
+                                        selectedAttribute={this.state.selectedAttributes[attribute!.id]}
+                                        attribute={attribute!}
                                         />
-                                    ))}
+                                    }
+                                        )}
 
                                     <Price>
                                         <Word>PRICE:</Word>

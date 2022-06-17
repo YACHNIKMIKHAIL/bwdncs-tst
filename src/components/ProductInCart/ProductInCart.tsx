@@ -56,7 +56,7 @@ class ProductInCart extends Component<ProductInCartProps> {
                             <Name>{this.props.product.id}</Name>
                             <Price>{this.context.currency.symbol + this.props.product.price * this.props.product.quantity}</Price>
                             <div>
-                                {values(this.props.product?.selectedAttributes).map((attribute,i) => (
+                                {values(this.props.product?.selectedAttributes).map((attribute, i) => (
                                     <Attribute key={i}>{attribute}</Attribute>))}
                             </div>
                         </Info>

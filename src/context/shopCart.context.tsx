@@ -3,7 +3,7 @@ import {graphql} from '@apollo/client/react/hoc';
 import {isEqual} from 'lodash';
 import {GET_ALL_INFO} from '../graphql/query';
 import {
-    MainPageQuery_category_products_attributes as attribute,
+    MainPageQuery_category_products_attributes as attribute, MainPageQuery_category_products_prices,
 } from '../graphql/__generated__/MainPageQuery';
 import {CurrencyContext} from './currency.context';
 
@@ -28,7 +28,7 @@ interface ShopCartInternalState {
 
 export const ShopCartContext = React.createContext({} as ShopCartState);
 
-class ShopCartContextProvider extends Component<any, any> {
+class ShopCartContextProvider extends Component<{ }, ShopCartInternalState> {
     state: ShopCartInternalState = {products: []};
 
     static contextType = CurrencyContext;
@@ -77,7 +77,7 @@ class ShopCartContextProvider extends Component<any, any> {
                     removeProduct: (id, selectedAttributes, allAttributes) => this.removeProduct(id, selectedAttributes, allAttributes),
                     products: this.state.products.map((product) => ({
                         ...product,
-                        price: product.price.find((price: any) => price?.currency.label === this.context.currency.label).amount
+                        price: product.price.find((price: MainPageQuery_category_products_prices) => price?.currency.label === this.context.currency.label).amount
                     })),
                 }}
             >
