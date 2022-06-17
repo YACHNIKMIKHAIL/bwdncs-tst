@@ -240,7 +240,7 @@ class FullProductInfo extends Component<ChildDataProps<RouteComponentProps<{}> &
                   ))}
                   <Price>
                     <Word>PRICE:</Word>
-                    <Amount>{`${this.context.currency} ${price?.toString()}`}</Amount>
+                    <Amount>{`${this.context.currency.symbol} ${price?.toString()}`}</Amount>
                   </Price>
                   <AddToCart
                     onClick={() => {
