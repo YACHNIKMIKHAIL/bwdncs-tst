@@ -52,7 +52,7 @@ class ShopCartMini extends Component<any, any> {
                                         <Product key={product?.id + product.photo}>
                                             <ProductInfo>
                                                 <ProductName>{product?.id}</ProductName>
-                                                <Amount>{this.context.currency + product?.price.toString()}</Amount>
+                                                <Amount>{this.context.currency.symbol + product?.price.toString()}</Amount>
                                                 <AttributeSet>
                                                     {values(product?.selectedAttributes).map((attribute) => (
                                                         <Attribute key={attribute}>{attribute}</Attribute>))}
@@ -91,7 +91,7 @@ class ShopCartMini extends Component<any, any> {
                                     <Bag>Total: </Bag>
                                     <TotalAmount>
                                         {this.context.currency.symbol + products.reduce((sum, product) =>
-                                            sum + product.price * product.quantity, 0).toFixed(2).toString()}
+                                            sum + product.price * product.quantity + Math.floor(product.price * 0.21 * product.quantity), 0).toFixed(2).toString()}
                                     </TotalAmount>
                                 </Total>
                             </ContentContainer>
