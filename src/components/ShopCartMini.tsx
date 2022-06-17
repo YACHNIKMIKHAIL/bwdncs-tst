@@ -204,7 +204,7 @@ class ShopCartMini extends Component<any, any> {
               <Total>
                 <Bag>Total: </Bag>
                 <TotalAmount>
-                  {this.context.currency + products.reduce((sum, product) => sum + product.price * product.quantity, 0).toFixed(2).toString()}
+                  {this.context.currency.symbol + products.reduce((sum, product) => sum + product.price * product.quantity, 0).toFixed(2).toString()}
                 </TotalAmount>
               </Total>
             </ContentContainer>
