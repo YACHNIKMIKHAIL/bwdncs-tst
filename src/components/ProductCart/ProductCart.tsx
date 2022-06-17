@@ -22,7 +22,7 @@ class ProductCart extends Component<RouteComponentProps<{}> & ProductCartProps> 
     render() {
         const productInfo = this.props?.product;
         let price
-        let symbol 
+        let symbol
         const available = productInfo?.inStock;
         price = getPrice(productInfo.prices, this.context.currency);
         symbol = getSymbol(productInfo.prices, this.context.currency);

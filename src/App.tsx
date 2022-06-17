@@ -8,10 +8,10 @@ import { createGlobalStyle } from 'styled-components';
 import { Router, Route, Switch } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 import CurrencyContextProvider from './context/currency.context';
-import MainPage from './pages/MainPage';
-import FullProductInfo from './pages/FullProductInfo';
+import MainPage from './pages/MainPage/MainPage';
+import FullProductInfo from './pages/FullProductInfo/FullProductInfo';
 import ShopCardContextProvider from './context/shopCart.context';
-import FullShopCard from './pages/FullShopCart';
+import FullShopCard from './pages/FullShopCart/FullShopCart';
 
 const GlobalStyle = createGlobalStyle`
   body {

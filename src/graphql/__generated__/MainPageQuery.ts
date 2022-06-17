@@ -1,12 +1,3 @@
-/* tslint:disable */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL query operation: MainPageQuery
-// ====================================================
-
 export interface MainPageQuery_category_products_prices {
   __typename: "Price";
   amount: number;
