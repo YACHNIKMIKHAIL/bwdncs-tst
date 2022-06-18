@@ -8,8 +8,8 @@ import {
     OrderBlock,
     OrderButton
 } from "./OrderStyle";
-import {CurrencyContext} from "./../../../context/currency.context";
-import {ShopCartContext} from "./../../../context/shopCart.context";
+import {CurrencyContext} from "../../../context/currency.context";
+import {ShopCartContext} from "../../../context/shopCart.context";
 
 class Order extends Component {
     static contextType = CurrencyContext;
@@ -26,7 +26,8 @@ class Order extends Component {
                             return acc + el
 
                         })
-                    const tax = Math.floor(all * 0.21)
+                    const tax = all * 0.21
+                    const totalPrice = all+ tax
                     const qua = products
                         .map((m: any) => m.quantity)
                         .reduce((acc: number, el: number) => {
@@ -39,13 +40,13 @@ class Order extends Component {
                         <OrderProduct>
                             <OrderInfo>
                                 <OrderBlock>
-                                    <OrderD>Tax 21%:</OrderD><OrderP>{this.context.currency.symbol} {tax}</OrderP>
+                                    <OrderD>Tax 21%:</OrderD><OrderP>{this.context.currency.symbol} {tax.toFixed(2)}</OrderP>
                                 </OrderBlock>
                                 <OrderBlock>
                                     <OrderD>Quantity:</OrderD><OrderP>{qua}</OrderP>
                                 </OrderBlock>
                                 <OrderBlock>
-                                    <OrderD>Total:</OrderD><OrderP>{this.context.currency.symbol} {Math.floor(all + tax)}</OrderP>
+                                    <OrderD>Total:</OrderD><OrderP>{this.context.currency.symbol} {totalPrice.toFixed(2)}</OrderP>
                                 </OrderBlock>
                                 <OrderButton
                                     onClick={() => {
