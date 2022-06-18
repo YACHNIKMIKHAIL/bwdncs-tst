@@ -97,8 +97,7 @@ class FullProductInfo extends Component<ChildDataProps<RouteComponentProps<{}> &
                                 <Info>
                                     <ProductName>{productInfo?.name}</ProductName>
                                     {productInfo?.attributes?.map((attribute: MainPageQuery_category_products_attributes
-                                            | null, index: number, array: (MainPageQuery_category_products_attributes
-                                            | null)[]) => {
+                                            | null) => {
                                             return <Attribute
                                                 key={attribute!.id}
                                                 onAttributeSelect={(attributeItem) => {

@@ -27,29 +27,38 @@ export class Attribute extends Component<AttributeProps> {
                 </AttributeNameContainer>
                 <VariantsContainer>
                     {this.props.attribute.type === 'swatch' && this.props?.attribute?.items?.map(
-                        (variant) => (
-                            <OneVariantWithColor
+                        (variant) => {
+                            return <OneVariantWithColor
                                 key={variant?.id}
                                 selected={this.props.selectedAttribute === variant?.id}
                                 backColor={variant?.value!}
                                 onClick={() => this.props.onAttributeSelect(variant!.id)}
-                            />
-                        ),
-                    )}
-
-                    {this.props.attribute.type !== 'swatch' && this.props?.attribute?.items?.map(
-                        (variant) => (
-                            <OneVariant
-                                key={variant?.id}
-                                selected={this.props.selectedAttribute === variant?.id}
-                                onClick={() => this.props.onAttributeSelect(variant!.id)}
                             >
-                                {variant?.displayValue}
-                            </OneVariant>
-                        ),
-                    )}
-                </VariantsContainer>
-            </AttributeContainer>
-        );
-    }
-}
+                                {/*I don't know what is the ...? but UI work =]*/}
+                                {this.props.selectedAttribute === variant?.id && <div
+                                    style={{backgroundColor: variant?.value!, width:  '40px', height: '40px'}}
+                                ></div>}
+                                    </OneVariantWithColor>
+
+                                },
+                                )}
+
+                                {this.props.attribute.type !== 'swatch' && this.props?.attribute?.items?.map(
+                                    (variant) => (
+                                        <OneVariant
+                                            key={variant?.id}
+                                            selected={this.props.selectedAttribute === variant?.id}
+                                            onClick={() => this.props.onAttributeSelect(variant!.id)}
+                                        >
+                                            {variant?.displayValue}
+                                        </OneVariant>
+                                    ),
+                                )}
+
+
+                            </VariantsContainer>
+                        </AttributeContainer>
+                        )
+                            ;
+                        }
+                    }

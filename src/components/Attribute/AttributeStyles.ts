@@ -32,7 +32,7 @@ export const OneVariant = styled.div<{ selected: boolean }>`
     cursor: pointer;
   }
 
-  ${({selected}) => selected && `
+  ${({selected,}) => selected && `
     color: white;
     background-color: black;
     cursor: pointer;
@@ -41,25 +41,24 @@ export const OneVariant = styled.div<{ selected: boolean }>`
 
 export const OneVariantWithColor = styled.div<{ selected: boolean, backColor: string }>`
   margin-right: 12px;
-  padding: 15px 20px;
+  
   border: 1px solid #1D1F22;
   margin-top: 10px;
-  width: 20px;
-  height: 20px;
+  width: 40px;
+  height: 40px;
 
   &:hover {
-    color: white;
-    border:6px red solid;
+    border: 6px #5ECE7B solid;
     cursor: pointer;
   }
 
   ${({backColor}) => `
-  background-color: ${backColor}
+    background-color: ${backColor}
   `}
 
-  ${({selected}) => selected && `
-    color: white;
-    border:6px red solid;
+  ${({selected,backColor}) => selected && `
+    background-color: ${backColor};
+    border:6px #5ECE7B solid;
     cursor: pointer;
   `}
 
