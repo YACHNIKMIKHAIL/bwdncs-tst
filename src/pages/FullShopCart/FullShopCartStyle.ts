@@ -35,6 +35,13 @@ export const Cart = styled.p`
   line-height: 40px;
 `;
 
+export const NoItems = styled.div`
+  font-family: Raleway, serif;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 20px;
+`;
+
 export const ProductsBlock = styled.div`
   max-width: 1200px;
   padding-left: 30px;

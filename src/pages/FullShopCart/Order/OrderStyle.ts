@@ -1,6 +1,11 @@
 import styled from "styled-components";
 
 
+export const OrderBlock = styled.div`
+  display: flex;
+  margin: 10px 0;
+  align-items: center
+`;
 export const OrderProduct = styled.div`
   border-top: #E5E5E5 1px solid;
   display: flex;

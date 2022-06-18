@@ -5,6 +5,7 @@ import {
     OrderInfo,
     OrderD,
     OrderP,
+    OrderBlock,
     OrderButton
 } from "./OrderStyle";
 import {CurrencyContext} from "./../../../context/currency.context";
@@ -37,15 +38,15 @@ class Order extends Component {
                     return <ProductsBlock>
                         <OrderProduct>
                             <OrderInfo>
-                                <div style={{display: 'flex', margin: '10px 0', alignItems: 'center'}}>
+                                <OrderBlock>
                                     <OrderD>Tax 21%:</OrderD><OrderP>{this.context.currency.symbol} {tax}</OrderP>
-                                </div>
-                                <div style={{display: 'flex', margin: '10px 0', alignItems: 'center'}}>
+                                </OrderBlock>
+                                <OrderBlock>
                                     <OrderD>Quantity:</OrderD><OrderP>{qua}</OrderP>
-                                </div>
-                                <div style={{display: 'flex', margin: '10px 0', alignItems: 'self-end'}}>
+                                </OrderBlock>
+                                <OrderBlock>
                                     <OrderD>Total:</OrderD><OrderP>{this.context.currency.symbol} {Math.floor(all + tax)}</OrderP>
-                                </div>
+                                </OrderBlock>
                                 <OrderButton
                                     onClick={() => {
                                         alert('Is Ordered =)')

@@ -5,13 +5,13 @@ import {
     Container,
     Overlay,
     Cart,
-    ProductsBlock
+    ProductsBlock,
+    NoItems
 } from './FullShopCartStyle';
 import Header from '../../components/Header/Header';
 import {CurrencyContext} from '../../context/currency.context';
 import {ShopCartContext} from '../../context/shopCart.context';
 import ProductInCart from "../../components/ProductInCart/ProductInCart";
-import {Name} from "../../components/ProductInCart/ProductInCartStyle";
 import Order from "./Order/Order";
 
 class FullShopCart extends Component<any, any> {
@@ -36,11 +36,11 @@ class FullShopCart extends Component<any, any> {
                                 <ProductsBlock>
                                     <Cart>Cart</Cart>
                                     {products.length === 0
-                                        ? <Name>
-                                            <Link to={'/'}>
+                                        ? <NoItems>
+                                            <Link to={'/'} style={{color:'#79D383'}}>
                                                 No items in basket =(
                                             </Link>
-                                        </Name>
+                                        </NoItems>
                                         : <>{products.map((product, i) => (
                                             <ProductInCart product={product} key={i}/>))}</>
                                     }
