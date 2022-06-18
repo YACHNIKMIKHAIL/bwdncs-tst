@@ -48,8 +48,8 @@ class ShopCartMini extends Component<any, any> {
                                     </p>
                                 </Text>
                                 <AllProducts>
-                                    {products.map((product) => (
-                                        <Product key={product?.id + product.photo}>
+                                    {products.map((product, i) => (
+                                        <Product key={product?.id + product.photo + i}>
                                             <ProductInfo>
                                                 <ProductName>{product?.id}</ProductName>
                                                 <Amount>{this.context.currency.symbol + product?.price.toString()}</Amount>
