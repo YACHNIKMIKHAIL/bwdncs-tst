@@ -15,19 +15,24 @@ export const MainContainer = styled.div`
 
 export const LogoStyle = styled.div`
   height: 75px;
+  margin: 0 auto;
 `;
 
 export const Categories = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  flex-wrap: wrap
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  width: 30%;
 `;
 
 export const CurrencyAndShopCart = styled.div`
   display: flex;
   flex-direction: row;
-  align-items: center
+  justify-content: flex-end;
+  align-items: center;
+  width: 30%;
 `;
 
 export const CurrencyOpen = styled.div`

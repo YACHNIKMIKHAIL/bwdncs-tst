@@ -52,13 +52,13 @@ class FullProductInfo extends Component<ChildDataProps<RouteComponentProps<{}> &
     };
 
     render() {
+        console.log(this.state.selectedAttributes)
         const allProducts = this.props?.data?.category?.products;
-
         if (!allProducts) {
             return null;
         }
-
         const product = fixProductName(this.props.history.location.search);
+
         const productInfo: Product | null | undefined = allProducts.find((oneProduct) => oneProduct?.name === product);
         const photo = this.state.mainPhoto || productInfo?.gallery?.[0];
 

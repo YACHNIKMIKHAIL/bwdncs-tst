@@ -11,15 +11,15 @@ export const NameOfCategory = styled.div<{ selected: boolean }>`
   box-sizing: border-box;
   background-color: transparent;
   border: none;
-  margin: 3px;
+  margin-right: 25px;
 
-  &:hover {
+  &: hover {
     color: #5ECE7B;
     border-bottom: 2px solid #5ECE7B;
     cursor: pointer;
   }
 
-  ${({ selected }) => selected && `
+  ${({selected}) => selected && `
     color: #5ECE7B;
     border-bottom: 2px solid #5ECE7B;
   `}
