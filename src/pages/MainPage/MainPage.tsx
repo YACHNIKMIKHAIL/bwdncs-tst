@@ -29,7 +29,6 @@ class MainPage extends Component<ChildDataProps<MainPageProps, MainPageQuery, {}
     render() {
         const products = this.props?.data?.category?.products;
         const {category} = this.props.match.params;
-
         const showOverlay = (state: boolean) => {
             this.setState({showOverlay: state});
         };
@@ -49,7 +48,7 @@ class MainPage extends Component<ChildDataProps<MainPageProps, MainPageQuery, {}
                         <CategoryName>{capitalize(category)}</CategoryName>
                         <ProductList>
                             {filteredProducts?.map((product) => (
-                                <ProductCard key={product?.id} product={product!}/>
+                              <ProductCard key={product?.id} product={product!}/>
                             ))}
                         </ProductList>
                     </CategoryAndProducts>

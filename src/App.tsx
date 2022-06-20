@@ -1,12 +1,12 @@
 import React from 'react';
 import {
-  ApolloClient,
-  InMemoryCache,
-  ApolloProvider,
+    ApolloClient,
+    InMemoryCache,
+    ApolloProvider,
 } from '@apollo/client';
-import { createGlobalStyle } from 'styled-components';
-import { Router, Route, Switch } from 'react-router-dom';
-import { createBrowserHistory } from 'history';
+import {createGlobalStyle} from 'styled-components';
+import {Router, Route, Switch} from 'react-router-dom';
+import {createBrowserHistory} from 'history';
 import CurrencyContextProvider from './context/currency.context';
 import MainPage from './pages/MainPage/MainPage';
 import FullProductInfo from './pages/FullProductInfo/FullProductInfo';
@@ -21,30 +21,30 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 const client = new ApolloClient({
-  uri: 'http://localhost:4000/',
-  cache: new InMemoryCache(),
+    uri: 'http://localhost:4000/',
+    cache: new InMemoryCache(),
 });
 
 const history = createBrowserHistory();
 
 function App() {
-  return (
-    <Router history={history}>
-      <ApolloProvider client={client}>
-        <CurrencyContextProvider>
-          <ShopCardContextProvider>
-            <Switch>
-              <Route path="/product" component={FullProductInfo} />
-              <Route path="/shopcart" component={FullShopCard} />
-              <Route path="/:category" component={MainPage} />
-              <Route path="/" component={MainPage} />
-            </Switch>
-          </ShopCardContextProvider>
-        </CurrencyContextProvider>
-        <GlobalStyle />
-      </ApolloProvider>
-    </Router>
-  );
+    return (
+        <Router history={history}>
+            <ApolloProvider client={client}>
+                <CurrencyContextProvider>
+                    <ShopCardContextProvider>
+                        <Switch>
+                            <Route path="/product" component={FullProductInfo}/>
+                            <Route path="/shopcart" component={FullShopCard}/>
+                            <Route path="/:category" component={MainPage}/>
+                            <Route path="/" component={MainPage}/>
+                        </Switch>
+                    </ShopCardContextProvider>
+                </CurrencyContextProvider>
+                <GlobalStyle/>
+            </ApolloProvider>
+        </Router>
+    );
 }
 
 export default App;

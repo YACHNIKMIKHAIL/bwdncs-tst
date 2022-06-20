@@ -29,8 +29,14 @@ class ProductCart extends Component<RouteComponentProps<{}> & ProductCartProps> 
 
         return (
             <div>
-                <MainDiv onClick={() => {
-                    this.props.history.push(`/product?${productInfo.name}`);
+                <MainDiv
+                //     onClick={() => {
+                //   this.props.history.push(`/product?${productInfo.name}`);
+                // }
+                    onClick={() => {
+                    !available
+                    ? alert('Sorry, this item is not available now =(')
+                    : this.props.history.push(`/product?${productInfo.name}`);
                 }
                 }
                 >

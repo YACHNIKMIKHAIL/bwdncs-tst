@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const MainDiv = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   width: 100%;
   min-height: 100vh;
@@ -34,17 +35,13 @@ export const ProductList = styled.div`
   justify-content: space-between;
   align-items: center;
   max-width: 1200px;
-
-  &::after {
-    content: "";
-    flex: auto;
-  }
 `;
 
 export const Container = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   flex: 1;
   width: 100%;
   height: 100%;

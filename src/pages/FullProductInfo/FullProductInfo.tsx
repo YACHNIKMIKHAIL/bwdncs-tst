@@ -33,9 +33,9 @@ import {ShopCartContext} from '../../context/shopCart.context';
 import {getPrice} from '../../Utils';
 import {compact} from "lodash";
 
-const fixProductName = (str: string) => str.slice(1).split('%20').join(' ');
-
-
+const fixProductName = (str: string) => {
+    return str.slice(1).split('%20').join(' ')
+};
 
 interface FullProductInfoProps {
     data: MainPageQuery & QueryControls<MainPageQuery, {}>
@@ -59,7 +59,6 @@ class FullProductInfo extends Component<ChildDataProps<RouteComponentProps<{}> &
         }
 
         const product = fixProductName(this.props.history.location.search);
-
         const productInfo: Product | null | undefined = allProducts.find((oneProduct) => oneProduct?.name === product);
         const photo = this.state.mainPhoto || productInfo?.gallery?.[0];
 
@@ -71,8 +70,8 @@ class FullProductInfo extends Component<ChildDataProps<RouteComponentProps<{}> &
 
         return (
             <ShopCartContext.Consumer>
-                {({addProduct}) => (
-                    <MainDiv>
+                {({addProduct}) => {
+                    return <MainDiv>
                         <Header showOverlay={showOverlay}/>
                         <Container>
                             {this.state.showOverlay && <Overlay/>}
@@ -120,6 +119,8 @@ class FullProductInfo extends Component<ChildDataProps<RouteComponentProps<{}> &
                                         <Amount>{`${this.context.currency.symbol} ${price?.toString()}`}</Amount>
                                     </Price>
                                     <AddToCart
+                                        // disabled={!productInfo?.inStock}
+
                                         onClick={() => {
                                             if (!this.state.isSelected && productInfo?.attributes?.length !== 0) {
                                                 alert('Choise attribute')
@@ -140,7 +141,7 @@ class FullProductInfo extends Component<ChildDataProps<RouteComponentProps<{}> &
                             </ProductInfo>
                         </Container>
                     </MainDiv>
-                )}
+                }}
             </ShopCartContext.Consumer>
         );
     }
