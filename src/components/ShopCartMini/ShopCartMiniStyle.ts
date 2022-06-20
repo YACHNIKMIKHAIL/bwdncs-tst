@@ -7,6 +7,7 @@ export const MainContainer = styled.div`
   background-color: white;
   z-index: 10;
   margin-top: 30px;
+  height: 550px;
 `;
 
 export const ContentContainer = styled.div`
@@ -17,7 +18,7 @@ export const ContentContainer = styled.div`
 export const Text = styled.div`
   display: flex;
   flex-direction: row;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 `;
 
 export const Bag = styled.p`
@@ -26,7 +27,9 @@ export const Bag = styled.p`
 
 export const AllProducts = styled.div`
   display: flex;
-  flex-direction: column
+  flex-direction: column;
+  overflow: auto;
+  height: 330px;
 `;
 
 export const Product = styled.div`
@@ -109,7 +112,8 @@ export const Miniature = styled.img`
 export const Total = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-bottom: 35px;
+  margin-top: 20px;
+  margin-bottom: 10px;
 `;
 
 export const TotalAmount = styled.p`
@@ -123,7 +127,7 @@ export const Buttons = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 `;
 
 export const ViewBag = styled.button`

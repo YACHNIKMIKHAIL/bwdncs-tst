@@ -22,7 +22,6 @@ class ProductCart extends Component<RouteComponentProps<{}> & ProductCartProps> 
         price = getPrice(productInfo.prices, this.context.currency);
         symbol = getSymbol(productInfo.prices, this.context.currency);
 
-        console.log(this.props.product)
         return <ShopCartContext.Consumer>
             {({addProduct}) => {
                 return (
