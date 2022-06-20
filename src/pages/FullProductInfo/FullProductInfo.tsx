@@ -52,7 +52,6 @@ class FullProductInfo extends Component<ChildDataProps<RouteComponentProps<{}> &
     };
 
     render() {
-        console.log(this.state.selectedAttributes)
         const allProducts = this.props?.data?.category?.products;
         if (!allProducts) {
             return null;

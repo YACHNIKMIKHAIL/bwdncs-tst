@@ -132,8 +132,14 @@ class Header extends Component<ChildDataProps<HeaderProps, MainPageQuery, {}>> {
                                     <ShopCartContainer>
                                         <ShopCart
                                             onClick={() => {
-                                                this.setState({shopCardSwitchOpen: !this.state.shopCardSwitchOpen});
-                                                this.props.showOverlay(!this.state.shopCardSwitchOpen);
+                                                if (products.length < 1) {
+                                                    alert('Dude! Cart is empty!')
+                                                    return
+                                                } else {
+                                                    this.setState({shopCardSwitchOpen: !this.state.shopCardSwitchOpen});
+                                                    this.props.showOverlay(!this.state.shopCardSwitchOpen);
+                                                }
+
                                             }}
                                         />
                                         {products.length > 0 && <NumberOfProducts onClick={() => {

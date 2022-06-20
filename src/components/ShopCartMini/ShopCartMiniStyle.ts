@@ -37,6 +37,7 @@ export const Product = styled.div`
   flex-direction: row;
   justify-content: space-between;
   margin-bottom: 45px;
+
 `;
 
 export const ProductInfo = styled.div`
@@ -57,13 +58,14 @@ export const AttributeSet = styled.div`
 `;
 
 export const Attribute = styled.div`
-  height: 24px;
+  min-height: 20px;
+  min-width: 20px;
   border: solid 1px black;
-  margin: 0 4px;
-  padding: 4px 6px;
+  margin: 4px 3px;
   display: flex;
   justify-content: center;
   align-items: center;
+
 `;
 
 export const Amount = styled.div`
@@ -100,6 +102,7 @@ export const Button = styled.div`
   width: 24px;
   height: 24px;
   text-align: center;
+  margin-bottom: 5px;
 `;
 
 export const Miniature = styled.img`
@@ -117,7 +120,7 @@ export const Total = styled.div`
 `;
 
 export const TotalAmount = styled.p`
-  font-family: Raleway,serif;
+  font-family: Raleway, serif;
   font-style: normal;
   font-weight: bold;
   font-size: 16px;

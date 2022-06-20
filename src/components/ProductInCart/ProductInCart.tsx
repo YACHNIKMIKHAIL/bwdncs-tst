@@ -50,14 +50,54 @@ class ProductInCart extends Component<ProductInCartProps> {
     render() {
         return (
             <ShopCartContext.Consumer>
-                {({addProduct, removeProduct}) => (
-                    <Product key={this.props.product.id}>
+                {({addProduct, removeProduct}) => {
+                    console.log(this.props.product.allAttributes)
+
+                    return <Product key={this.props.product.id}>
                         <Info>
                             <Name>{this.props.product.id}</Name>
                             <Price>{this.context.currency.symbol + this.props.product.price * this.props.product.quantity}</Price>
-                            <div>
-                                {values(this.props.product?.selectedAttributes).map((attribute, i) => (
-                                    <Attribute key={i}>{attribute}</Attribute>))}
+                            <div style={{
+                                width: '100%',
+                                display: 'flex',
+                                flexDirection: 'column'
+                            }}>
+                                {/*{values(this.props.product?.selectedAttributes).map((attribute, i) => (*/}
+                                {/*    <Attribute key={i}>{attribute}</Attribute>*/}
+                                {/*))*/}
+                                {/*}*/}
+                                {values(this.props.product.allAttributes).map((attribute, i) => (
+                                    <Name style={{fontSize: '20px'}} key={i}>{attribute.id}:
+                                        <div style={{display: 'flex', marginTop: '10px',alignItems:'center'}}>{
+                                            attribute.items?.map((m, i) => {
+                                                console.log(values(this.props.product?.selectedAttributes))
+                                                const [a, b] = values(this.props.product?.selectedAttributes)
+                                                console.log('a', a)
+                                                console.log('b', b)
+                                                if (m?.id == a) {
+                                                    return <Attribute key={i} style={{
+                                                        backgroundColor: 'black',
+                                                        color: 'white'
+                                                    }}>{m?.id}</Attribute>
+                                                } else if (attribute.id === 'Color' ) {
+                                                    if(m?.id == b){
+                                                        return <Attribute key={i} style={{
+                                                            backgroundColor: `${m?.value}`,
+                                                            border:'6px #5ECE7B solid'
+                                                        }}></Attribute>
+                                                    }else{
+                                                        return <Attribute key={i} style={{
+                                                            backgroundColor: `${m?.value}`
+                                                        }}></Attribute>
+                                                    }
+                                                } else {
+                                                    return <Attribute key={i}>{m?.id}</Attribute>
+                                                }
+                                            })
+                                        }</div>
+                                    </Name>
+                                ))
+                                }
                             </div>
                         </Info>
                         <ButtonsAndPhoto>
@@ -95,7 +135,7 @@ class ProductInCart extends Component<ProductInCartProps> {
                             </PhotoBlock>
                         </ButtonsAndPhoto>
                     </Product>
-                )}
+                }}
             </ShopCartContext.Consumer>
         );
     }

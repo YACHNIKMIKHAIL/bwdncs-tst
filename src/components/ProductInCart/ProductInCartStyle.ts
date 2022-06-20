@@ -24,6 +24,9 @@ export const Name = styled.div`
   font-weight: 600;
   font-size: 30px;
   line-height: 27px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 `;
 
 export const Price = styled.div`
@@ -36,10 +39,10 @@ export const Price = styled.div`
 
 export const Attribute = styled.div`
   border: solid 1px black;
-  margin: 0 4px;
+  margin-right: 10px;
   padding: 4px 6px;
-  width: 63px;
-  height: 45px;
+  min-width: 35px;
+  height: 35px;
   display: flex;
   justify-content: center;
   align-items: center;
