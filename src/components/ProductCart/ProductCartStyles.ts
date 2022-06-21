@@ -8,6 +8,7 @@ export const MainDiv = styled.div`
   font-family: Raleway, serif;
   padding: 20px;
   margin: 0 0 100px 0;
+  position: relative;
 
   &:hover {
     box-shadow: 0 5px 35px rgba(168, 172, 176, 0.19);
