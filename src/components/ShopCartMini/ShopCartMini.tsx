@@ -121,7 +121,7 @@ class ShopCartMini extends Component<any, any> {
                                                                 alignItems: 'center',
                                                             }}>{
                                                                 attribute.items?.map((m: any, i: number) => {
-                                                                    const [keysA, keysB] = Object.keys(product?.selectedAttributes)
+                                                                    const [keysA] = Object.keys(product?.selectedAttributes)
                                                                     const Xvalues = values(product?.selectedAttributes)
                                                                     if (keysA === 'Color') {
                                                                         Xvalues.reverse()

@@ -70,7 +70,7 @@ class ProductInCart extends Component<ProductInCartProps> {
                                     <Name style={{fontSize: '16px'}} key={i}>{attribute.id.toUpperCase()}:
                                         <div style={{display: 'flex', marginTop: '2px', alignItems: 'center'}}>{
                                             attribute.items?.map((m, i) => {
-                                                const [keysA, keysB] = Object.keys(this.props.product?.selectedAttributes)
+                                                const [keysA] = Object.keys(this.props.product?.selectedAttributes)
                                                 const Xvalues = values(this.props.product?.selectedAttributes)
                                                 if (keysA === 'Color') {
                                                     Xvalues.reverse()
@@ -88,11 +88,11 @@ class ProductInCart extends Component<ProductInCartProps> {
                                                             backgroundColor: `${m?.value}`,
                                                             border: '3px #5ECE7B solid',
 
-                                                        }}></Attribute>
+                                                        }}/>
                                                     } else {
                                                         return <Attribute key={i} style={{
                                                             backgroundColor: `${m?.value}`
-                                                        }}></Attribute>
+                                                        }}/>
                                                     }
                                                 } else {
                                                     return <Attribute key={i}
