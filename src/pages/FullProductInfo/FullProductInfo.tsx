@@ -119,16 +119,21 @@ class FullProductInfo extends Component<ChildDataProps<RouteComponentProps<{}> &
                                     </Price>
                                     <AddToCart
                                         // disabled={!productInfo?.inStock}
-
+                                        style={{opacity: !productInfo?.inStock ? '0.4' : ''}}
                                         onClick={() => {
-                                            if (!this.state.isSelected && productInfo?.attributes?.length !== 0) {
-                                                alert('Choise attribute')
-                                            } else {
-                                                addProduct(productInfo?.name!,
-                                                    this.state.selectedAttributes,
-                                                    productInfo?.attributes,
-                                                    productInfo?.prices,
-                                                    compact(productInfo?.gallery));
+                                            if(!productInfo?.inStock ){
+                                                alert('Sorry, this item is not available now =(')
+                                                return
+                                            }else{
+                                                if (!this.state.isSelected && productInfo?.attributes?.length !== 0) {
+                                                    alert('Choise attribute')
+                                                } else {
+                                                    addProduct(productInfo?.name!,
+                                                        this.state.selectedAttributes,
+                                                        productInfo?.attributes,
+                                                        productInfo?.prices,
+                                                        compact(productInfo?.gallery));
+                                                }
                                             }
                                         }}
                                     >

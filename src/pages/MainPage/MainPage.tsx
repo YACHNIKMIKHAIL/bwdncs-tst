@@ -4,7 +4,7 @@ import {RouteComponentProps} from 'react-router';
 import {ChildDataProps, graphql, QueryControls} from '@apollo/client/react/hoc';
 import ProductCard from '../../components/ProductCart/ProductCart';
 import Header from '../../components/Header/Header';
-import {GET_ALL_INFO} from '../../graphql/query';
+import {GET_ALL_INFO, GET_CATHEGORY_CURRENCY} from '../../graphql/query';
 import {MainPageQuery} from '../../graphql/__generated__/MainPageQuery';
 import {capitalize} from "lodash";
 

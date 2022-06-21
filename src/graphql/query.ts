@@ -36,3 +36,34 @@ export const GET_ALL_INFO = gql`
         }
     }
 `;
+
+export const GET_CATHEGORY_CURRENCY = gql`
+    query FirstQuery {
+        category {
+            name
+            products {
+                id
+                name
+                gallery
+                category
+                prices{
+                    amount
+                    currency{
+                       label
+                      symbol
+                    }
+                }
+                inStock
+            }
+        }
+        currencies{
+          label
+          symbol
+        }
+    }
+`;
+
+
+
+
+
