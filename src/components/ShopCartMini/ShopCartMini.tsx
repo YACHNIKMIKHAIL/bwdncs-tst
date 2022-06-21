@@ -113,33 +113,43 @@ class ShopCartMini extends Component<any, any> {
 
 
                                                     {values(product.allAttributes).map((attribute, i) => (
-                                                        <Name style={{fontSize: '15px',fontWeight: 300}} key={i}>{attribute.id}:
-                                                            <div style={{display: 'flex', marginTop: '2px',alignItems:'center',}}>{
-                                                                attribute.items?.map((m:any, i:number) => {
-                                                                    const [a, b] = values(product?.selectedAttributes)
-                                                                    // console.log('a', a)
-                                                                    // console.log('b', b)
-                                                                    if (m?.id === a) {
+                                                        <Name style={{fontSize: '15px', fontWeight: 300}}
+                                                              key={i}>{attribute.id}:
+                                                            <div style={{
+                                                                display: 'flex',
+                                                                marginTop: '2px',
+                                                                alignItems: 'center',
+                                                            }}>{
+                                                                attribute.items?.map((m: any, i: number) => {
+                                                                    const [keysA, keysB] = Object.keys(product?.selectedAttributes)
+                                                                    const Xvalues = values(product?.selectedAttributes)
+                                                                    if (keysA === 'Color') {
+                                                                        Xvalues.reverse()
+                                                                    }
+                                                                    const [valuesA, valuesB] = Xvalues
+                                                                    if (m?.id === valuesA) {
                                                                         return <Attribute key={i} style={{
                                                                             backgroundColor: 'black',
                                                                             color: 'white',
-                                                                            padding:'4px'
+                                                                            padding: '4px'
                                                                         }}>{m?.id}</Attribute>
-                                                                    } else if (attribute.id === 'Color' ) {
-                                                                        if(m?.id === b){
+                                                                    } else if (attribute.id === 'Color') {
+                                                                        if (m?.id === valuesB) {
                                                                             return <Attribute key={i} style={{
                                                                                 backgroundColor: `${m?.value}`,
-                                                                                border:'3px #5ECE7B solid',
+                                                                                border: '3px #5ECE7B solid',
 
                                                                             }}></Attribute>
-                                                                        }else{
+                                                                        } else {
                                                                             return <Attribute key={i} style={{
                                                                                 backgroundColor: `${m?.value}`
                                                                             }}></Attribute>
                                                                         }
                                                                     } else {
-                                                                        return <Attribute key={i} style={{padding:'2px'}}>{m?.id}</Attribute>
+                                                                        return <Attribute key={i}
+                                                                                          style={{padding: '2px'}}>{m?.id}</Attribute>
                                                                     }
+
                                                                 })
                                                             }</div>
                                                         </Name>

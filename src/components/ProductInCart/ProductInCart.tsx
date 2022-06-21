@@ -70,25 +70,33 @@ class ProductInCart extends Component<ProductInCartProps> {
                                     <Name style={{fontSize: '16px'}} key={i}>{attribute.id.toUpperCase()}:
                                         <div style={{display: 'flex', marginTop: '2px', alignItems: 'center'}}>{
                                             attribute.items?.map((m, i) => {
-                                                const [a, b] = values(this.props.product?.selectedAttributes)
-                                                if (m?.id === a) {
+                                                const [keysA, keysB] = Object.keys(this.props.product?.selectedAttributes)
+                                                const Xvalues = values(this.props.product?.selectedAttributes)
+                                                if (keysA === 'Color') {
+                                                    Xvalues.reverse()
+                                                }
+                                                const [valuesA, valuesB] = Xvalues
+                                                if (m?.id === valuesA) {
                                                     return <Attribute key={i} style={{
                                                         backgroundColor: 'black',
-                                                        color: 'white'
+                                                        color: 'white',
+                                                        padding: '4px'
                                                     }}>{m?.id}</Attribute>
                                                 } else if (attribute.id === 'Color') {
-                                                    if (m?.id === b) {
+                                                    if (m?.id === valuesB) {
                                                         return <Attribute key={i} style={{
                                                             backgroundColor: `${m?.value}`,
-                                                            border: '4px #5ECE7B solid'
-                                                        }}/>
+                                                            border: '3px #5ECE7B solid',
+
+                                                        }}></Attribute>
                                                     } else {
                                                         return <Attribute key={i} style={{
                                                             backgroundColor: `${m?.value}`
-                                                        }}/>
+                                                        }}></Attribute>
                                                     }
                                                 } else {
-                                                    return <Attribute key={i}>{m?.id}</Attribute>
+                                                    return <Attribute key={i}
+                                                                      style={{padding: '2px'}}>{m?.id}</Attribute>
                                                 }
                                             })
                                         }</div>

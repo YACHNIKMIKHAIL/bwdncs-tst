@@ -20,7 +20,6 @@ class ProductCart extends Component<RouteComponentProps<{}> & ProductCartProps> 
 
 
     render() {
-        console.log(this.state.show)
         const productInfo = this.props?.product;
         let price: number | null
         let symbol: string | null
