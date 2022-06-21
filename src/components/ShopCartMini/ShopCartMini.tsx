@@ -51,7 +51,6 @@ class ShopCartMini extends Component<any, any> {
                                 </Text>
                                 <AllProducts>
                                     {products.map((product, i) => {
-                                        console.log(product.allAttributes)
                                         return <Product key={product?.id + product.photo + i}>
                                             <ProductInfo>
                                                 <ProductName>{product?.id}</ProductName>
@@ -114,21 +113,20 @@ class ShopCartMini extends Component<any, any> {
 
 
                                                     {values(product.allAttributes).map((attribute, i) => (
-                                                        <Name style={{fontSize: '20px'}} key={i}>{attribute.id}:
-                                                            <div style={{display: 'flex', marginTop: '10px',alignItems:'center',}}>{
+                                                        <Name style={{fontSize: '15px',fontWeight: 300}} key={i}>{attribute.id}:
+                                                            <div style={{display: 'flex', marginTop: '2px',alignItems:'center',}}>{
                                                                 attribute.items?.map((m:any, i:number) => {
-                                                                    console.log(values(product?.selectedAttributes))
                                                                     const [a, b] = values(product?.selectedAttributes)
-                                                                    console.log('a', a)
-                                                                    console.log('b', b)
-                                                                    if (m?.id == a) {
+                                                                    // console.log('a', a)
+                                                                    // console.log('b', b)
+                                                                    if (m?.id === a) {
                                                                         return <Attribute key={i} style={{
                                                                             backgroundColor: 'black',
                                                                             color: 'white',
                                                                             padding:'4px'
                                                                         }}>{m?.id}</Attribute>
                                                                     } else if (attribute.id === 'Color' ) {
-                                                                        if(m?.id == b){
+                                                                        if(m?.id === b){
                                                                             return <Attribute key={i} style={{
                                                                                 backgroundColor: `${m?.value}`,
                                                                                 border:'3px #5ECE7B solid',

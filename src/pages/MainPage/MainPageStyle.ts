@@ -28,14 +28,21 @@ export const CategoryName = styled.div`
 `;
 
 export const ProductList = styled.div`
-  box-sizing: border-box;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-between;
   align-items: center;
-  max-width: 1200px;
+  max-width: 1020px;
+  
+  @media (max-width: 1250px) {
+    justify-content: center;
+  }
 `;
+//margin: 0 0 0 160px;
+// box-sizing: border-box;
+
+
+
 
 export const Container = styled.div`
   position: relative;

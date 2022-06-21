@@ -41,8 +41,8 @@ export const Attribute = styled.div`
   border: solid 1px black;
   margin-right: 10px;
   padding: 4px 6px;
-  min-width: 35px;
-  height: 35px;
+  min-width: 25px;
+  height: 25px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -89,15 +89,25 @@ export const PhotoBlock = styled.div`
 `;
 
 export const ArrowsContainer = styled.div`
-  width: 100%;
+  width: 30%;
   position: absolute;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  bottom: 20px;
+  right: 20px;
 `;
 
 export const Arrow = styled.div`
   cursor: pointer;
+  background-color: black;
+  padding: 2px;
+  width: 14px;
+  height: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.5;
 `
 
 export const Miniature = styled.img`

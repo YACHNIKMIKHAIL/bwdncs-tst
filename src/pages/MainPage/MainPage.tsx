@@ -1,12 +1,5 @@
 import React, {Component} from 'react';
-import {
-    MainDiv,
-    CategoryAndProducts,
-    CategoryName,
-    ProductList,
-    Container,
-    Overlay
-} from './MainPageStyle';
+import {CategoryAndProducts, CategoryName, Container, MainDiv, Overlay, ProductList} from './MainPageStyle';
 import {RouteComponentProps} from 'react-router';
 import {ChildDataProps, graphql, QueryControls} from '@apollo/client/react/hoc';
 import ProductCard from '../../components/ProductCart/ProductCart';

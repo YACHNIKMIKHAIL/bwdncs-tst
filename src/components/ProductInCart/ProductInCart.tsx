@@ -51,7 +51,7 @@ class ProductInCart extends Component<ProductInCartProps> {
         return (
             <ShopCartContext.Consumer>
                 {({addProduct, removeProduct}) => {
-                    console.log(this.props.product.allAttributes)
+                    // console.log(this.props.product.allAttributes)
 
                     return <Product key={this.props.product.id}>
                         <Info>
@@ -67,28 +67,25 @@ class ProductInCart extends Component<ProductInCartProps> {
                                 {/*))*/}
                                 {/*}*/}
                                 {values(this.props.product.allAttributes).map((attribute, i) => (
-                                    <Name style={{fontSize: '20px'}} key={i}>{attribute.id}:
-                                        <div style={{display: 'flex', marginTop: '10px',alignItems:'center'}}>{
+                                    <Name style={{fontSize: '16px'}} key={i}>{attribute.id.toUpperCase()}:
+                                        <div style={{display: 'flex', marginTop: '2px', alignItems: 'center'}}>{
                                             attribute.items?.map((m, i) => {
-                                                console.log(values(this.props.product?.selectedAttributes))
                                                 const [a, b] = values(this.props.product?.selectedAttributes)
-                                                console.log('a', a)
-                                                console.log('b', b)
-                                                if (m?.id == a) {
+                                                if (m?.id === a) {
                                                     return <Attribute key={i} style={{
                                                         backgroundColor: 'black',
                                                         color: 'white'
                                                     }}>{m?.id}</Attribute>
-                                                } else if (attribute.id === 'Color' ) {
-                                                    if(m?.id == b){
+                                                } else if (attribute.id === 'Color') {
+                                                    if (m?.id === b) {
                                                         return <Attribute key={i} style={{
                                                             backgroundColor: `${m?.value}`,
-                                                            border:'6px #5ECE7B solid'
-                                                        }}></Attribute>
-                                                    }else{
+                                                            border: '4px #5ECE7B solid'
+                                                        }}/>
+                                                    } else {
                                                         return <Attribute key={i} style={{
                                                             backgroundColor: `${m?.value}`
-                                                        }}></Attribute>
+                                                        }}/>
                                                     }
                                                 } else {
                                                     return <Attribute key={i}>{m?.id}</Attribute>

@@ -25,7 +25,6 @@ class ProductCart extends Component<RouteComponentProps<{}> & ProductCartProps> 
         return <ShopCartContext.Consumer>
             {({addProduct}) => {
                 return (
-                    <div>
                         <MainDiv
                             onClick={() => {
                                 !available
@@ -57,7 +56,6 @@ class ProductCart extends Component<RouteComponentProps<{}> & ProductCartProps> 
                                 BUY NOW
                             </AddToCart>
                         </MainDiv>
-                    </div>
                 );
             }
             }
