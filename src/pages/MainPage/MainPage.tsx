@@ -4,7 +4,7 @@ import {RouteComponentProps} from 'react-router';
 import {ChildDataProps, graphql, QueryControls} from '@apollo/client/react/hoc';
 import ProductCard from '../../components/ProductCart/ProductCart';
 import Header from '../../components/Header/Header';
-import {GET_ALL_INFO, GET_CATHEGORY_CURRENCY} from '../../graphql/query';
+import {GET_ALL_INFO, getAllProducts, getItems} from '../../graphql/query';
 import {MainPageQuery} from '../../graphql/__generated__/MainPageQuery';
 import {capitalize} from "lodash";
 
@@ -40,8 +40,8 @@ class MainPage extends Component<ChildDataProps<MainPageProps, MainPageQuery, {}
                     <CategoryAndProducts>
                         <CategoryName>{capitalize(category)}</CategoryName>
                         <ProductList>
-                            {filteredProducts?.map((product) => (
-                              <ProductCard key={product?.id} product={product!}/>
+                            {filteredProducts?.map((product, i) => (
+                                <ProductCard key={i+1} product={product!}/>
                             ))}
                         </ProductList>
                     </CategoryAndProducts>
@@ -51,4 +51,4 @@ class MainPage extends Component<ChildDataProps<MainPageProps, MainPageQuery, {}
     }
 }
 
-export default graphql<MainPageProps, MainPageQuery, {}, {}>(GET_ALL_INFO)(MainPage);
+export default graphql<MainPageProps, MainPageQuery, {}, {}>(getAllProducts)(MainPage);

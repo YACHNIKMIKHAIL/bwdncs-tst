@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import {gql} from '@apollo/client';
 
 export const GET_ALL_INFO = gql`
     query MainPageQuery {
@@ -45,7 +45,10 @@ export const getItems = gql`
         gallery
         inStock
         prices {
-          currency
+          currency{
+                       label
+                      symbol
+                    }
           amount
         }
         category
@@ -76,7 +79,10 @@ export const getAllProducts = gql`
         inStock
         description
         prices {
-          currency
+          currency{
+                       label
+                      symbol
+                    }
           amount
         }
         attributes {
@@ -130,17 +136,23 @@ export const getItemsByCategory = gql`
   }
 `;
 
-export const getCategories = gql`
-  query {
-    categories {
+export const GET_CATEGORIES = gql`
+  query HeaderPageQuery {
+     categories {
       name
     }
   }
 `;
 
-export const getCurrencies = gql`
+export const GET_CURRENCIES = gql`
   query {
-    currencies
+    categories {
+          name
+        }
+    currencies{
+          label
+          symbol
+        }
   }
 `;
 

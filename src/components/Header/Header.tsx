@@ -9,7 +9,7 @@ import {CurrencyContext} from '../../context/currency.context';
 import {ShopCartContext} from '../../context/shopCart.context';
 import ShopCardMini from '../ShopCartMini/ShopCartMini';
 import {MainPageQuery} from '../../graphql/__generated__/MainPageQuery';
-import {GET_ALL_INFO} from '../../graphql/query';
+import {GET_ALL_INFO, GET_CATEGORIES, GET_CURRENCIES} from '../../graphql/query';
 import Name from '../Name/Name';
 import {
     MainContainer,
@@ -32,7 +32,7 @@ interface HeaderProps {
     category?: string
 }
 
-class Header extends Component<ChildDataProps<HeaderProps, MainPageQuery, {}>> {
+class Header extends Component<ChildDataProps<HeaderProps, MainPageQuery, any>> {
     currencyWrapperRef: React.RefObject<HTMLDivElement>;
     shopCardWrapperRef: React.RefObject<HTMLDivElement>;
     state = {currencySwitcherOpen: false, shopCardSwitchOpen: false};
@@ -58,6 +58,7 @@ class Header extends Component<ChildDataProps<HeaderProps, MainPageQuery, {}>> {
 
     componentDidMount() {
         document.addEventListener('mousedown', this.handleClickOutside);
+
     }
 
     componentWillUnmount() {
@@ -66,15 +67,17 @@ class Header extends Component<ChildDataProps<HeaderProps, MainPageQuery, {}>> {
 
     render() {
         const currencies = this.context?.currencies;
-        const products = this.props?.data?.category?.products;
+        //@ts-ignore
+        const products = this.props.data.categories
         const categoriesNames: string[] = [];
-
+        console.log(products)
+        // console.log(this.props.data.categories)
         if (products) {
             categoriesNames.push('all');
 
             for (let i = 0; i < products.length; i++) {
-                if (!categoriesNames.includes(products[i]?.category!)) {
-                    categoriesNames.push(products[i]?.category!);
+                if (!categoriesNames.includes(products[i]?.name!)) {
+                    categoriesNames.push(products[i]?.name!);
                 }
             }
         }
@@ -87,10 +90,10 @@ class Header extends Component<ChildDataProps<HeaderProps, MainPageQuery, {}>> {
                             <MainContainer>
                                 <Categories>
                                     {categoriesNames.map(
-                                        (name) => (
+                                        (name,i) => (
                                             <Name
                                                 nameOfCategory={name}
-                                                key={name}
+                                                key={i}
                                                 currentlyChosen={name !== this.props.category}
                                                 to={`/${name}`}
                                             />
@@ -160,4 +163,4 @@ class Header extends Component<ChildDataProps<HeaderProps, MainPageQuery, {}>> {
     }
 }
 
-export default graphql<HeaderProps, MainPageQuery>(GET_ALL_INFO)(Header);
+export default graphql<HeaderProps, MainPageQuery>(GET_CURRENCIES)(Header);
