@@ -162,3 +162,12 @@ export const Description = styled.div`
   font-size: 16px;
   margin-right: 10px;
 `;
+
+export const StopHover = styled.div`
+  opacity:0.2;
+  
+  &:hover {
+
+  }
+
+`;

@@ -32,6 +32,7 @@ import {
 import {ShopCartContext} from '../../context/shopCart.context';
 import {getPrice} from '../../Utils';
 import {compact} from "lodash";
+import {DisabledAttribute} from "../../components/Attribute/DisabledAttribute";
 
 interface FullProductInfoProps {
     data: MainPageQuery & QueryControls<MainPageQuery, {}>
@@ -87,27 +88,53 @@ class FullProductInfo extends Component<ChildDataProps<RouteComponentProps<{}> &
                                 </AllPhotos>
                                 <Info>
                                     <ProductName>{productInfo?.name}</ProductName>
-
-                                    {productInfo?.attributes?.map((attribute: MainPageQuery_category_products_attributes
-                                            | null) => {
-                                            return <Attribute
-                                                key={attribute!.id}
-                                                onAttributeSelect={(attributeItem) => {
-                                                    if (!productInfo?.inStock) return
-                                                    this.setState({
-                                                        selectedAttributes: {
-                                                            ...this.state.selectedAttributes,
-                                                            [attribute!.id]: attributeItem,
-                                                        },
-                                                        isSelected: true
-                                                    });
-                                                }}
-                                                selectedAttribute={this.state.selectedAttributes[attribute!.id]}
-                                                attribute={attribute!}
-                                            />
-                                        }
-                                    )}
-
+                                        {!productInfo?.inStock
+                                            ? <> {productInfo?.attributes?.map((attribute: MainPageQuery_category_products_attributes
+                                                    | null) => {
+                                                    return <DisabledAttribute
+                                                        key={attribute!.id}
+                                                        attribute={attribute!}
+                                                    />
+                                                }
+                                            )}</>
+                                            : <> {productInfo?.attributes?.map((attribute: MainPageQuery_category_products_attributes
+                                                    | null) => {
+                                                    return <Attribute
+                                                        key={attribute!.id}
+                                                        onAttributeSelect={(attributeItem) => {
+                                                            if (!productInfo?.inStock) return
+                                                            this.setState({
+                                                                selectedAttributes: {
+                                                                    ...this.state.selectedAttributes,
+                                                                    [attribute!.id]: attributeItem,
+                                                                },
+                                                                isSelected: true
+                                                            });
+                                                        }}
+                                                        selectedAttribute={this.state.selectedAttributes[attribute!.id]}
+                                                        attribute={attribute!}
+                                                    />
+                                                }
+                                            )}</>}
+                                        {/*{productInfo?.attributes?.map((attribute: MainPageQuery_category_products_attributes*/}
+                                        {/*        | null) => {*/}
+                                        {/*        return <Attribute*/}
+                                        {/*            key={attribute!.id}*/}
+                                        {/*            onAttributeSelect={(attributeItem) => {*/}
+                                        {/*                if (!productInfo?.inStock) return*/}
+                                        {/*                this.setState({*/}
+                                        {/*                    selectedAttributes: {*/}
+                                        {/*                        ...this.state.selectedAttributes,*/}
+                                        {/*                        [attribute!.id]: attributeItem,*/}
+                                        {/*                    },*/}
+                                        {/*                    isSelected: true*/}
+                                        {/*                });*/}
+                                        {/*            }}*/}
+                                        {/*            selectedAttribute={this.state.selectedAttributes[attribute!.id]}*/}
+                                        {/*            attribute={attribute!}*/}
+                                        {/*        />*/}
+                                        {/*    }*/}
+                                        {/*)}*/}
                                     <Price>
                                         <Word>PRICE:</Word>
                                         <Amount>{`${this.context.currency.symbol} ${price?.toString()}`}</Amount>
