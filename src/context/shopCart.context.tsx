@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import {graphql} from '@apollo/client/react/hoc';
 import {isEqual} from 'lodash';
-import {GET_ALL_INFO} from '../graphql/query';
+import {GET_ALL_PRODUCTS} from '../graphql/query';
 import {
-    MainPageQuery_category_products_attributes as attribute, MainPageQuery_category_products_prices,
+    MainPageQuery_category_products_attributes as attribute,
+    MainPageQuery_category_products_prices,
 } from '../graphql/__generated__/MainPageQuery';
 import {CurrencyContext} from './currency.context';
 
@@ -87,4 +88,4 @@ class ShopCartContextProvider extends Component<{ }, ShopCartInternalState> {
     }
 }
 
-export default graphql(GET_ALL_INFO)(ShopCartContextProvider);
+export default graphql(GET_ALL_PRODUCTS)(ShopCartContextProvider);

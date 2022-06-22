@@ -68,7 +68,7 @@ export const getItems = gql`
   }
 `;
 
-export const getAllProducts = gql`
+export const GET_ALL_PRODUCTS = gql`
   query {
     category {
       name
@@ -106,7 +106,7 @@ export const getAllProducts = gql`
   }
 `;
 
-export const getItemsByCategory = gql`
+export const GET_ITEMS_BY_CATEGORY = gql`
   query getItemsByCategory($title: String!) {
     category(input: { title: $title }) {
       products {
@@ -116,7 +116,10 @@ export const getItemsByCategory = gql`
         gallery
         inStock
         prices {
-          currency
+          currency{
+          label
+          symbol
+        }
           amount
         }
         category
@@ -136,13 +139,13 @@ export const getItemsByCategory = gql`
   }
 `;
 
-export const GET_CATEGORIES = gql`
-  query HeaderPageQuery {
-     categories {
-      name
-    }
-  }
-`;
+// export const GET_CATEGORIES = gql`
+//   query HeaderPageQuery {
+//      categories {
+//       name
+//     }
+//   }
+// `;
 
 export const GET_CURRENCIES = gql`
   query {
@@ -156,16 +159,19 @@ export const GET_CURRENCIES = gql`
   }
 `;
 
-export const getItemsById = gql`
-query getItemsById($id: String!) {
-  product(id: $id ) {
+export const GET_CURRENT_ITEM = gql`
+query ($id: String!) {
+  product( id: $id ) {
     id
     brand
     name
     gallery
     inStock
     prices {
-      currency
+      currency{
+          label
+          symbol
+        }
       amount
     }
     category

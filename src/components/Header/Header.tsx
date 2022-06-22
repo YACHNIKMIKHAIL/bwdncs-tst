@@ -9,21 +9,21 @@ import {CurrencyContext} from '../../context/currency.context';
 import {ShopCartContext} from '../../context/shopCart.context';
 import ShopCardMini from '../ShopCartMini/ShopCartMini';
 import {MainPageQuery} from '../../graphql/__generated__/MainPageQuery';
-import {GET_ALL_INFO, GET_CATEGORIES, GET_CURRENCIES} from '../../graphql/query';
+import {GET_CURRENCIES} from '../../graphql/query';
 import Name from '../Name/Name';
 import {
-    MainContainer,
-    LogoStyle,
-    Categories,
-    CurrencyAndShopCart,
-    CurrencyOpen,
-    Symbols,
-    CurrencyMenu,
-    Currency,
     ArrowUpContainer,
-    ShopCartContainer,
+    Categories,
+    Currency,
+    CurrencyAndShopCart,
+    CurrencyMenu,
+    CurrencyOpen,
+    LogoStyle,
+    MainContainer,
     NumberOfProducts,
-    ShopCartOpen
+    ShopCartContainer,
+    ShopCartOpen,
+    Symbols
 } from "./HeaderStyles";
 
 
@@ -70,7 +70,6 @@ class Header extends Component<ChildDataProps<HeaderProps, MainPageQuery, any>> 
         //@ts-ignore
         const products = this.props.data.categories
         const categoriesNames: string[] = [];
-        console.log(products)
         // console.log(this.props.data.categories)
         if (products) {
             categoriesNames.push('all');

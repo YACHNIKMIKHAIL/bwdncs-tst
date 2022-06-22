@@ -4,7 +4,7 @@ import {RouteComponentProps} from 'react-router';
 import {ChildDataProps, graphql, QueryControls} from '@apollo/client/react/hoc';
 import ProductCard from '../../components/ProductCart/ProductCart';
 import Header from '../../components/Header/Header';
-import {GET_ALL_INFO, getAllProducts, getItems} from '../../graphql/query';
+import {GET_ITEMS_BY_CATEGORY} from '../../graphql/query';
 import {MainPageQuery} from '../../graphql/__generated__/MainPageQuery';
 import {capitalize} from "lodash";
 
@@ -20,17 +20,19 @@ class MainPage extends Component<ChildDataProps<MainPageProps, MainPageQuery, {}
     state = {showOverlay: false};
 
     render() {
-        const products = this.props?.data?.category?.products;
+        let filteredProducts = this.props?.data?.category?.products;
         const {category} = this.props.match.params;
+
         const showOverlay = (state: boolean) => {
             this.setState({showOverlay: state});
         };
 
-        let filteredProducts = products;
+        // if (category !== undefined) {
+        //     uuu = category
+        // }
+        // console.log('category', category)
+        // console.log('uuu', uuu)
 
-        if (category && category !== 'all') {
-            filteredProducts = products?.filter((product) => product?.category === category);
-        }
 
         return (
             <MainDiv>
@@ -41,7 +43,7 @@ class MainPage extends Component<ChildDataProps<MainPageProps, MainPageQuery, {}
                         <CategoryName>{capitalize(category)}</CategoryName>
                         <ProductList>
                             {filteredProducts?.map((product, i) => (
-                                <ProductCard key={i+1} product={product!}/>
+                                <ProductCard key={i + 1} product={product!}/>
                             ))}
                         </ProductList>
                     </CategoryAndProducts>
@@ -51,4 +53,9 @@ class MainPage extends Component<ChildDataProps<MainPageProps, MainPageQuery, {}
     }
 }
 
-export default graphql<MainPageProps, MainPageQuery, {}, {}>(getAllProducts)(MainPage);
+
+export default graphql<MainPageProps, MainPageQuery, {}, {}>(GET_ITEMS_BY_CATEGORY, {
+    options: () => ({
+        variables: {title: window.location.pathname.slice(1)}
+    })
+})(MainPage);

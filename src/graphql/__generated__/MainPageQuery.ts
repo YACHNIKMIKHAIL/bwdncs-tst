@@ -41,6 +41,7 @@ export interface MainPageQuery_category {
 }
 
 export interface MainPageQuery {
+    product?:any
     category: MainPageQuery_category | null;
     currencies: (string | null)[] | null;
 }

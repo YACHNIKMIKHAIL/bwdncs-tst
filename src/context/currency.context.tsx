@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {graphql} from '@apollo/client/react/hoc';
-import {GET_ALL_INFO} from '../graphql/query';
+import {GET_CURRENCIES} from '../graphql/query';
 
 export const CurrencyContext = React.createContext({});
 
@@ -21,4 +21,4 @@ class CurrencyContextProvider extends Component<any, any> {
   }
 }
 
-export default graphql(GET_ALL_INFO)(CurrencyContextProvider);
+export default graphql(GET_CURRENCIES)(CurrencyContextProvider);

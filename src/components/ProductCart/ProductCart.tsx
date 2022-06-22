@@ -46,7 +46,8 @@ class ProductCart extends Component<RouteComponentProps<{}> & ProductCartProps> 
                         // }
                         // }
                              onClick={() => {
-                                 this.props.history.push(`/product?${productInfo.name}`);
+                                 // this.props.history.push(`/product?${productInfo.name}`);
+                                 this.props.history.push(`/product?${productInfo.id}`);
                              }
                              }
                     >
