@@ -177,10 +177,12 @@ export const CCase = styled.div`
 export const SCColorAtt = styled.div<{ backColor: string, border: string }>`
   min-height: 20px;
   min-width: 20px;
-  margin: 4px 3px;
+  margin-right:  3px;
   display: flex;
   justify-content: center;
   align-items: center;
+  box-sizing: border-box;
+  
   ${({backColor}) => `
     background-color: ${backColor}
   `};

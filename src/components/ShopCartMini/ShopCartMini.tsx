@@ -74,17 +74,17 @@ class ShopCartMini extends Component<any, any> {
                                                                     if (attribute.id === 'Color') {
                                                                         if (m?.id === valuesA) {
                                                                             return <SCColorAtt key={i}
-                                                                                               border={'4px rgb(94,206,123) solid'}
+                                                                                               border={'2px rgb(94,206,123) solid'}
                                                                                                backColor={`${m?.value}`}
                                                                             />
                                                                         } else if (m?.id === valuesB) {
                                                                             return <SCColorAtt key={i}
-                                                                                               border={'4px rgb(94,206,123) solid'}
+                                                                                               border={'2px rgb(94,206,123) solid'}
                                                                                                backColor={`${m?.value}`}
                                                                             />
                                                                         } else if (m?.id === valuesC) {
                                                                             return <SCColorAtt key={i}
-                                                                                               border={'4px rgb(94,206,123) solid'}
+                                                                                               border={'2px rgb(94,206,123) solid'}
                                                                                                backColor={`${m?.value}`}
                                                                             />
                                                                         } else {

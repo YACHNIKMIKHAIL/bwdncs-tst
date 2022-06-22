@@ -79,6 +79,10 @@ export const Quantity = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  font-family: Raleway, serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
 `;
 
 export const Button = styled.div`
@@ -130,8 +134,8 @@ export const Miniature = styled.img`
 export const ColorAtt = styled.div<{ backColor: string, border: string }>`
   margin-right: 10px;
   padding: 4px 6px;
-  min-width: 25px;
-  height: 25px;
+  min-width: 15px;
+  height: 15px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -151,7 +155,7 @@ export const Att = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 2px;
+  padding: 10px 17px;
 `;
 export const SelectedAtt = styled.div`
   border: solid 1px black;
@@ -163,7 +167,7 @@ export const SelectedAtt = styled.div`
   align-items: center;
   background-color: black;
   color: white;
-  padding: 4px;
+  padding: 10px 17px;
 `;
 
 export const XCase = styled.div`
@@ -175,4 +179,7 @@ export const XXCase = styled.div`
   display: flex;
   margin-top: 2px;
   align-items: center;
+  font-family: Raleway, serif;
+  font-style: normal;
+  font-weight: 400;
 `;
