@@ -1,18 +1,23 @@
 import React, {Component} from 'react';
 import {
-    Product,
-    Info,
-    Name,
-    Price,
-    Attribute,
-    ButtonsAndPhoto,
-    ButtonBlock,
-    Quantity,
-    Button,
-    PhotoBlock,
-    ArrowsContainer,
     Arrow,
-    Miniature
+    ArrowsContainer,
+    Attr,
+    Button,
+    ButtonBlock,
+    ButtonsAndPhoto,
+    ColorAttr,
+    DoubleName,
+    Info,
+    Miniature,
+    Name,
+    PhotoBlock,
+    Price,
+    Product,
+    Quantity,
+    SelectedAttr,
+    SelectedColorAttr,
+    XCase
 } from './ProductInCartStyle';
 import {ReactComponent as ArrowLeft} from "../../images/arrow-left.svg";
 import {ReactComponent as ArrowRight} from "../../images/arrow-right.svg";
@@ -22,7 +27,6 @@ import {ShopCartContext, ShopCartProduct} from '../../context/shopCart.context';
 
 interface ProductInCartProps {
     product: ShopCartProduct
-
 }
 
 class ProductInCart extends Component<ProductInCartProps> {
@@ -51,8 +55,6 @@ class ProductInCart extends Component<ProductInCartProps> {
         return (
             <ShopCartContext.Consumer>
                 {({addProduct, removeProduct}) => {
-                    // console.log(this.props.product.allAttributes)
-
                     return <Product key={this.props.product.id}>
                         <Info>
                             <Name>{this.props.product.id}</Name>
@@ -62,13 +64,9 @@ class ProductInCart extends Component<ProductInCartProps> {
                                 display: 'flex',
                                 flexDirection: 'column'
                             }}>
-                                {/*{values(this.props.product?.selectedAttributes).map((attribute, i) => (*/}
-                                {/*    <Attribute key={i}>{attribute}</Attribute>*/}
-                                {/*))*/}
-                                {/*}*/}
                                 {values(this.props.product.allAttributes).map((attribute, i) => (
-                                    <Name style={{fontSize: '16px'}} key={i}>{attribute.id.toUpperCase()}:
-                                        <div style={{display: 'flex', marginTop: '2px', alignItems: 'center'}}>{
+                                    <DoubleName key={i}>{attribute.id.toUpperCase()}:
+                                        <XCase>{
                                             attribute.items?.map((m, i) => {
                                                 const [keysA] = Object.keys(this.props.product?.selectedAttributes)
                                                 const Xvalues = values(this.props.product?.selectedAttributes)
@@ -77,30 +75,19 @@ class ProductInCart extends Component<ProductInCartProps> {
                                                 }
                                                 const [valuesA, valuesB] = Xvalues
                                                 if (m?.id === valuesA) {
-                                                    return <Attribute key={i} style={{
-                                                        backgroundColor: 'black',
-                                                        color: 'white',
-                                                        padding: '4px'
-                                                    }}>{m?.id}</Attribute>
+                                                    return <SelectedAttr key={i}>{m?.id}</SelectedAttr>
                                                 } else if (attribute.id === 'Color') {
                                                     if (m?.id === valuesB) {
-                                                        return <Attribute key={i} style={{
-                                                            backgroundColor: `${m?.value}`,
-                                                            border: '3px #5ECE7B solid',
-
-                                                        }}/>
+                                                        return <SelectedColorAttr key={i} backColor={`${m?.value}`}/>
                                                     } else {
-                                                        return <Attribute key={i} style={{
-                                                            backgroundColor: `${m?.value}`
-                                                        }}/>
+                                                        return <ColorAttr key={i} backColor={`${m?.value}`}/>
                                                     }
                                                 } else {
-                                                    return <Attribute key={i}
-                                                                      style={{padding: '2px'}}>{m?.id}</Attribute>
+                                                    return <Attr key={i}>{m?.id}</Attr>
                                                 }
                                             })
-                                        }</div>
-                                    </Name>
+                                        }</XCase>
+                                    </DoubleName>
                                 ))
                                 }
                             </div>

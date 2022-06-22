@@ -28,6 +28,16 @@ export const Name = styled.div`
   flex-direction: column;
   justify-content: flex-end;
 `;
+export const DoubleName = styled.div`
+  font-family: Raleway, serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 27px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+`;
 
 export const Price = styled.div`
   font-family: Raleway, serif;
@@ -115,4 +125,59 @@ export const Miniature = styled.img`
   height: 185px;
   object-fit: contain;
   pointer-events: none;
+`;
+export const XCase = styled.div`
+  display: flex;
+  margin-top: 2px;
+  align-items: center
+`;
+export const Attr = styled.div`
+  border: solid 1px black;
+  margin-right: 10px;
+  min-width: 25px;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2px;
+`;
+export const SelectedAttr = styled.div`
+  border: solid 1px black;
+  margin-right: 10px;
+  min-width: 25px;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+  color: white;
+  padding: 4px
+`;
+export const ColorAttr = styled.div<{ backColor: string }>`
+  border: solid 1px black;
+  margin-right: 10px;
+  padding: 4px 6px;
+  min-width: 25px;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  ${({backColor}) => `
+    background-color: ${backColor}
+  `}
+`;
+export const SelectedColorAttr = styled.div<{ backColor: string }>`
+  margin-right: 10px;
+  padding: 4px 6px;
+  min-width: 25px;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 3px #5ECE7B solid;
+  
+  ${({backColor}) => `
+    background-color: ${backColor}
+  `}
 `;

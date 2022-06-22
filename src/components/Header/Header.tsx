@@ -67,10 +67,8 @@ class Header extends Component<ChildDataProps<HeaderProps, MainPageQuery, any>> 
 
     render() {
         const currencies = this.context?.currencies;
-        //@ts-ignore
         const products = this.props.data.categories
         const categoriesNames: string[] = [];
-        // console.log(this.props.data.categories)
         if (products) {
             categoriesNames.push('all');
 
@@ -124,7 +122,6 @@ class Header extends Component<ChildDataProps<HeaderProps, MainPageQuery, any>> 
                                                         }}
                                                         key={currency.label}
                                                     >
-                                                        {/*{currencyToSymbolMap(currency.symbol) + ' ' + currency.label}*/}
                                                         {currency.symbol + ' ' + currency.label}
                                                     </Currency>
                                                 })}

@@ -41,7 +41,7 @@ export const OneVariant = styled.div<{ selected: boolean }>`
 
 export const OneVariantWithColor = styled.div<{ selected: boolean, backColor: string }>`
   margin-right: 12px;
-  
+
   border: 1px solid #1D1F22;
   margin-top: 10px;
   width: 40px;
@@ -60,6 +60,15 @@ export const OneVariantWithColor = styled.div<{ selected: boolean, backColor: st
     background-color: ${backColor};
     border:6px #5ECE7B solid;
     cursor: pointer;
+  `}
+`;
+
+export const XCase = styled.div<{ backColor: string }>`
+  width: 40p';
+  height: 40px
+  
+  ${({backColor}) => `
+    background-color: ${backColor}
   `}
 
 `;

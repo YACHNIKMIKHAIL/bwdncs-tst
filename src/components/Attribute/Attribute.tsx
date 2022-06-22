@@ -4,7 +4,7 @@ import {
     AttributeNameContainer,
     VariantsContainer,
     OneVariant,
-    OneVariantWithColor
+    OneVariantWithColor, XCase
 } from './AttributeStyles';
 import {
     MainPageQuery_category_products_attributes as MainPageQueryCategoryProductsAttributes,
@@ -35,30 +35,25 @@ export class Attribute extends Component<AttributeProps> {
                                 onClick={() => this.props.onAttributeSelect(variant!.id)}
                             >
                                 {/*I don't know what is the ...? but UI work =]*/}
-                                {this.props.selectedAttribute === variant?.id && <div
-                                    style={{backgroundColor: variant?.value!, width:  '40px', height: '40px'}}
-                                ></div>}
-                                    </OneVariantWithColor>
+                                {this.props.selectedAttribute === variant?.id && <XCase backColor={variant?.value!}/>}
+                            </OneVariantWithColor>
 
-                                },
-                                )}
+                        },
+                    )}
 
-                                {this.props.attribute.type !== 'swatch' && this.props?.attribute?.items?.map(
-                                    (variant) => (
-                                        <OneVariant
-                                            key={variant?.id}
-                                            selected={this.props.selectedAttribute === variant?.id}
-                                            onClick={() => this.props.onAttributeSelect(variant!.id)}
-                                        >
-                                            {variant?.displayValue}
-                                        </OneVariant>
-                                    ),
-                                )}
-
-
-                            </VariantsContainer>
-                        </AttributeContainer>
-                        )
-                            ;
-                        }
-                    }
+                    {this.props.attribute.type !== 'swatch' && this.props?.attribute?.items?.map(
+                        (variant) => (
+                            <OneVariant
+                                key={variant?.id}
+                                selected={this.props.selectedAttribute === variant?.id}
+                                onClick={() => this.props.onAttributeSelect(variant!.id)}
+                            >
+                                {variant?.displayValue}
+                            </OneVariant>
+                        ),
+                    )}
+                </VariantsContainer>
+            </AttributeContainer>
+        );
+    }
+}

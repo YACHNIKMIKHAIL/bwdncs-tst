@@ -33,16 +33,11 @@ export const ProductList = styled.div`
   flex-wrap: wrap;
   align-items: center;
   max-width: 1020px;
-  
+
   @media (max-width: 1250px) {
     justify-content: center;
   }
 `;
-//margin: 0 0 0 160px;
-// box-sizing: border-box;
-
-
-
 
 export const Container = styled.div`
   position: relative;

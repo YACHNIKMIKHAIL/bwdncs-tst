@@ -27,13 +27,6 @@ class MainPage extends Component<ChildDataProps<MainPageProps, MainPageQuery, {}
             this.setState({showOverlay: state});
         };
 
-        // if (category !== undefined) {
-        //     uuu = category
-        // }
-        // console.log('category', category)
-        // console.log('uuu', uuu)
-
-
         return (
             <MainDiv>
                 <Header showOverlay={showOverlay} category={category}/>

@@ -1,13 +1,6 @@
 import React, {Component} from 'react';
-import {withRouter, Link} from 'react-router-dom';
-import {
-    MainDiv,
-    Container,
-    Overlay,
-    Cart,
-    ProductsBlock,
-    NoItems
-} from './FullShopCartStyle';
+import {Link, withRouter} from 'react-router-dom';
+import {Cart, Container, MainDiv, NoItems, Overlay, ProductsBlock} from './FullShopCartStyle';
 import Header from '../../components/Header/Header';
 import {CurrencyContext} from '../../context/currency.context';
 import {ShopCartContext} from '../../context/shopCart.context';
@@ -37,7 +30,7 @@ class FullShopCart extends Component<any, any> {
                                     <Cart>Cart</Cart>
                                     {products.length === 0
                                         ? <NoItems>
-                                            <Link to={'/'} style={{color:'#79D383'}}>
+                                            <Link to={'/'} style={{color: '#79D383'}}>
                                                 No items in basket =(
                                             </Link>
                                         </NoItems>

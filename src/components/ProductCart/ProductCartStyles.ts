@@ -50,3 +50,16 @@ export const Price = styled.p`
   margin: 0;
   font-weight: 500;
 `;
+
+export const XCase = styled.div`
+  background-color: #5ECE7B;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  position: absolute;
+  bottom: 95px;
+  right: 70px;
+`;

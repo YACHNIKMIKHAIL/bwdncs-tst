@@ -13,7 +13,7 @@ export const NameOfCategory = styled.div<{ selected: boolean }>`
   border: none;
   margin-right: 25px;
 
-  &: hover {
+  &:hover {
     color: #5ECE7B;
     border-bottom: 2px solid #5ECE7B;
     cursor: pointer;

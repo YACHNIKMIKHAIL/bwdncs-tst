@@ -26,7 +26,7 @@ import {
     TotalAmount,
     ViewBag
 } from './ShopCartMiniStyle';
-import {Name} from "../ProductInCart/ProductInCartStyle";
+import {Attr, Name, SelectedAttr, XCase} from "../ProductInCart/ProductInCartStyle";
 
 
 class ShopCartMini extends Component<any, any> {
@@ -55,71 +55,11 @@ class ShopCartMini extends Component<any, any> {
                                             <ProductInfo>
                                                 <ProductName>{product?.id}</ProductName>
                                                 <Amount>{this.context.currency.symbol + product?.price.toString()}</Amount>
-                                                {/*{`${attributeName?.toUpperCase()}:`}*/}
                                                 <AttributeSet>
-                                                    {/*{values(product?.selectedAttributes).map((attribute) => {*/}
-                                                    {/*    // console.log(Object.keys(product?.selectedAttributes))*/}
-                                                    {/*    // console.log(product?.selectedAttributes)*/}
-                                                    {/*    // console.log('attribute', attribute)*/}
-                                                    {/*    return <>*/}
-                                                    {/*        <ProductName>{Object.keys(product?.selectedAttributes).toString()}:</ProductName>*/}
-                                                    {/*        <Attribute key={attribute}>{attribute}</Attribute>*/}
-                                                    {/*    </>*/}
-                                                    {/*})}*/}
-                                                    {/*{values(product?.allAttributes).map((attribute) => {*/}
-
-
-                                                    {/*    // console.log(yo)*/}
-                                                    {/*    // console.log(isSelected)*/}
-                                                    {/*    return <div key={attribute?.id}*/}
-                                                    {/*                style={{*/}
-                                                    {/*                    display: 'flex',*/}
-                                                    {/*                    flexDirection: 'column',*/}
-                                                    {/*                    width: '100px'*/}
-                                                    {/*                }}>*/}
-
-                                                    {/*        <ProductName>{attribute?.id}:</ProductName>*/}
-                                                    {/*        <div style={{*/}
-                                                    {/*            width: '150px',*/}
-                                                    {/*            display: 'flex', flexWrap: 'wrap', margin: '5px 0'*/}
-                                                    {/*        }}>*/}
-                                                    {/*            {attribute?.items?.map((m, i) => {*/}
-                                                    {/*                // let isSelected = false*/}
-                                                    {/*                // const yo = values(this.props.products?.selectedAttributes).map(m=>m)*/}
-                                                    {/*                // console.log(yo)*/}
-                                                    {/*                // for (let j = 0; j < yo.length; j++) {*/}
-                                                    {/*                //     // yo[j] === m?.id*/}
-                                                    {/*                //     // console.log(yo[j] === m?.id)*/}
-                                                    {/*                //     // isSelected = true*/}
-                                                    {/*                // }*/}
-                                                    {/*                return <Attribute*/}
-                                                    {/*                    key={attribute.id + i}>{*/}
-                                                    {/*                    attribute?.id === 'Color'*/}
-                                                    {/*                        ? <div style={{*/}
-                                                    {/*                            width: '20px',*/}
-                                                    {/*                            height: '20px',*/}
-                                                    {/*                            backgroundColor: `${m?.value}`*/}
-                                                    {/*                        }}/>*/}
-                                                    {/*                        : <div style={{*/}
-                                                    {/*                            fontSize: '12px',*/}
-                                                    {/*                            padding: '3px'*/}
-                                                    {/*                        }}>{m?.value}</div>*/}
-                                                    {/*                }</Attribute>*/}
-                                                    {/*            })}*/}
-                                                    {/*        </div>*/}
-
-                                                    {/*    </div>*/}
-                                                    {/*})}*/}
-
-
                                                     {values(product.allAttributes).map((attribute, i) => (
                                                         <Name style={{fontSize: '15px', fontWeight: 300}}
                                                               key={i}>{attribute.id}:
-                                                            <div style={{
-                                                                display: 'flex',
-                                                                marginTop: '2px',
-                                                                alignItems: 'center',
-                                                            }}>{
+                                                            <XCase>{
                                                                 attribute.items?.map((m: any, i: number) => {
                                                                     const [keysA] = Object.keys(product?.selectedAttributes)
                                                                     const Xvalues = values(product?.selectedAttributes)
@@ -128,30 +68,24 @@ class ShopCartMini extends Component<any, any> {
                                                                     }
                                                                     const [valuesA, valuesB] = Xvalues
                                                                     if (m?.id === valuesA) {
-                                                                        return <Attribute key={i} style={{
-                                                                            backgroundColor: 'black',
-                                                                            color: 'white',
-                                                                            padding: '4px'
-                                                                        }}>{m?.id}</Attribute>
+                                                                        return <SelectedAttr
+                                                                            key={i}>{m?.id}</SelectedAttr>
                                                                     } else if (attribute.id === 'Color') {
                                                                         if (m?.id === valuesB) {
-                                                                            return <Attribute key={i} style={{
-                                                                                backgroundColor: `${m?.value}`,
-                                                                                border: '3px #5ECE7B solid',
-
-                                                                            }}></Attribute>
+                                                                            return <Attribute key={i}
+                                                                                              border={'3px #5ECE7B solid'}
+                                                                                              backColor={`${m?.value}`}/>
                                                                         } else {
-                                                                            return <Attribute key={i} style={{
-                                                                                backgroundColor: `${m?.value}`
-                                                                            }}></Attribute>
+                                                                            return <Attribute key={i}
+                                                                                              border={'solid 1px black'}
+                                                                                              backColor={`${m?.value}`}/>
                                                                         }
                                                                     } else {
-                                                                        return <Attribute key={i}
-                                                                                          style={{padding: '2px'}}>{m?.id}</Attribute>
+                                                                        return <Attr key={i}>{m?.id}</Attr>
                                                                     }
 
                                                                 })
-                                                            }</div>
+                                                            }</XCase>
                                                         </Name>
                                                     ))
                                                     }

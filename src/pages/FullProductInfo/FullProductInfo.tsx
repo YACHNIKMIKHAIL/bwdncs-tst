@@ -48,18 +48,11 @@ class FullProductInfo extends Component<ChildDataProps<RouteComponentProps<{}> &
     };
 
     render() {
-        // debugger
-        // const allProducts = this.props?.data?.category?.products;
         const allProducts = this.props?.data.product;
         if (!allProducts) {
-            console.log(this.props?.data.product)
             return <div>Waaaaaaaaaait...</div>;
         }
-
-        // const findI = allProducts.find(f => f?.id === this.props.history.location.search.slice(1))
         const findI = this.props?.data.product
-        console.log(findI)
-        // const productInfo: Product | null | undefined = allProducts.find((oneProduct) => oneProduct?.name === product);
         const productInfo: Product | null | undefined = findI
         const photo = this.state.mainPhoto || productInfo?.gallery?.[0];
 
@@ -67,11 +60,7 @@ class FullProductInfo extends Component<ChildDataProps<RouteComponentProps<{}> &
             this.setState({showOverlay: state});
         };
 
-
         const price = getPrice(findI?.prices!, this.context.currency);
-        // const price = findI?.prices.filter((f:any)=>f.currency.label===this.context.currency.label)[0].amount
-        console.log('w', window.location.search.slice(1))
-        console.log('id', productInfo?.id)
         return (
             <ShopCartContext.Consumer>
                 {({addProduct}) => {
@@ -122,25 +111,23 @@ class FullProductInfo extends Component<ChildDataProps<RouteComponentProps<{}> &
                                         <Word>PRICE:</Word>
                                         <Amount>{`${this.context.currency.symbol} ${price?.toString()}`}</Amount>
                                     </Price>
-                                    <AddToCart
-                                        // disabled={!productInfo?.inStock}
-                                        style={{opacity: !productInfo?.inStock ? '0.4' : ''}}
-                                        onClick={() => {
-                                            if (!productInfo?.inStock) {
-                                                alert('Sorry, this item is not available now =(')
-                                                return
-                                            } else {
-                                                if (!this.state.isSelected && productInfo?.attributes?.length !== 0) {
-                                                    alert('Choise attribute')
-                                                } else {
-                                                    addProduct(productInfo?.name!,
-                                                        this.state.selectedAttributes,
-                                                        productInfo?.attributes,
-                                                        productInfo?.prices,
-                                                        compact(productInfo?.gallery));
-                                                }
-                                            }
-                                        }}
+                                    <AddToCart opacity={!productInfo?.inStock ? '0.4' : ''}
+                                               onClick={() => {
+                                                   if (!productInfo?.inStock) {
+                                                       alert('Sorry, this item is not available now =(')
+                                                       return
+                                                   } else {
+                                                       if (!this.state.isSelected && productInfo?.attributes?.length !== 0) {
+                                                           alert('Choise attribute')
+                                                       } else {
+                                                           addProduct(productInfo?.name!,
+                                                               this.state.selectedAttributes,
+                                                               productInfo?.attributes,
+                                                               productInfo?.prices,
+                                                               compact(productInfo?.gallery));
+                                                       }
+                                                   }
+                                               }}
                                     >
                                         ADD TO CART
                                     </AddToCart>
@@ -156,17 +143,8 @@ class FullProductInfo extends Component<ChildDataProps<RouteComponentProps<{}> &
     }
 }
 
-// export default graphql<RouteComponentProps<{}> & FullProductInfoProps, MainPageQuery, {}, {}>(GET_CURRENT_ITEM,{
-//     options: () => ({
-//         variables: {id: "apple-iphone-12-pro"}
-//     })
-// })(FullProductInfo);
-
-export default graphql<RouteComponentProps<{}> & FullProductInfoProps, MainPageQuery, {}, {}>(GET_CURRENT_ITEM,{
+export default graphql<RouteComponentProps<{}> & FullProductInfoProps, MainPageQuery, {}, {}>(GET_CURRENT_ITEM, {
     options: () => ({
         variables: {id: window.location.search.slice(1)}
     })
 })(FullProductInfo);
-
-// export default graphql<RouteComponentProps<{}> & FullProductInfoProps, MainPageQuery, {}, {}>(GET_ALL_INFO)(FullProductInfo);
-

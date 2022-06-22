@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {StyledLink, NameOfCategory} from './NameStyle';
+import {NameOfCategory, StyledLink} from './NameStyle';
 
 interface NameProps {
     nameOfCategory: string

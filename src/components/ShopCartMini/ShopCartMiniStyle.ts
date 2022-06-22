@@ -57,15 +57,20 @@ export const AttributeSet = styled.div`
   flex-wrap: wrap;
 `;
 
-export const Attribute = styled.div`
+export const Attribute = styled.div<{ backColor: string, border: string }>`
   min-height: 20px;
   min-width: 20px;
-  border: solid 1px black;
   margin: 4px 3px;
   display: flex;
   justify-content: center;
   align-items: center;
 
+  ${({backColor}) => `
+    background-color: ${backColor}
+  `}
+  ${({border}) => `
+    border: ${border}
+  `}
 `;
 
 export const Amount = styled.div`

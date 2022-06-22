@@ -126,7 +126,7 @@ export const Amount = styled.div`
   margin-bottom: 20px;
 `;
 
-export const AddToCart = styled.button`
+export const AddToCart = styled.button<{ opacity: string }>`
   background-color: #5ECE7B;
   border: none;
   color: white;
@@ -138,6 +138,9 @@ export const AddToCart = styled.button`
   margin-top: 20px;
   margin-bottom: 40px;
 
+  ${({opacity}) => `
+    opacity: ${opacity}
+  `}
   &:hover {
     background-color: #4fa866;
     cursor: pointer;
