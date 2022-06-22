@@ -32,7 +32,6 @@ import {
 import {ShopCartContext} from '../../context/shopCart.context';
 import {getPrice} from '../../Utils';
 import {compact} from "lodash";
-
 interface FullProductInfoProps {
     data: MainPageQuery & QueryControls<MainPageQuery, {}>
 }

@@ -1,73 +1,5 @@
 import {gql} from '@apollo/client';
 
-export const GET_ALL_INFO = gql`
-    query MainPageQuery {
-        category {
-            name
-            products {
-                id
-                name
-                gallery
-                category
-                description
-                prices{
-                    amount
-                    currency{
-                       label
-                      symbol
-                    }
-                }
-                inStock
-                attributes {
-                    id
-                    items {
-                        displayValue
-                        id
-                        value
-                    }
-                    name
-                    type
-                }
-            }
-        }
-        currencies{
-          label
-          symbol
-        }
-    }
-`;
-
-export const getItems = gql`
-  query {
-    category {
-      products {
-        name
-        gallery
-        inStock
-        prices {
-          currency{
-                       label
-                      symbol
-                    }
-          amount
-        }
-        category
-        description
-        attributes {
-          id
-          name
-          type
-          items {
-            displayValue
-            value
-            id
-          }
-        }
-      }
-    }
-  }
-`;
-
 export const GET_ALL_PRODUCTS = gql`
   query {
     category {
@@ -138,14 +70,6 @@ export const GET_ITEMS_BY_CATEGORY = gql`
     }
   }
 `;
-
-// export const GET_CATEGORIES = gql`
-//   query HeaderPageQuery {
-//      categories {
-//       name
-//     }
-//   }
-// `;
 
 export const GET_CURRENCIES = gql`
   query {
