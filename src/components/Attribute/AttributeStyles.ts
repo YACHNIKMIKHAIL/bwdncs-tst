@@ -25,6 +25,8 @@ export const OneVariant = styled.div<{ selected: boolean }>`
   padding: 15px 20px;
   border: 1px solid #1D1F22;
   margin-top: 10px;
+  font-family: Roboto Condensed, serif;
+  font-weight: normal;
 
   &:hover {
     color: white;
@@ -41,16 +43,28 @@ export const OneVariant = styled.div<{ selected: boolean }>`
 
 export const OneVariantWithColor = styled.div<{ selected: boolean, backColor: string }>`
   margin-right: 12px;
-
+  position: relative;
   border: 1px solid #1D1F22;
-  margin-top: 10px;
   width: 40px;
   height: 40px;
+  box-sizing: border-box;
+
+  &:after {
+    content: '';
+    position: absolute;
+    width: 44px;
+    height: 44px;
+    top: -5px;
+    left: -5px;
+    background-color: transparent;
+  }
 
   &:hover {
-    border: 6px #5ECE7B solid;
-    cursor: pointer;
+    &:after {
+      border: 2px #5ECE7B solid;
+    }
   }
+
 
   ${({backColor}) => `
     background-color: ${backColor}

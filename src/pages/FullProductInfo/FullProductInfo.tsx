@@ -87,11 +87,13 @@ class FullProductInfo extends Component<ChildDataProps<RouteComponentProps<{}> &
                                 </AllPhotos>
                                 <Info>
                                     <ProductName>{productInfo?.name}</ProductName>
+
                                     {productInfo?.attributes?.map((attribute: MainPageQuery_category_products_attributes
                                             | null) => {
                                             return <Attribute
                                                 key={attribute!.id}
                                                 onAttributeSelect={(attributeItem) => {
+                                                    if (!productInfo?.inStock) return
                                                     this.setState({
                                                         selectedAttributes: {
                                                             ...this.state.selectedAttributes,
