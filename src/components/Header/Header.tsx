@@ -30,6 +30,7 @@ import {
 interface HeaderProps {
     showOverlay: (state: boolean) => void
     category?: string
+    categories?: any
 }
 
 class Header extends Component<ChildDataProps<HeaderProps, MainPageQuery, any>> {
