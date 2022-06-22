@@ -156,3 +156,58 @@ export const CheckOut = styled.button`
   width: 140px;
   height: 43px;
 `;
+
+export const Name = styled.div`
+  font-family: Raleway, serif;
+  font-style: normal;
+  line-height: 27px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  font-size: 15px;
+  font-weight: 300;
+`;
+
+export const CCase = styled.div`
+  display: flex;
+  margin-top: 2px;
+  align-items: center;
+`;
+
+export const SCColorAtt = styled.div<{ backColor: string, border: string }>`
+  min-height: 20px;
+  min-width: 20px;
+  margin: 4px 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  ${({backColor}) => `
+    background-color: ${backColor}
+  `};
+  ${({border}) => `
+    border: ${border}
+  `}
+`;
+
+export const SCAtt = styled.div`
+  min-height: 20px;
+  min-width: 20px;
+  border: solid 1px black;
+  margin: 4px 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2px
+`;
+export const SCSelectedAtt = styled.div`
+  min-height: 20px;
+  min-width: 20px;
+  border: solid 1px black;
+  margin: 4px 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+  color: white;
+  padding: 4px;
+`;

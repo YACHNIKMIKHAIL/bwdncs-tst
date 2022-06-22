@@ -59,7 +59,6 @@ class FullProductInfo extends Component<ChildDataProps<RouteComponentProps<{}> &
         const showOverlay = (state: boolean) => {
             this.setState({showOverlay: state});
         };
-
         const price = getPrice(findI?.prices!, this.context.currency);
         return (
             <ShopCartContext.Consumer>
@@ -117,7 +116,8 @@ class FullProductInfo extends Component<ChildDataProps<RouteComponentProps<{}> &
                                                        alert('Sorry, this item is not available now =(')
                                                        return
                                                    } else {
-                                                       if (!this.state.isSelected && productInfo?.attributes?.length !== 0) {
+                                                       if ((!this.state.isSelected && productInfo?.attributes?.length !== 0)
+                                                           || Object.keys(this.state.selectedAttributes).length !== productInfo?.attributes?.length) {
                                                            alert('Choise attribute')
                                                        } else {
                                                            addProduct(productInfo?.name!,

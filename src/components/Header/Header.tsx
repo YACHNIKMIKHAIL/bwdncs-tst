@@ -87,7 +87,7 @@ class Header extends Component<ChildDataProps<HeaderProps, MainPageQuery, any>> 
                             <MainContainer>
                                 <Categories>
                                     {categoriesNames.map(
-                                        (name,i) => (
+                                        (name, i) => (
                                             <Name
                                                 nameOfCategory={name}
                                                 key={i}

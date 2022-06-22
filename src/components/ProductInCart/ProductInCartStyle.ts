@@ -28,7 +28,7 @@ export const Name = styled.div`
   flex-direction: column;
   justify-content: flex-end;
 `;
-export const DoubleName = styled.div`
+export const NameX = styled.div`
   font-family: Raleway, serif;
   font-style: normal;
   font-weight: 600;
@@ -126,12 +126,24 @@ export const Miniature = styled.img`
   object-fit: contain;
   pointer-events: none;
 `;
-export const XCase = styled.div`
+
+export const ColorAtt = styled.div<{ backColor: string, border: string }>`
+  margin-right: 10px;
+  padding: 4px 6px;
+  min-width: 25px;
+  height: 25px;
   display: flex;
-  margin-top: 2px;
-  align-items: center
+  justify-content: center;
+  align-items: center;
+  ${({backColor}) => `
+    background-color: ${backColor}
+  `};
+  ${({border}) => `
+    border: ${border}
+  `}
 `;
-export const Attr = styled.div`
+
+export const Att = styled.div`
   border: solid 1px black;
   margin-right: 10px;
   min-width: 25px;
@@ -141,7 +153,7 @@ export const Attr = styled.div`
   align-items: center;
   padding: 2px;
 `;
-export const SelectedAttr = styled.div`
+export const SelectedAtt = styled.div`
   border: solid 1px black;
   margin-right: 10px;
   min-width: 25px;
@@ -151,33 +163,16 @@ export const SelectedAttr = styled.div`
   align-items: center;
   background-color: black;
   color: white;
-  padding: 4px
+  padding: 4px;
 `;
-export const ColorAttr = styled.div<{ backColor: string }>`
-  border: solid 1px black;
-  margin-right: 10px;
-  padding: 4px 6px;
-  min-width: 25px;
-  height: 25px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 
-  ${({backColor}) => `
-    background-color: ${backColor}
-  `}
-`;
-export const SelectedColorAttr = styled.div<{ backColor: string }>`
-  margin-right: 10px;
-  padding: 4px 6px;
-  min-width: 25px;
-  height: 25px;
+export const XCase = styled.div`
+  width: 100%;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+`;
+export const XXCase = styled.div`
+  display: flex;
+  margin-top: 2px;
   align-items: center;
-  border: 3px #5ECE7B solid;
-  
-  ${({backColor}) => `
-    background-color: ${backColor}
-  `}
 `;

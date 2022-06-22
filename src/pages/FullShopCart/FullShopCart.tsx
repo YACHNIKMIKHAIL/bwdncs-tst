@@ -20,7 +20,6 @@ class FullShopCart extends Component<any, any> {
         return (
             <ShopCartContext.Consumer>
                 {({products}) => {
-
                     return (
                         <MainDiv>
                             <Header showOverlay={showOverlay}/>

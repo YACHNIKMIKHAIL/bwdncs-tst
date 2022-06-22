@@ -6,27 +6,30 @@ import {CurrencyContext} from '../../context/currency.context';
 import {
     AllProducts,
     Amount,
-    Attribute,
     AttributeSet,
     Bag,
     Button,
     ButtonBlock,
     Buttons,
     ButtonsAndPhoto,
+    CCase,
     CheckOut,
     ContentContainer,
     MainContainer,
     Miniature,
+    Name,
     Product,
     ProductInfo,
     ProductName,
     Quantity,
+    SCAtt,
+    SCColorAtt,
+    SCSelectedAtt,
     Text,
     Total,
     TotalAmount,
     ViewBag
 } from './ShopCartMiniStyle';
-import {Attr, Name, SelectedAttr, XCase} from "../ProductInCart/ProductInCartStyle";
 
 
 class ShopCartMini extends Component<any, any> {
@@ -57,9 +60,8 @@ class ShopCartMini extends Component<any, any> {
                                                 <Amount>{this.context.currency.symbol + product?.price.toString()}</Amount>
                                                 <AttributeSet>
                                                     {values(product.allAttributes).map((attribute, i) => (
-                                                        <Name style={{fontSize: '15px', fontWeight: 300}}
-                                                              key={i}>{attribute.id}:
-                                                            <XCase>{
+                                                        <Name key={i}>{attribute.id}:
+                                                            <CCase>{
                                                                 attribute.items?.map((m: any, i: number) => {
                                                                     const [keysA] = Object.keys(product?.selectedAttributes)
                                                                     const Xvalues = values(product?.selectedAttributes)
@@ -68,24 +70,25 @@ class ShopCartMini extends Component<any, any> {
                                                                     }
                                                                     const [valuesA, valuesB] = Xvalues
                                                                     if (m?.id === valuesA) {
-                                                                        return <SelectedAttr
-                                                                            key={i}>{m?.id}</SelectedAttr>
+                                                                        return <SCSelectedAtt
+                                                                            key={i}>{m?.id}</SCSelectedAtt>
                                                                     } else if (attribute.id === 'Color') {
                                                                         if (m?.id === valuesB) {
-                                                                            return <Attribute key={i}
-                                                                                              border={'3px #5ECE7B solid'}
-                                                                                              backColor={`${m?.value}`}/>
+                                                                            return <SCColorAtt key={i}
+                                                                                               border={'4px rgb(94,206,123) solid'}
+                                                                                               backColor={`${m?.value}`}
+                                                                            />
                                                                         } else {
-                                                                            return <Attribute key={i}
-                                                                                              border={'solid 1px black'}
-                                                                                              backColor={`${m?.value}`}/>
+                                                                            return <SCColorAtt key={i}
+                                                                                               backColor={`${m?.value}`}
+                                                                                               border={'solid 1px black'}/>
                                                                         }
                                                                     } else {
-                                                                        return <Attr key={i}>{m?.id}</Attr>
+                                                                        return <SCAtt key={i}>{m?.id}</SCAtt>
                                                                     }
 
                                                                 })
-                                                            }</XCase>
+                                                            }</CCase>
                                                         </Name>
                                                     ))
                                                     }

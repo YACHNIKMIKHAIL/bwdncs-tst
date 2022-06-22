@@ -41,34 +41,36 @@ class ProductCart extends Component<RouteComponentProps<{}> & ProductCartProps> 
                              }}
                              onClick={() => {
                                  this.props.history.push(`/product?${productInfo.id}`);
-                             }}>
+                             }}
+                    >
                         <ImageContainer>
                             <Image src={productInfo?.gallery?.[0]!}/>
                             {!available && <OutOfStock>Out of stock</OutOfStock>}
                         </ImageContainer>
                         <Name>{productInfo.name}</Name>
                         <Price>{symbol} {price?.toString()}</Price>
-                        {this.state.show &&
-                        <>{productInfo?.inStock &&
-                        <XCase onClick={(event) => {
-                                   let arr = {} as any
-                                   productInfo.attributes?.forEach((attributeItem) => {
 
-                                       let key = attributeItem!.id
-                                       // @ts-ignore: Object is possibly 'null'.
-                                       arr[key.toString()] = attributeItem?.items[0].value
-                                   })
+                        {this.state.show && <>{productInfo?.inStock
+                        && <XCase onClick={(event) => {
+                            let arr = {} as any
+                            productInfo.attributes?.forEach((attributeItem) => {
 
-                                   addProduct(productInfo?.name!,
-                                       arr,
-                                       productInfo?.attributes,
-                                       productInfo?.prices,
-                                       compact(productInfo?.gallery));
-                                   event.stopPropagation()
-                               }}>
+                                let key = attributeItem!.id
+                                // @ts-ignore: Object is possibly 'null'.
+                                arr[key.toString()] = attributeItem?.items[0].value
+                            })
+
+                            addProduct(productInfo?.name!,
+                                arr,
+                                productInfo?.attributes,
+                                productInfo?.prices,
+                                compact(productInfo?.gallery));
+                            event.stopPropagation()
+                        }
+                        }
+                        >
                             <Buy/>
-                        </XCase>}
-                        </>}
+                        </XCase>}</>}
                     </MainDiv>
                 );
             }}

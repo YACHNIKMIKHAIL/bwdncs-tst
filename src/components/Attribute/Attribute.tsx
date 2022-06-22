@@ -2,13 +2,11 @@ import React, {Component} from 'react';
 import {
     AttributeContainer,
     AttributeNameContainer,
-    VariantsContainer,
     OneVariant,
-    OneVariantWithColor, XCase
+    OneVariantWithColor,
+    VariantsContainer, XCase
 } from './AttributeStyles';
-import {
-    MainPageQuery_category_products_attributes as MainPageQueryCategoryProductsAttributes,
-} from '../../graphql/__generated__/MainPageQuery';
+import {MainPageQuery_category_products_attributes as MainPageQueryCategoryProductsAttributes,} from '../../graphql/__generated__/MainPageQuery';
 
 interface AttributeProps {
     attribute: MainPageQueryCategoryProductsAttributes;
@@ -54,6 +52,7 @@ export class Attribute extends Component<AttributeProps> {
                     )}
                 </VariantsContainer>
             </AttributeContainer>
-        );
+        )
+            ;
     }
 }

@@ -59,7 +59,7 @@ export const XCase = styled.div`
   justify-content: center;
   align-items: center;
   border-radius: 50%;
-  position: absolute;
+  position: absolute; 
   bottom: 95px;
   right: 70px;
 `;

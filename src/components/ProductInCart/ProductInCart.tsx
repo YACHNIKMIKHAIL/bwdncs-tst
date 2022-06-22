@@ -2,22 +2,19 @@ import React, {Component} from 'react';
 import {
     Arrow,
     ArrowsContainer,
-    Attr,
+    Att,
     Button,
     ButtonBlock,
     ButtonsAndPhoto,
-    ColorAttr,
-    DoubleName,
+    ColorAtt,
     Info,
     Miniature,
-    Name,
+    Name, NameX,
     PhotoBlock,
     Price,
     Product,
     Quantity,
-    SelectedAttr,
-    SelectedColorAttr,
-    XCase
+    SelectedAtt, XCase, XXCase
 } from './ProductInCartStyle';
 import {ReactComponent as ArrowLeft} from "../../images/arrow-left.svg";
 import {ReactComponent as ArrowRight} from "../../images/arrow-right.svg";
@@ -27,6 +24,7 @@ import {ShopCartContext, ShopCartProduct} from '../../context/shopCart.context';
 
 interface ProductInCartProps {
     product: ShopCartProduct
+
 }
 
 class ProductInCart extends Component<ProductInCartProps> {
@@ -55,18 +53,15 @@ class ProductInCart extends Component<ProductInCartProps> {
         return (
             <ShopCartContext.Consumer>
                 {({addProduct, removeProduct}) => {
+
                     return <Product key={this.props.product.id}>
                         <Info>
                             <Name>{this.props.product.id}</Name>
                             <Price>{this.context.currency.symbol + this.props.product.price * this.props.product.quantity}</Price>
-                            <div style={{
-                                width: '100%',
-                                display: 'flex',
-                                flexDirection: 'column'
-                            }}>
+                            <XCase>
                                 {values(this.props.product.allAttributes).map((attribute, i) => (
-                                    <DoubleName key={i}>{attribute.id.toUpperCase()}:
-                                        <XCase>{
+                                    <NameX key={i}>{attribute.id.toUpperCase()}:
+                                        <XXCase>{
                                             attribute.items?.map((m, i) => {
                                                 const [keysA] = Object.keys(this.props.product?.selectedAttributes)
                                                 const Xvalues = values(this.props.product?.selectedAttributes)
@@ -75,22 +70,24 @@ class ProductInCart extends Component<ProductInCartProps> {
                                                 }
                                                 const [valuesA, valuesB] = Xvalues
                                                 if (m?.id === valuesA) {
-                                                    return <SelectedAttr key={i}>{m?.id}</SelectedAttr>
+                                                    return <SelectedAtt key={i}>{m?.id}</SelectedAtt>
                                                 } else if (attribute.id === 'Color') {
                                                     if (m?.id === valuesB) {
-                                                        return <SelectedColorAttr key={i} backColor={`${m?.value}`}/>
+                                                        return <ColorAtt key={i} backColor={`${m?.value}`}
+                                                                         border={'4px rgb(94,206,123) solid'}/>
                                                     } else {
-                                                        return <ColorAttr key={i} backColor={`${m?.value}`}/>
+                                                        return <ColorAtt key={i} backColor={`${m?.value}`}
+                                                                         border={'solid 1px black'}/>
                                                     }
                                                 } else {
-                                                    return <Attr key={i}>{m?.id}</Attr>
+                                                    return <Att key={i}>{m?.id}</Att>
                                                 }
                                             })
-                                        }</XCase>
-                                    </DoubleName>
+                                        }</XXCase>
+                                    </NameX>
                                 ))
                                 }
-                            </div>
+                            </XCase>
                         </Info>
                         <ButtonsAndPhoto>
                             <ButtonBlock>

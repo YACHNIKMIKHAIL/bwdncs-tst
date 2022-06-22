@@ -56,7 +56,7 @@ export const OneVariantWithColor = styled.div<{ selected: boolean, backColor: st
     background-color: ${backColor}
   `}
 
-  ${({selected,backColor}) => selected && `
+  ${({selected, backColor}) => selected && `
     background-color: ${backColor};
     border:6px #5ECE7B solid;
     cursor: pointer;
@@ -64,11 +64,9 @@ export const OneVariantWithColor = styled.div<{ selected: boolean, backColor: st
 `;
 
 export const XCase = styled.div<{ backColor: string }>`
-  width: 40p';
-  height: 40px
-  
+  width: 40px;
+  height: 40px;
   ${({backColor}) => `
     background-color: ${backColor}
   `}
-
 `;

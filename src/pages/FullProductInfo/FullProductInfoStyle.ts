@@ -137,6 +137,10 @@ export const AddToCart = styled.button<{ opacity: string }>`
   font-size: 16px;
   margin-top: 20px;
   margin-bottom: 40px;
+  
+  ${({opacity}) => `
+    opacity: ${opacity}
+  `};
 
   ${({opacity}) => `
     opacity: ${opacity}
