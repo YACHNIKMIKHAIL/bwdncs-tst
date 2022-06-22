@@ -65,28 +65,47 @@ class ShopCartMini extends Component<any, any> {
                                                                 attribute.items?.map((m: any, i: number) => {
                                                                     const [keysA] = Object.keys(product?.selectedAttributes)
                                                                     const Xvalues = values(product?.selectedAttributes)
+
                                                                     if (keysA === 'Color') {
                                                                         Xvalues.reverse()
                                                                     }
-                                                                    const [valuesA, valuesB] = Xvalues
-                                                                    if (m?.id === valuesA) {
-                                                                        return <SCSelectedAtt
-                                                                            key={i}>{m?.id}</SCSelectedAtt>
-                                                                    } else if (attribute.id === 'Color') {
-                                                                        if (m?.id === valuesB) {
+                                                                    const [valuesA, valuesB, valuesC] = Xvalues
+
+                                                                    if (attribute.id === 'Color') {
+                                                                        if (m?.id === valuesA) {
+                                                                            return <SCColorAtt key={i}
+                                                                                               border={'4px rgb(94,206,123) solid'}
+                                                                                               backColor={`${m?.value}`}
+                                                                            />
+                                                                        } else if (m?.id === valuesB) {
+                                                                            return <SCColorAtt key={i}
+                                                                                               border={'4px rgb(94,206,123) solid'}
+                                                                                               backColor={`${m?.value}`}
+                                                                            />
+                                                                        } else if (m?.id === valuesC) {
                                                                             return <SCColorAtt key={i}
                                                                                                border={'4px rgb(94,206,123) solid'}
                                                                                                backColor={`${m?.value}`}
                                                                             />
                                                                         } else {
                                                                             return <SCColorAtt key={i}
-                                                                                               backColor={`${m?.value}`}
-                                                                                               border={'solid 1px black'}/>
+                                                                                        backColor={`${m?.value}`}
+                                                                                        border={'solid 1px black'}/>
                                                                         }
                                                                     } else {
-                                                                        return <SCAtt key={i}>{m?.id}</SCAtt>
+                                                                        if (m?.id === valuesA) {
+                                                                            return <SCSelectedAtt
+                                                                                key={i}>{m?.id}</SCSelectedAtt>
+                                                                        } else if (m?.id === valuesB) {
+                                                                            return <SCSelectedAtt
+                                                                                key={i}>{m?.id}</SCSelectedAtt>
+                                                                        } else if (m?.id === valuesC) {
+                                                                            return <SCSelectedAtt
+                                                                                key={i}>{m?.id}</SCSelectedAtt>
+                                                                        } else {
+                                                                            return <SCAtt key={i}>{m?.id}</SCAtt>
+                                                                        }
                                                                     }
-
                                                                 })
                                                             }</CCase>
                                                         </Name>

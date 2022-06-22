@@ -9,12 +9,15 @@ import {
     ColorAtt,
     Info,
     Miniature,
-    Name, NameX,
+    Name,
+    NameX,
     PhotoBlock,
     Price,
     Product,
     Quantity,
-    SelectedAtt, XCase, XXCase
+    SelectedAtt,
+    XCase,
+    XXCase
 } from './ProductInCartStyle';
 import {ReactComponent as ArrowLeft} from "../../images/arrow-left.svg";
 import {ReactComponent as ArrowRight} from "../../images/arrow-right.svg";
@@ -68,19 +71,32 @@ class ProductInCart extends Component<ProductInCartProps> {
                                                 if (keysA === 'Color') {
                                                     Xvalues.reverse()
                                                 }
-                                                const [valuesA, valuesB] = Xvalues
-                                                if (m?.id === valuesA) {
-                                                    return <SelectedAtt key={i}>{m?.id}</SelectedAtt>
-                                                } else if (attribute.id === 'Color') {
-                                                    if (m?.id === valuesB) {
+                                                const [valuesA, valuesB, valuesC] = Xvalues
+
+                                                if (attribute.id === 'Color') {
+                                                    if (m?.id === valuesA) {
+                                                        return <ColorAtt key={i} backColor={`${m?.value}`}
+                                                                         border={'4px rgb(94,206,123) solid'}/>
+                                                    } else if (m?.id === valuesB) {
+                                                        return <ColorAtt key={i} backColor={`${m?.value}`}
+                                                                         border={'4px rgb(94,206,123) solid'}/>
+                                                    } else if (m?.id === valuesC) {
                                                         return <ColorAtt key={i} backColor={`${m?.value}`}
                                                                          border={'4px rgb(94,206,123) solid'}/>
                                                     } else {
                                                         return <ColorAtt key={i} backColor={`${m?.value}`}
-                                                                         border={'solid 1px black'}/>
+                                                                                 border={'solid 1px black'}/>
                                                     }
                                                 } else {
-                                                    return <Att key={i}>{m?.id}</Att>
+                                                    if (m?.id === valuesA) {
+                                                        return <SelectedAtt key={i}>{m?.id}</SelectedAtt>
+                                                    } else if (m?.id === valuesB) {
+                                                        return <SelectedAtt key={i}>{m?.id}</SelectedAtt>
+                                                    } else if (m?.id === valuesC) {
+                                                        return <SelectedAtt key={i}>{m?.id}</SelectedAtt>
+                                                    } else {
+                                                        return <Att key={i}>{m?.id}</Att>
+                                                    }
                                                 }
                                             })
                                         }</XXCase>

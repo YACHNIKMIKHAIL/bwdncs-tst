@@ -52,13 +52,14 @@ class ProductCart extends Component<RouteComponentProps<{}> & ProductCartProps> 
 
                         {this.state.show && <>{productInfo?.inStock
                         && <XCase onClick={(event) => {
-                            let arr = {} as any
+                            let arrKeys = [] as string[]
+                            let arrValues = [] as string[]
                             productInfo.attributes?.forEach((attributeItem) => {
-
-                                let key = attributeItem!.id
+                                arrKeys.push(attributeItem!.id)
                                 // @ts-ignore: Object is possibly 'null'.
-                                arr[key.toString()] = attributeItem?.items[0].value
+                                arrValues.push(attributeItem?.items[0].id)
                             })
+                            let arr= arrKeys.reduce((acc:any, n:any, i:number) => ({ ...acc, [n]: arrValues[i] }), {})
 
                             addProduct(productInfo?.name!,
                                 arr,
