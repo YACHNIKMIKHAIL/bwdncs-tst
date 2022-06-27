@@ -46,10 +46,19 @@ class FullProductInfo extends Component<ChildDataProps<RouteComponentProps<{}> &
         showOverlay: false,
         selectedAttributes: {} as any,
         mainPhoto: null,
-        isSelected: false
+        isSelected: false,
+        attribX: []
     };
 
+
     render() {
+        // const xxx = [
+        //     {__typename: 'Attribute', displayValue: 'Small', value: 'S', id: 'Small'},
+        //     {__typename: 'Attribute', displayValue: 'Medium', value: 'M', id: 'Medium'},
+        //     {__typename: 'Attribute', displayValue: 'Large', value: 'L', id: 'Large'},
+        //     {__typename: 'Attribute', displayValue: 'Extra Large', value: 'XL', id: 'Extra Large'}
+        // ]
+        console.log('data', this.props.data.product)
         const allProducts = this.props?.data.product;
         if (!allProducts) {
             return <div>Waaaaaaaaaait...</div>;
@@ -57,12 +66,15 @@ class FullProductInfo extends Component<ChildDataProps<RouteComponentProps<{}> &
         const findI = this.props?.data.product
         const productInfo: Product | null | undefined = findI
         const photo = this.state.mainPhoto || productInfo?.gallery?.[0];
+        // @ts-ignore
+        const attributesX = productInfo?.attributes[0].items
 
         const showOverlay = (state: boolean) => {
             this.setState({showOverlay: state});
         };
         const price = getPrice(findI?.prices!, this.context.currency);
 
+        console.log('attributesX', attributesX)
         return (
             <ShopCartContext.Consumer>
                 {({addProduct}) => {
@@ -91,34 +103,34 @@ class FullProductInfo extends Component<ChildDataProps<RouteComponentProps<{}> &
                                 <Info>
                                     <BrandName>{productInfo?.brand}</BrandName>
                                     <ProductName>{productInfo?.name}</ProductName>
-                                        {!productInfo?.inStock
-                                            ? <> {productInfo?.attributes?.map((attribute: MainPageQuery_category_products_attributes
-                                                    | null) => {
-                                                    return <DisabledAttribute
-                                                        key={attribute!.id}
-                                                        attribute={attribute!}
-                                                    />
-                                                }
-                                            )}</>
-                                            : <> {productInfo?.attributes?.map((attribute: MainPageQuery_category_products_attributes
-                                                    | null) => {
-                                                    return <Attribute
-                                                        key={attribute!.id}
-                                                        onAttributeSelect={(attributeItem) => {
-                                                            if (!productInfo?.inStock) return
-                                                            this.setState({
-                                                                selectedAttributes: {
-                                                                    ...this.state.selectedAttributes,
-                                                                    [attribute!.id]: attributeItem,
-                                                                },
-                                                                isSelected: true
-                                                            });
-                                                        }}
-                                                        selectedAttribute={this.state.selectedAttributes[attribute!.id]}
-                                                        attribute={attribute!}
-                                                    />
-                                                }
-                                            )}</>}
+                                    {!productInfo?.inStock
+                                        ? <> {productInfo?.attributes?.map((attribute: MainPageQuery_category_products_attributes
+                                                | null) => {
+                                                return <DisabledAttribute
+                                                    key={attribute!.id}
+                                                    attribute={attribute!}
+                                                />
+                                            }
+                                        )}</>
+                                        : <> {productInfo?.attributes?.map((attribute: MainPageQuery_category_products_attributes
+                                                | null) => {
+                                                return <Attribute
+                                                    key={attribute!.id}
+                                                    onAttributeSelect={(attributeItem) => {
+                                                        if (!productInfo?.inStock) return
+                                                        this.setState({
+                                                            selectedAttributes: {
+                                                                ...this.state.selectedAttributes,
+                                                                [attribute!.id]: attributeItem,
+                                                            },
+                                                            isSelected: true
+                                                        });
+                                                    }}
+                                                    selectedAttribute={this.state.selectedAttributes[attribute!.id]}
+                                                    attribute={attribute!}
+                                                />
+                                            }
+                                        )}</>}
                                     <Price>
                                         <Word>PRICE:</Word>
                                         <Amount>{`${this.context.currency.symbol} ${price?.toString()}`}</Amount>
@@ -158,6 +170,7 @@ class FullProductInfo extends Component<ChildDataProps<RouteComponentProps<{}> &
 
 export default graphql<RouteComponentProps<{}> & FullProductInfoProps, MainPageQuery, {}, {}>(GET_CURRENT_ITEM, {
     options: () => ({
+        fetchPolicy:'network-only',
         variables: {id: window.location.search.slice(1)}
     })
 })(FullProductInfo);
