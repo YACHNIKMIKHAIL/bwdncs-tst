@@ -20,7 +20,6 @@ class MainPage extends Component<ChildDataProps<MainPageProps, MainPageQuery, {}
     state = {showOverlay: false};
 
     render() {
-        debugger
         let filteredProducts = this.props?.data?.category?.products;
         const {category} = this.props.match.params;
 
