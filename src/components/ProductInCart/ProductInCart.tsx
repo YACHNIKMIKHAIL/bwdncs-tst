@@ -89,13 +89,13 @@ class ProductInCart extends Component<ProductInCartProps> {
                                                     }
                                                 } else {
                                                     if (m?.id === valuesA) {
-                                                        return <SelectedAtt key={i}>{m?.id}</SelectedAtt>
+                                                        return <SelectedAtt key={i}>{m?.value}</SelectedAtt>
                                                     } else if (m?.id === valuesB) {
-                                                        return <SelectedAtt key={i}>{m?.id}</SelectedAtt>
+                                                        return <SelectedAtt key={i}>{m?.value}</SelectedAtt>
                                                     } else if (m?.id === valuesC) {
-                                                        return <SelectedAtt key={i}>{m?.id}</SelectedAtt>
+                                                        return <SelectedAtt key={i}>{m?.value}</SelectedAtt>
                                                     } else {
-                                                        return <Att key={i}>{m?.id}</Att>
+                                                        return <Att key={i}>{m?.value}</Att>
                                                     }
                                                 }
                                             })

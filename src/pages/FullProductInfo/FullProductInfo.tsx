@@ -62,6 +62,7 @@ class FullProductInfo extends Component<ChildDataProps<RouteComponentProps<{}> &
             this.setState({showOverlay: state});
         };
         const price = getPrice(findI?.prices!, this.context.currency);
+
         return (
             <ShopCartContext.Consumer>
                 {({addProduct}) => {
@@ -118,25 +119,6 @@ class FullProductInfo extends Component<ChildDataProps<RouteComponentProps<{}> &
                                                     />
                                                 }
                                             )}</>}
-                                        {/*{productInfo?.attributes?.map((attribute: MainPageQuery_category_products_attributes*/}
-                                        {/*        | null) => {*/}
-                                        {/*        return <Attribute*/}
-                                        {/*            key={attribute!.id}*/}
-                                        {/*            onAttributeSelect={(attributeItem) => {*/}
-                                        {/*                if (!productInfo?.inStock) return*/}
-                                        {/*                this.setState({*/}
-                                        {/*                    selectedAttributes: {*/}
-                                        {/*                        ...this.state.selectedAttributes,*/}
-                                        {/*                        [attribute!.id]: attributeItem,*/}
-                                        {/*                    },*/}
-                                        {/*                    isSelected: true*/}
-                                        {/*                });*/}
-                                        {/*            }}*/}
-                                        {/*            selectedAttribute={this.state.selectedAttributes[attribute!.id]}*/}
-                                        {/*            attribute={attribute!}*/}
-                                        {/*        />*/}
-                                        {/*    }*/}
-                                        {/*)}*/}
                                     <Price>
                                         <Word>PRICE:</Word>
                                         <Amount>{`${this.context.currency.symbol} ${price?.toString()}`}</Amount>

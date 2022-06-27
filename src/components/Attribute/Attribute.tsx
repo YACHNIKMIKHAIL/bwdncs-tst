@@ -46,7 +46,7 @@ export class Attribute extends Component<AttributeProps> {
                                 selected={this.props.selectedAttribute === variant?.id}
                                 onClick={() => this.props.onAttributeSelect(variant!.id)}
                             >
-                                {variant?.displayValue}
+                                {variant?.value}
                             </OneVariant>
                         ),
                     )}

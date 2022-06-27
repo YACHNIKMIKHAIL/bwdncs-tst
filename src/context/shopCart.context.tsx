@@ -29,7 +29,7 @@ interface ShopCartInternalState {
 
 export const ShopCartContext = React.createContext({} as ShopCartState);
 
-class ShopCartContextProvider extends Component<{ }, ShopCartInternalState> {
+class ShopCartContextProvider extends Component<{}, ShopCartInternalState> {
     state: ShopCartInternalState = {products: []};
 
     static contextType = CurrencyContext;
@@ -89,7 +89,10 @@ class ShopCartContextProvider extends Component<{ }, ShopCartInternalState> {
 }
 
 export default graphql(GET_ITEMS_BY_CATEGORY, {
-    options: () => ({
-        variables: {title: ""}
-    })
-})(ShopCartContextProvider);
+    options: () => {
+        return {
+            variables: {title: ""}
+        }
+    }
+})
+(ShopCartContextProvider);

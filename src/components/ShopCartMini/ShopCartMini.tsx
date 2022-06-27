@@ -95,15 +95,15 @@ class ShopCartMini extends Component<any, any> {
                                                                     } else {
                                                                         if (m?.id === valuesA) {
                                                                             return <SCSelectedAtt
-                                                                                key={i}>{m?.id}</SCSelectedAtt>
+                                                                                key={i}>{m?.value}</SCSelectedAtt>
                                                                         } else if (m?.id === valuesB) {
                                                                             return <SCSelectedAtt
-                                                                                key={i}>{m?.id}</SCSelectedAtt>
+                                                                                key={i}>{m?.value}</SCSelectedAtt>
                                                                         } else if (m?.id === valuesC) {
                                                                             return <SCSelectedAtt
-                                                                                key={i}>{m?.id}</SCSelectedAtt>
+                                                                                key={i}>{m?.value}</SCSelectedAtt>
                                                                         } else {
-                                                                            return <SCAtt key={i}>{m?.id}</SCAtt>
+                                                                            return <SCAtt key={i}>{m?.value}</SCAtt>
                                                                         }
                                                                     }
                                                                 })
