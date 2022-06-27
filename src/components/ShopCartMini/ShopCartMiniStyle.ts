@@ -7,7 +7,7 @@ export const MainContainer = styled.div`
   background-color: white;
   z-index: 10;
   margin-top: 30px;
-  height: 550px;
+  height: 570px;
 `;
 
 export const ContentContainer = styled.div`
@@ -29,15 +29,14 @@ export const AllProducts = styled.div`
   display: flex;
   flex-direction: column;
   overflow: auto;
-  height: 330px;
+  height: 370px;
 `;
 
 export const Product = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin-bottom: 45px;
-
+  margin-bottom: 25px;
 `;
 
 export const ProductInfo = styled.div`
@@ -120,7 +119,7 @@ export const Miniature = styled.img`
 export const Total = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-top: 20px;
+  margin-top: 10px;
   margin-bottom: 10px;
 `;
 

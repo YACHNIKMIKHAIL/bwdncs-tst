@@ -47,7 +47,7 @@ class ProductCart extends Component<RouteComponentProps<{}> & ProductCartProps> 
                             <Image src={productInfo?.gallery?.[0]!}/>
                             {!available && <OutOfStock>Out of stock</OutOfStock>}
                         </ImageContainer>
-                        <Name>{productInfo.name}</Name>
+                        <Name>{productInfo.brand}  {productInfo.name}</Name>
                         <Price>{symbol} {price?.toString()}</Price>
 
                         {this.state.show && <>{productInfo?.inStock

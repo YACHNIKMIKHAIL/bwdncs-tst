@@ -4,6 +4,7 @@ import {
     AddToCart,
     AllPhotos,
     Amount,
+    BrandName,
     Container,
     Description,
     Info,
@@ -50,6 +51,7 @@ class FullProductInfo extends Component<ChildDataProps<RouteComponentProps<{}> &
 
     render() {
         const allProducts = this.props?.data.product;
+        console.log(allProducts)
         if (!allProducts) {
             return <div>Waaaaaaaaaait...</div>;
         }
@@ -87,6 +89,7 @@ class FullProductInfo extends Component<ChildDataProps<RouteComponentProps<{}> &
                                     </MainPhoto>
                                 </AllPhotos>
                                 <Info>
+                                    <BrandName>{productInfo?.brand}</BrandName>
                                     <ProductName>{productInfo?.name}</ProductName>
                                         {!productInfo?.inStock
                                             ? <> {productInfo?.attributes?.map((attribute: MainPageQuery_category_products_attributes

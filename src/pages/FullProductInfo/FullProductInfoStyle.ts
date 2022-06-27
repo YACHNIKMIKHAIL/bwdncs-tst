@@ -96,9 +96,15 @@ export const Info = styled.div`
   }
 `;
 
-export const ProductName = styled.div`
+export const BrandName = styled.div`
   font-family: Raleway, serif;
   font-weight: 500;
+  font-size: 30px;
+`;
+
+export const ProductName = styled.div`
+  font-family: Raleway, serif;
+  font-weight: 150;
   font-size: 30px;
 `;
 
@@ -161,13 +167,4 @@ export const Description = styled.div`
   font-weight: normal;
   font-size: 16px;
   margin-right: 10px;
-`;
-
-export const StopHover = styled.div`
-  opacity:0.2;
-  
-  &:hover {
-
-  }
-
 `;

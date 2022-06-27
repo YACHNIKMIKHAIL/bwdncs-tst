@@ -26,6 +26,7 @@ export interface MainPageQuery_category_products {
     __typename: "Product";
     id: string;
     name: string;
+    brand: string;
     gallery: (string | null)[] | null;
     category: string;
     description: string;
@@ -41,8 +42,8 @@ export interface MainPageQuery_category {
 }
 
 export interface MainPageQuery {
-    categories?:any
-    product?:any
+    categories?: any
+    product?: any
     category: MainPageQuery_category | null;
     currencies: (string | null)[] | null;
 }
