@@ -26,7 +26,6 @@ class MainPage extends Component<ChildDataProps<MainPageProps, MainPageQuery, {}
         const showOverlay = (state: boolean) => {
             this.setState({showOverlay: state});
         };
-
         return (
             <MainDiv>
                 <Header showOverlay={showOverlay} category={category}/>
@@ -49,6 +48,7 @@ class MainPage extends Component<ChildDataProps<MainPageProps, MainPageQuery, {}
 
 export default graphql<MainPageProps, MainPageQuery, {}, {}>(GET_ITEMS_BY_CATEGORY, {
     options: () => ({
+        fetchPolicy: "no-cache",
         variables: {title: window.location.pathname.slice(1)}
     })
 })(MainPage);
