@@ -54,7 +54,9 @@ export const Miniatures = styled.div`
   flex-direction: column;
   margin-right: 20px;
   cursor: pointer;
-
+  max-height: 610px;
+  overflow: auto;
+  
   @media (max-width: 1250px) {
     margin-left: 10px;
   }
@@ -65,7 +67,8 @@ export const Miniature = styled.img`
   height: 80px;
   object-fit: contain;
   margin-bottom: 30px;
-
+  
+ 
   &:hover {
     box-shadow: 0 5px 35px rgba(168, 172, 176, 0.19);
   }
@@ -75,7 +78,7 @@ export const MainPhoto = styled.div`
   display: flex;
   margin-right: 100px;
   margin-left: 100px;
-
+  
   @media (max-width: 1250px) {
     margin-right: 0;
     margin-left: 0;
