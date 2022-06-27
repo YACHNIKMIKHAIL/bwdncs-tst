@@ -51,7 +51,6 @@ class FullProductInfo extends Component<ChildDataProps<RouteComponentProps<{}> &
 
     render() {
         const allProducts = this.props?.data.product;
-        console.log(allProducts)
         if (!allProducts) {
             return <div>Waaaaaaaaaait...</div>;
         }

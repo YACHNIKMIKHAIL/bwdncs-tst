@@ -3,7 +3,8 @@ import styled from 'styled-components';
 export const MainDiv = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
+
   align-items: center;
   width: 100%;
   min-height: 100vh;
@@ -31,12 +32,16 @@ export const ProductList = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  align-items: center;
-  max-width: 1020px;
+  align-items: center; 
+  max-width: 1030px;
 
   @media (max-width: 1250px) {
+    justify-content: flex-start;
+  }  
+  @media (max-width: 1027px) {
     justify-content: center;
   }
+  
 `;
 
 export const Container = styled.div`
