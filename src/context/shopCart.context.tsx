@@ -3,7 +3,7 @@ import {graphql} from '@apollo/client/react/hoc';
 import {isEqual} from 'lodash';
 import {GET_ITEMS_BY_CATEGORY} from '../graphql/query';
 import {
-    MainPageQuery_category_products_attributes as attribute,
+    MainPageQuery_category_products_attributes,
     MainPageQuery_category_products_prices,
 } from '../graphql/__generated__/MainPageQuery';
 import {CurrencyContext} from './currency.context';
@@ -17,14 +17,14 @@ export interface ShopCartProduct {
     id: string,
     selectedAttributes: object,
     photo: string[],
-    allAttributes: attribute[],
+    allAttributes?: MainPageQuery_category_products_attributes[] | undefined,
     price: CurrencyType[] | any,
     quantity: number
 }
 
 interface ShopCartState {
-    addProduct: (id: string, selectedAttributes: object, allAttributes: object | null | undefined, price: any, photo: string[]) => void,
-    removeProduct: (id: string, selectedAttributes: object, allAttributes: object | null | undefined, price: any, photo: string[]) => void,
+    addProduct: (id: string, selectedAttributes: object, allAttributes: MainPageQuery_category_products_attributes[] | undefined, price: any, photo: string[]) => void,
+    removeProduct: (id: string, selectedAttributes: object, allAttributes: MainPageQuery_category_products_attributes[] | undefined, price: any, photo: string[]) => void,
     products: ShopCartProduct[]
 }
 
@@ -39,9 +39,8 @@ class ShopCartContextProvider extends Component<{}, ShopCartInternalState> {
 
     static contextType = CurrencyContext;
 
-    addProduct(id: string, selectedAttributes: object, allAttributes: any, price: any, photo: string[]) {
+    addProduct(id: string, selectedAttributes: object, allAttributes: MainPageQuery_category_products_attributes[] | undefined, price: MainPageQuery_category_products_prices, photo: string[]) {
         const existingProduct = this.state.products.find((x: ShopCartProduct) => x.id === id && isEqual(x.selectedAttributes, selectedAttributes));
-
         if (existingProduct) {
             existingProduct.quantity += 1;
             this.setState({products: this.state.products.slice(0)});
@@ -82,7 +81,6 @@ class ShopCartContextProvider extends Component<{}, ShopCartInternalState> {
                     addProduct: (id, selectedAttributes, allAttributes, price, photo) => this.addProduct(id, selectedAttributes, allAttributes, price, photo),
                     removeProduct: (id, selectedAttributes, allAttributes) => this.removeProduct(id, selectedAttributes, allAttributes),
                     products: this.state.products.map((product) => {
-                        console.log(product.price)
                         return {
                             ...product,
                             price: product.price.find((price: MainPageQuery_category_products_prices) => price?.currency.label === this.context.currency.label).amount

@@ -24,6 +24,7 @@ import {ReactComponent as ArrowRight} from "../../images/arrow-right.svg";
 import {values} from "lodash";
 import {CurrencyContext} from "../../context/currency.context";
 import {ShopCartContext, ShopCartProduct} from '../../context/shopCart.context';
+import {MainPageQuery_category_products_attributes_items} from "../../graphql/__generated__/MainPageQuery";
 
 interface ProductInCartProps {
     product: ShopCartProduct
@@ -65,7 +66,7 @@ class ProductInCart extends Component<ProductInCartProps> {
                                 {values(this.props.product.allAttributes).map((attribute, i) => (
                                     <NameX key={i}>{attribute.id.toUpperCase()}:
                                         <XXCase>{
-                                            attribute.items?.map((m, i) => {
+                                            attribute.items?.map((m: MainPageQuery_category_products_attributes_items, i: number) => {
                                                 const [keysA] = Object.keys(this.props.product?.selectedAttributes)
                                                 const Xvalues = values(this.props.product?.selectedAttributes)
                                                 if (keysA === 'Color') {
@@ -85,7 +86,7 @@ class ProductInCart extends Component<ProductInCartProps> {
                                                                          border={'4px rgb(94,206,123) solid'}/>
                                                     } else {
                                                         return <ColorAtt key={i} backColor={`${m?.value}`}
-                                                                                 border={'solid 1px black'}/>
+                                                                         border={'solid 1px black'}/>
                                                     }
                                                 } else {
                                                     if (m?.id === valuesA) {
@@ -108,11 +109,7 @@ class ProductInCart extends Component<ProductInCartProps> {
                         <ButtonsAndPhoto>
                             <ButtonBlock>
                                 <Button
-                                    onClick={() => addProduct(this.props.product.id,
-                                        this.props.product.selectedAttributes,
-                                        this.props.product.allAttributes,
-                                        this.props.product.price,
-                                        this.props.product.photo)}
+                                    onClick={() => addProduct(this.props.product.id, this.props.product.selectedAttributes, this.props.product.allAttributes, this.props.product.price, this.props.product.photo)}
                                 >
                                     +
                                 </Button>

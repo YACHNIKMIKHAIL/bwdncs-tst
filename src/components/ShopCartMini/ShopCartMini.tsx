@@ -30,9 +30,11 @@ import {
     TotalAmount,
     ViewBag
 } from './ShopCartMiniStyle';
+import {RouteComponentProps, StaticContext} from "react-router";
+import {MainPageQuery_category_products_attributes_items} from "../../graphql/__generated__/MainPageQuery";
 
 
-class ShopCartMini extends Component<any, any> {
+class ShopCartMini extends Component<RouteComponentProps<any, StaticContext, unknown>, Readonly<typeof ShopCartMini>> {
     static contextType = CurrencyContext;
 
     render() {
@@ -62,7 +64,7 @@ class ShopCartMini extends Component<any, any> {
                                                     {values(product.allAttributes).map((attribute, i) => (
                                                         <Name key={i}>{attribute.id}:
                                                             <CCase>{
-                                                                attribute.items?.map((m: any, i: number) => {
+                                                                attribute.items?.map((m: MainPageQuery_category_products_attributes_items | null, i: number) => {
                                                                     const [keysA] = Object.keys(product?.selectedAttributes)
                                                                     const Xvalues = values(product?.selectedAttributes)
 
@@ -89,8 +91,8 @@ class ShopCartMini extends Component<any, any> {
                                                                             />
                                                                         } else {
                                                                             return <SCColorAtt key={i}
-                                                                                        backColor={`${m?.value}`}
-                                                                                        border={'solid 1px black'}/>
+                                                                                               backColor={`${m?.value}`}
+                                                                                               border={'solid 1px black'}/>
                                                                         }
                                                                     } else {
                                                                         if (m?.id === valuesA) {
@@ -116,21 +118,13 @@ class ShopCartMini extends Component<any, any> {
                                             <ButtonsAndPhoto>
                                                 <ButtonBlock>
                                                     <Button
-                                                        onClick={() => addProduct(product.id,
-                                                            product.selectedAttributes,
-                                                            product.allAttributes,
-                                                            product.price,
-                                                            product.photo)}
+                                                        onClick={() => addProduct(product.id, product.selectedAttributes, product.allAttributes, product.price, product.photo)}
                                                     >
                                                         +
                                                     </Button>
                                                     <Quantity>{product?.quantity}</Quantity>
                                                     <Button
-                                                        onClick={() => removeProduct(product.id,
-                                                            product.selectedAttributes,
-                                                            product.allAttributes,
-                                                            product.price,
-                                                            product.photo)}
+                                                        onClick={() => removeProduct(product.id, product.selectedAttributes, product.allAttributes, product.price, product.photo)}
                                                     >
                                                         -
                                                     </Button>

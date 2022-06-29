@@ -17,7 +17,7 @@ export interface MainPageQuery_category_products_attributes_items {
 export interface MainPageQuery_category_products_attributes {
     __typename: "AttributeSet";
     id: string;
-    items: (MainPageQuery_category_products_attributes_items | null)[] | null;
+    items: MainPageQuery_category_products_attributes_items[] | undefined
     name: string | null;
     type: string | null;
 }
@@ -32,7 +32,7 @@ export interface MainPageQuery_category_products {
     description: string;
     prices: MainPageQuery_category_products_prices[];
     inStock: boolean | null;
-    attributes: (MainPageQuery_category_products_attributes | null)[] | null;
+    attributes: MainPageQuery_category_products_attributes[] | undefined
 }
 
 export interface MainPageQuery_category {
@@ -41,9 +41,11 @@ export interface MainPageQuery_category {
     products: (MainPageQuery_category_products | null)[];
 }
 
+export type CategoryType = { name: string }
+
 export interface MainPageQuery {
-    categories?: any
-    product?: any
+    categories?: CategoryType[]
+    product?: MainPageQuery_category_products
     category: MainPageQuery_category | null;
     currencies: (string | null)[] | null;
 }

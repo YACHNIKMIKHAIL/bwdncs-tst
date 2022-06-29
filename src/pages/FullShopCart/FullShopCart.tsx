@@ -6,8 +6,9 @@ import {CurrencyContext} from '../../context/currency.context';
 import {ShopCartContext} from '../../context/shopCart.context';
 import ProductInCart from "../../components/ProductInCart/ProductInCart";
 import Order from "./Order/Order";
+import {RouteComponentProps, StaticContext} from "react-router";
 
-class FullShopCart extends Component<any, any> {
+class FullShopCart extends Component<RouteComponentProps<any, StaticContext, unknown>, { showOverlay: boolean }> {
     state = {showOverlay: false};
 
     static contextType = CurrencyContext;

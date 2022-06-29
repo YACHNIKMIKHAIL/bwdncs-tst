@@ -8,7 +8,7 @@ import {ReactComponent as ShopCart} from '../../images/shop-cart.svg';
 import {CurrencyContext} from '../../context/currency.context';
 import {ShopCartContext} from '../../context/shopCart.context';
 import ShopCardMini from '../ShopCartMini/ShopCartMini';
-import {MainPageQuery} from '../../graphql/__generated__/MainPageQuery';
+import {CategoryType, MainPageQuery} from '../../graphql/__generated__/MainPageQuery';
 import {GET_CURRENCIES} from '../../graphql/query';
 import Name from '../Name/Name';
 import {
@@ -30,7 +30,7 @@ import {
 interface HeaderProps {
     showOverlay: (state: boolean) => void
     category?: string
-    categories?: any
+    categories?: CategoryType[]
 }
 
 class Header extends Component<ChildDataProps<HeaderProps, MainPageQuery, any>> {

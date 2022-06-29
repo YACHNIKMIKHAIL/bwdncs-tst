@@ -56,14 +56,13 @@ class FullProductInfo extends Component<ChildDataProps<RouteComponentProps<{}> &
         if (!allProducts) {
             return <div>Waaaaaaaaaait...</div>;
         }
-        const findI = this.props?.data.product
-        const productInfo: Product | null | undefined = findI
+        const productInfo: Product | null | undefined = allProducts
         const photo = this.state.mainPhoto || productInfo?.gallery?.[0];
 
         const showOverlay = (state: boolean) => {
             this.setState({showOverlay: state});
         };
-        const price = getPrice(findI?.prices!, this.context.currency);
+        const price = getPrice(allProducts?.prices!, this.context.currency);
 
         return (
             <ShopCartContext.Consumer>
@@ -135,11 +134,7 @@ class FullProductInfo extends Component<ChildDataProps<RouteComponentProps<{}> &
                                                            || Object.keys(this.state.selectedAttributes).length !== productInfo?.attributes?.length) {
                                                            alert('Choise attribute')
                                                        } else {
-                                                           addProduct(productInfo?.name!,
-                                                               this.state.selectedAttributes,
-                                                               productInfo?.attributes,
-                                                               productInfo?.prices,
-                                                               compact(productInfo?.gallery));
+                                                           addProduct(productInfo?.name!, this.state.selectedAttributes, productInfo?.attributes, productInfo?.prices, compact(productInfo?.gallery));
                                                        }
                                                    }
                                                }}

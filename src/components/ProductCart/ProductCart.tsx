@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {RouteComponentProps, withRouter} from 'react-router-dom';
 import {CurrencyContext} from '../../context/currency.context';
 import {
-    MainPageQuery_category_products as MainPageQueryCategoryProducts
+    MainPageQuery_category_products as MainPageQueryCategoryProducts, MainPageQuery_category_products_attributes
 } from '../../graphql/__generated__/MainPageQuery';
 import {getPrice, getSymbol} from '../../Utils';
 import {Image, ImageContainer, MainDiv, Name, OutOfStock, Price, XCase} from './ProductCartStyles';
@@ -62,14 +62,21 @@ class ProductCart extends Component<RouteComponentProps<{}> & ProductCartProps> 
                                     // @ts-ignore: Object is possibly 'null'.
                                     arrValues.push(attributeItem?.items[0].id)
                                 })
-                                let arr = arrKeys.reduce((acc: any, n: any, i: number) => ({
-                                    ...acc,
-                                    [n]: arrValues[i]
-                                }), {})
+                                let arr = arrKeys.reduce((acc: Object, n: string, i: number) => {
+                                    return {
+                                        ...acc,
+                                        [n]: arrValues[i]
+                                    }
+                                }, {})
 
+                                let productInfoAttributes: MainPageQuery_category_products_attributes[] = []
+
+                                if (productInfo?.attributes) {
+                                    productInfoAttributes = productInfo?.attributes
+                                }
                                 addProduct(productInfo?.name!,
                                     arr,
-                                    productInfo?.attributes,
+                                    productInfoAttributes,
                                     productInfo?.prices,
                                     compact(productInfo?.gallery));
                                 event.stopPropagation()
