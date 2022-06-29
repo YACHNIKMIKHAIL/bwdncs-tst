@@ -44,7 +44,7 @@ class FullProductInfo extends Component<ChildDataProps<RouteComponentProps<{}> &
 
     state = {
         showOverlay: false,
-        selectedAttributes: {} as any,
+        selectedAttributes: {} as { [index: string]: string },
         mainPhoto: null,
         isSelected: false,
         attribX: []
@@ -52,7 +52,6 @@ class FullProductInfo extends Component<ChildDataProps<RouteComponentProps<{}> &
 
 
     render() {
-
         const allProducts = this.props?.data.product;
         if (!allProducts) {
             return <div>Waaaaaaaaaait...</div>;

@@ -9,7 +9,7 @@ import {
     OrderButton
 } from "./OrderStyle";
 import {CurrencyContext} from "../../../context/currency.context";
-import {ShopCartContext} from "../../../context/shopCart.context";
+import {ShopCartContext, ShopCartProduct} from "../../../context/shopCart.context";
 
 class Order extends Component {
     static contextType = CurrencyContext;
@@ -18,18 +18,17 @@ class Order extends Component {
         return (
             <ShopCartContext.Consumer>
                 {({products}) => {
-
-
+                    console.log(products)
                     const all = products
-                        .map((m: any) => m.price * m.quantity)
+                        .map((m: ShopCartProduct) => m.price * m.quantity)
                         .reduce((acc: number, el: number) => {
                             return acc + el
 
                         })
                     const tax = all * 0.21
-                    const totalPrice = all+ tax
+                    const totalPrice = all + tax
                     const qua = products
-                        .map((m: any) => m.quantity)
+                        .map((m: ShopCartProduct) => m.quantity)
                         .reduce((acc: number, el: number) => {
                             return acc + el
 
@@ -40,7 +39,8 @@ class Order extends Component {
                         <OrderProduct>
                             <OrderInfo>
                                 <OrderBlock>
-                                    <OrderD>Tax 21%:</OrderD><OrderP>{this.context.currency.symbol} {tax.toFixed(2)}</OrderP>
+                                    <OrderD>Tax
+                                        21%:</OrderD><OrderP>{this.context.currency.symbol} {tax.toFixed(2)}</OrderP>
                                 </OrderBlock>
                                 <OrderBlock>
                                     <OrderD>Quantity:</OrderD><OrderP>{qua}</OrderP>

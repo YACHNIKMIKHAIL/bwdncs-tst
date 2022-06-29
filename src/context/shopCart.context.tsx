@@ -8,12 +8,17 @@ import {
 } from '../graphql/__generated__/MainPageQuery';
 import {CurrencyContext} from './currency.context';
 
+export type CurrencyType = {
+    label: string
+    symbol: string
+}
+
 export interface ShopCartProduct {
     id: string,
     selectedAttributes: object,
     photo: string[],
     allAttributes: attribute[],
-    price: any,
+    price: CurrencyType[] | any,
     quantity: number
 }
 
@@ -76,10 +81,13 @@ class ShopCartContextProvider extends Component<{}, ShopCartInternalState> {
                 value={{
                     addProduct: (id, selectedAttributes, allAttributes, price, photo) => this.addProduct(id, selectedAttributes, allAttributes, price, photo),
                     removeProduct: (id, selectedAttributes, allAttributes) => this.removeProduct(id, selectedAttributes, allAttributes),
-                    products: this.state.products.map((product) => ({
-                        ...product,
-                        price: product.price.find((price: MainPageQuery_category_products_prices) => price?.currency.label === this.context.currency.label).amount
-                    })),
+                    products: this.state.products.map((product) => {
+                        console.log(product.price)
+                        return {
+                            ...product,
+                            price: product.price.find((price: MainPageQuery_category_products_prices) => price?.currency.label === this.context.currency.label).amount
+                        }
+                    }),
                 }}
             >
                 {this.props.children}
