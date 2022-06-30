@@ -34,7 +34,7 @@ import {RouteComponentProps, StaticContext} from "react-router";
 import {MainPageQuery_category_products_attributes_items} from "../../graphql/__generated__/MainPageQuery";
 
 
-class ShopCartMini extends Component<RouteComponentProps<any, StaticContext, unknown>, Readonly<typeof ShopCartMini>> {
+class ShopCartMini extends Component<RouteComponentProps<{}, StaticContext, unknown>, Readonly<typeof ShopCartMini>> {
     static contextType = CurrencyContext;
 
     render() {

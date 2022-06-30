@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {ChildDataProps, graphql} from '@apollo/client/react/hoc';
+import {ChildDataProps, DataProps, graphql, MutateProps} from '@apollo/client/react/hoc';
 import currencyToSymbolMap from 'currency-symbol-map'
 import {ReactComponent as LogoImage} from '../../images/logo.svg';
 import {ReactComponent as ArrowDown} from '../../images/arrow-down.svg';
@@ -33,15 +33,15 @@ interface HeaderProps {
     categories?: CategoryType[]
 }
 
-class Header extends Component<ChildDataProps<HeaderProps, MainPageQuery, any>> {
+class Header extends Component<ChildDataProps<HeaderProps, MainPageQuery, {}>> {
     currencyWrapperRef: React.RefObject<HTMLDivElement>;
     shopCardWrapperRef: React.RefObject<HTMLDivElement>;
     state = {currencySwitcherOpen: false, shopCardSwitchOpen: false};
 
     static contextType = CurrencyContext;
 
-    constructor(props: any) {
-        super(props);
+    constructor(props: HeaderProps & Partial<DataProps<MainPageQuery, {}>> & Partial<MutateProps<MainPageQuery, {}>>) {
+        super(props as ChildDataProps<HeaderProps, MainPageQuery, {}> | Readonly<ChildDataProps<HeaderProps, MainPageQuery, {}>>);
         this.currencyWrapperRef = React.createRef();
         this.shopCardWrapperRef = React.createRef();
     }
@@ -113,21 +113,21 @@ class Header extends Component<ChildDataProps<HeaderProps, MainPageQuery, any>> 
                                             </ArrowUpContainer>
                                         </Symbols>
                                         {this.state.currencySwitcherOpen
-                                        && (
-                                            <CurrencyMenu>
-                                                {currencies.map((currency: { symbol: string, label: string }) => {
-                                                    return <Currency
-                                                        onClick={() => {
-                                                            this.context.setCurrency(currency);
-                                                            this.setState({currencySwitcherOpen: !this.state.currencySwitcherOpen});
-                                                        }}
-                                                        key={currency.label}
-                                                    >
-                                                        {currency.symbol + ' ' + currency.label}
-                                                    </Currency>
-                                                })}
-                                            </CurrencyMenu>
-                                        )}
+                                            && (
+                                                <CurrencyMenu>
+                                                    {currencies.map((currency: { symbol: string, label: string }) => {
+                                                        return <Currency
+                                                            onClick={() => {
+                                                                this.context.setCurrency(currency);
+                                                                this.setState({currencySwitcherOpen: !this.state.currencySwitcherOpen});
+                                                            }}
+                                                            key={currency.label}
+                                                        >
+                                                            {currency.symbol + ' ' + currency.label}
+                                                        </Currency>
+                                                    })}
+                                                </CurrencyMenu>
+                                            )}
                                     </CurrencyOpen>
                                     <ShopCartContainer>
                                         <ShopCart

@@ -23,8 +23,8 @@ export interface ShopCartProduct {
 }
 
 interface ShopCartState {
-    addProduct: (id: string, selectedAttributes: object, allAttributes: MainPageQuery_category_products_attributes[] | undefined, price: any, photo: string[]) => void,
-    removeProduct: (id: string, selectedAttributes: object, allAttributes: MainPageQuery_category_products_attributes[] | undefined, price: any, photo: string[]) => void,
+    addProduct: (id: string, selectedAttributes: object, allAttributes: MainPageQuery_category_products_attributes[] | undefined, price: MainPageQuery_category_products_prices[], photo: string[]) => void,
+    removeProduct: (id: string, selectedAttributes: object, allAttributes: MainPageQuery_category_products_attributes[] | undefined, price: MainPageQuery_category_products_prices[], photo: string[]) => void,
     products: ShopCartProduct[]
 }
 
@@ -39,7 +39,7 @@ class ShopCartContextProvider extends Component<{}, ShopCartInternalState> {
 
     static contextType = CurrencyContext;
 
-    addProduct(id: string, selectedAttributes: object, allAttributes: MainPageQuery_category_products_attributes[] | undefined, price: MainPageQuery_category_products_prices, photo: string[]) {
+    addProduct(id: string, selectedAttributes: object, allAttributes: MainPageQuery_category_products_attributes[] | undefined, price: MainPageQuery_category_products_prices[], photo: string[]) {
         const existingProduct = this.state.products.find((x: ShopCartProduct) => x.id === id && isEqual(x.selectedAttributes, selectedAttributes));
         if (existingProduct) {
             existingProduct.quantity += 1;
@@ -57,7 +57,7 @@ class ShopCartContextProvider extends Component<{}, ShopCartInternalState> {
         }
     }
 
-    removeProduct(id: string, selectedAttributes: object, allAttributes: any) {
+    removeProduct(id: string, selectedAttributes: object, allAttributes: MainPageQuery_category_products_attributes[] | undefined) {
         const existingProduct = this.state.products.find((x: ShopCartProduct) => x.id === id && isEqual(x.selectedAttributes, selectedAttributes) && isEqual(x.allAttributes, allAttributes));
 
         if (existingProduct && existingProduct.quantity > 1) {
