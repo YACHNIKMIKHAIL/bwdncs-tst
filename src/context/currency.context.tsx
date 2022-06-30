@@ -1,12 +1,17 @@
-import React, {Component} from 'react';
-import {graphql} from '@apollo/client/react/hoc';
+import React, {Component, FunctionComponent} from 'react';
+import {DataProps, graphql, MutateProps} from '@apollo/client/react/hoc';
 import {GET_CURRENCIES} from '../graphql/query';
+import {CurrencyType} from "./shopCart.context";
 
 export const CurrencyContext = React.createContext({});
-type GraphDataType = any //very difficult dynamic object
-type CurrencyDataType = { currency: string }
+type DataType = { data: { name: string, currencies: CurrencyType[] } }
+type GraphDataType = FunctionComponent<Partial<DataProps<{}, {}>> & Partial<MutateProps<{}, {}>>> & DataType
 
-class CurrencyContextProvider extends Component<GraphDataType,CurrencyDataType > {
+type CurrencyDataType = {
+    currency: string,
+}
+
+class CurrencyContextProvider extends Component<GraphDataType, CurrencyDataType> {
     state: CurrencyDataType = {} as CurrencyDataType;
 
     render() {
@@ -23,4 +28,4 @@ class CurrencyContextProvider extends Component<GraphDataType,CurrencyDataType >
     }
 }
 
-export default graphql(GET_CURRENCIES)(CurrencyContextProvider);
+export default graphql(GET_CURRENCIES)(CurrencyContextProvider as unknown as GraphDataType);

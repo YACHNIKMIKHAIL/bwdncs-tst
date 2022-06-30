@@ -49,3 +49,11 @@ export interface MainPageQuery {
     category: MainPageQuery_category | null;
     currencies: (string | null)[] | null;
 }
+
+export type MainDataType = MainPageQuery_category_products_prices |
+    MainPageQuery_category_products_attributes_items |
+    MainPageQuery_category_products_attributes |
+    MainPageQuery_category_products |
+    MainPageQuery_category |
+    CategoryType |
+    MainPageQuery

@@ -6,7 +6,7 @@ import {ReactComponent as ArrowDown} from '../../images/arrow-down.svg';
 import {ReactComponent as ArrowUp} from '../../images/arrow-up.svg';
 import {ReactComponent as ShopCart} from '../../images/shop-cart.svg';
 import {CurrencyContext} from '../../context/currency.context';
-import {ShopCartContext} from '../../context/shopCart.context';
+import {CurrencyType, ShopCartContext} from '../../context/shopCart.context';
 import ShopCardMini from '../ShopCartMini/ShopCartMini';
 import {CategoryType, MainPageQuery} from '../../graphql/__generated__/MainPageQuery';
 import {GET_CURRENCIES} from '../../graphql/query';
@@ -115,7 +115,7 @@ class Header extends Component<ChildDataProps<HeaderProps, MainPageQuery, {}>> {
                                         {this.state.currencySwitcherOpen
                                             && (
                                                 <CurrencyMenu>
-                                                    {currencies.map((currency: { symbol: string, label: string }) => {
+                                                    {currencies.map((currency: CurrencyType) => {
                                                         return <Currency
                                                             onClick={() => {
                                                                 this.context.setCurrency(currency);
