@@ -6,14 +6,10 @@ import {
     OneVariantWithColor,
     VariantsContainer
 } from './DisabledAttributeStyles';
-import {MainPageQuery_category_products_attributes as MainPageQueryCategoryProductsAttributes,} from '../../graphql/__generated__/MainPageQuery';
+import {DisabledAttributeProps} from "./AttributesInterfaces";
 
-interface AttributeProps {
-    attribute: MainPageQueryCategoryProductsAttributes;
-}
 
-export class DisabledAttribute extends Component<AttributeProps> {
-
+export class DisabledAttribute extends Component<DisabledAttributeProps> {
     render() {
         const attributeName = this.props?.attribute?.id;
         return (
@@ -45,7 +41,6 @@ export class DisabledAttribute extends Component<AttributeProps> {
                     )}
                 </VariantsContainer>
             </AttributeContainer>
-        )
-            ;
+        );
     }
 }

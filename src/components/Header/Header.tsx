@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {ChildDataProps, DataProps, graphql, MutateProps} from '@apollo/client/react/hoc';
+import {graphql} from '@apollo/client/react/hoc';
 import currencyToSymbolMap from 'currency-symbol-map'
 import {ReactComponent as LogoImage} from '../../images/logo.svg';
 import {ReactComponent as ArrowDown} from '../../images/arrow-down.svg';
@@ -8,15 +8,11 @@ import {ReactComponent as ShopCart} from '../../images/shop-cart.svg';
 import {CurrencyContext} from '../../context/currency.context';
 import {CurrencyType, ShopCartContext} from '../../context/shopCart.context';
 import ShopCardMini from '../ShopCartMini/ShopCartMini';
-import {CategoryType, MainPageQuery} from '../../graphql/__generated__/MainPageQuery';
+import {MainPageQuery} from '../../graphql/__generated__/MainPageQuery';
 import {GET_CURRENCIES} from '../../graphql/query';
-import Name from '../Name/Name';
 import {
     ArrowUpContainer,
-    Categories,
-    Currency,
     CurrencyAndShopCart,
-    CurrencyMenu,
     CurrencyOpen,
     LogoStyle,
     MainContainer,
@@ -25,32 +21,32 @@ import {
     ShopCartOpen,
     Symbols
 } from "./HeaderStyles";
+import {
+    EventType,
+    HeaderConstructorPropsType,
+    HeaderConstructorSuperPropsType,
+    HeaderMainType,
+    HeaderProps
+} from "./HeaderInterfaces";
+import {NamesMap} from "./NamesMap";
+import {CurrenciesMap} from "./CurrenciesMap";
 
-
-interface HeaderProps {
-    showOverlay: (state: boolean) => void
-    category?: string
-    categories?: CategoryType[]
-}
-
-class Header extends Component<ChildDataProps<HeaderProps, MainPageQuery, {}>> {
+class Header extends Component<HeaderMainType> {
     currencyWrapperRef: React.RefObject<HTMLDivElement>;
     shopCardWrapperRef: React.RefObject<HTMLDivElement>;
     state = {currencySwitcherOpen: false, shopCardSwitchOpen: false};
-
     static contextType = CurrencyContext;
 
-    constructor(props: HeaderProps & Partial<DataProps<MainPageQuery, {}>> & Partial<MutateProps<MainPageQuery, {}>>) {
-        super(props as ChildDataProps<HeaderProps, MainPageQuery, {}> | Readonly<ChildDataProps<HeaderProps, MainPageQuery, {}>>);
+    constructor(props: HeaderConstructorPropsType) {
+        super(props as HeaderConstructorSuperPropsType);
         this.currencyWrapperRef = React.createRef();
         this.shopCardWrapperRef = React.createRef();
     }
 
-    handleClickOutside = (event: { target: Node | null }) => {
+    handleClickOutside = (event: EventType) => {
         if (!this.currencyWrapperRef.current?.contains(event.target)) {
             this.setState({currencySwitcherOpen: false});
         }
-
         if (!this.shopCardWrapperRef.current?.contains(event.target)) {
             this.setState({shopCardSwitchOpen: false});
             this.props.showOverlay(false);
@@ -61,7 +57,6 @@ class Header extends Component<ChildDataProps<HeaderProps, MainPageQuery, {}>> {
         document.addEventListener('mousedown', this.handleClickOutside as EventListenerOrEventListenerObject);
 
     }
-
     componentWillUnmount() {
         document.removeEventListener('mousedown', this.handleClickOutside as EventListenerOrEventListenerObject);
     }
@@ -86,18 +81,7 @@ class Header extends Component<ChildDataProps<HeaderProps, MainPageQuery, {}>> {
                     ({products}) => {
                         return (
                             <MainContainer>
-                                <Categories>
-                                    {categoriesNames.map(
-                                        (name, i) => (
-                                            <Name
-                                                nameOfCategory={name}
-                                                key={i}
-                                                currentlyChosen={name !== this.props.category}
-                                                to={`/${name}`}
-                                            />
-                                        ),
-                                    )}
-                                </Categories>
+                                <NamesMap categoriesNames={categoriesNames} category={this.props.category}/>
                                 <LogoStyle><LogoImage/></LogoStyle>
                                 <CurrencyAndShopCart>
                                     <CurrencyOpen ref={this.currencyWrapperRef}>
@@ -114,19 +98,10 @@ class Header extends Component<ChildDataProps<HeaderProps, MainPageQuery, {}>> {
                                         </Symbols>
                                         {this.state.currencySwitcherOpen
                                             && (
-                                                <CurrencyMenu>
-                                                    {currencies.map((currency: CurrencyType) => {
-                                                        return <Currency
-                                                            onClick={() => {
-                                                                this.context.setCurrency(currency);
-                                                                this.setState({currencySwitcherOpen: !this.state.currencySwitcherOpen});
-                                                            }}
-                                                            key={currency.label}
-                                                        >
-                                                            {currency.symbol + ' ' + currency.label}
-                                                        </Currency>
-                                                    })}
-                                                </CurrencyMenu>
+                                                <CurrenciesMap callback={(currency: CurrencyType) => {
+                                                    this.context.setCurrency(currency);
+                                                    this.setState({currencySwitcherOpen: !this.state.currencySwitcherOpen});
+                                                }} currencies={currencies}/>
                                             )}
                                     </CurrencyOpen>
                                     <ShopCartContainer>

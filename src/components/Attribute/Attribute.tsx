@@ -4,18 +4,12 @@ import {
     AttributeNameContainer,
     OneVariant,
     OneVariantWithColor,
-    VariantsContainer, XCase
+    VariantsContainer,
+    XCase
 } from './AttributeStyles';
-import {MainPageQuery_category_products_attributes as MainPageQueryCategoryProductsAttributes,} from '../../graphql/__generated__/MainPageQuery';
-
-interface AttributeProps {
-    attribute: MainPageQueryCategoryProductsAttributes;
-    onAttributeSelect: (attributeItem: string) => void;
-    selectedAttribute: string | null;
-}
+import {AttributeProps} from "./AttributesInterfaces";
 
 export class Attribute extends Component<AttributeProps> {
-
     render() {
         const attributeName = this.props?.attribute?.id;
         return (
@@ -52,7 +46,6 @@ export class Attribute extends Component<AttributeProps> {
                     )}
                 </VariantsContainer>
             </AttributeContainer>
-        )
-            ;
+        );
     }
 }
