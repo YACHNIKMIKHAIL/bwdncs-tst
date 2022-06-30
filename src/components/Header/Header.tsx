@@ -46,7 +46,7 @@ class Header extends Component<ChildDataProps<HeaderProps, MainPageQuery, {}>> {
         this.shopCardWrapperRef = React.createRef();
     }
 
-    handleClickOutside = (event: any) => {
+    handleClickOutside = (event: { target: Node | null }) => {
         if (!this.currencyWrapperRef.current?.contains(event.target)) {
             this.setState({currencySwitcherOpen: false});
         }
@@ -58,12 +58,12 @@ class Header extends Component<ChildDataProps<HeaderProps, MainPageQuery, {}>> {
     };
 
     componentDidMount() {
-        document.addEventListener('mousedown', this.handleClickOutside);
+        document.addEventListener('mousedown', this.handleClickOutside as EventListenerOrEventListenerObject);
 
     }
 
     componentWillUnmount() {
-        document.removeEventListener('mousedown', this.handleClickOutside);
+        document.removeEventListener('mousedown', this.handleClickOutside as EventListenerOrEventListenerObject);
     }
 
     render() {
