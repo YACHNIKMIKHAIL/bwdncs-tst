@@ -12,7 +12,7 @@ export type CurrencyType = {
     label: string
     symbol: string
 }
-type PriceType = (MainPageQuery_category_products_prices[] | undefined) | number
+export type PriceType = (MainPageQuery_category_products_prices[] | undefined) | number
 
 export interface ShopCartProduct {
     id: string,
