@@ -3,11 +3,12 @@ import {RouteComponentProps, withRouter} from 'react-router-dom';
 import {CurrencyContext} from '../../context/currency.context';
 import {
     MainPageQuery_category_products,
-    MainPageQuery_category_products as MainPageQueryCategoryProducts, MainPageQuery_category_products_attributes
+    MainPageQuery_category_products as MainPageQueryCategoryProducts,
+    MainPageQuery_category_products_attributes
 } from '../../graphql/__generated__/MainPageQuery';
 import {getPrice, getSymbol} from '../../Utils';
 import {Image, ImageContainer, MainDiv, Name, OutOfStock, Price, XCase} from './ProductCartStyles';
-import {PriceType, ShopCartContext} from '../../context/shopCart.context';
+import {AddProductType, ShopCartContext} from '../../context/shopCart.context';
 import {compact} from "lodash";
 import {ReactComponent as Buy} from "../../images/shop-cart.svg";
 
@@ -22,7 +23,7 @@ class ProductCart extends Component<RouteComponentProps<{}> & ProductCartProps> 
     };
 
     onAttributeClick(event: React.MouseEvent<HTMLDivElement>, productInfo: MainPageQuery_category_products,
-                     addProduct: (id: string, selectedAttributes: object, allAttributes: MainPageQuery_category_products_attributes[] | undefined, price: PriceType, photo: string[]) => void) {
+                     addProduct: AddProductType) {
         let arrKeys = [] as string[]
         let arrValues = [] as string[]
 
@@ -74,8 +75,7 @@ class ProductCart extends Component<RouteComponentProps<{}> & ProductCartProps> 
                 return (
                     <MainDiv onMouseEnter={() => this.onMouseEnterOnMainDiv(true)}
                              onMouseLeave={() => this.onMouseEnterOnMainDiv(false)}
-                             onClick={() => this.showCurrentProduct(productInfo.id)}
-                    >
+                             onClick={() => this.showCurrentProduct(productInfo.id)}>
                         <ImageContainer>
                             <Image src={productInfo?.gallery?.[0]!}/>
                             {!available && <OutOfStock>Out of stock</OutOfStock>}

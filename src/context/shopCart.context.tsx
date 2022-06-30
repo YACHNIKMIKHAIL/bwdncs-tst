@@ -23,9 +23,12 @@ export interface ShopCartProduct {
     quantity: number
 }
 
+export type AddProductType = (id: string, selectedAttributes: object, allAttributes: MainPageQuery_category_products_attributes[] | undefined, price: PriceType, photo: string[]) => void
+export type RemoveProductType = (id: string, selectedAttributes: object, allAttributes: MainPageQuery_category_products_attributes[] | undefined, price: PriceType, photo: string[]) => void
+
 interface ShopCartState {
-    addProduct: (id: string, selectedAttributes: object, allAttributes: MainPageQuery_category_products_attributes[] | undefined, price: PriceType, photo: string[]) => void,
-    removeProduct: (id: string, selectedAttributes: object, allAttributes: MainPageQuery_category_products_attributes[] | undefined, price: PriceType, photo: string[]) => void,
+    addProduct: AddProductType,
+    removeProduct: RemoveProductType,
     products: ShopCartProduct[]
 }
 
@@ -40,7 +43,10 @@ class ShopCartContextProvider extends Component<{}, ShopCartInternalState> {
 
     static contextType = CurrencyContext;
 
-    addProduct(id: string, selectedAttributes: object, allAttributes: MainPageQuery_category_products_attributes[] | undefined, price: PriceType, photo: string[]) {
+    addProduct(id: string,
+               selectedAttributes: object,
+               allAttributes: MainPageQuery_category_products_attributes[] | undefined,
+               price: PriceType, photo: string[]) {
         const existingProduct = this.state.products.find((x: ShopCartProduct) => x.id === id && isEqual(x.selectedAttributes, selectedAttributes));
         if (existingProduct) {
             existingProduct.quantity += 1;
@@ -58,7 +64,9 @@ class ShopCartContextProvider extends Component<{}, ShopCartInternalState> {
         }
     }
 
-    removeProduct(id: string, selectedAttributes: object, allAttributes: MainPageQuery_category_products_attributes[] | undefined) {
+    removeProduct(id: string,
+                  selectedAttributes: object,
+                  allAttributes: MainPageQuery_category_products_attributes[] | undefined) {
         const existingProduct = this.state.products.find((x: ShopCartProduct) => x.id === id && isEqual(x.selectedAttributes, selectedAttributes) && isEqual(x.allAttributes, allAttributes));
 
         if (existingProduct && existingProduct.quantity > 1) {
