@@ -19,7 +19,7 @@ class Order extends Component {
             <ShopCartContext.Consumer>
                 {({products}) => {
                     const all = products
-                        .map((m: ShopCartProduct) => m.price * m.quantity)
+                        .map((m: ShopCartProduct) => Number(m.price) * m.quantity)
                         .reduce((acc: number, el: number) => {
                             return acc + el
 

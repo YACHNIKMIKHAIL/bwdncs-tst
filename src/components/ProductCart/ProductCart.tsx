@@ -23,10 +23,10 @@ class ProductCart extends Component<RouteComponentProps<{}> & ProductCartProps> 
 
     render() {
         const productInfo = this.props?.product;
-        let price: number | null
+        let currentPrice: number | null
         let symbol: string | null
         const available = productInfo?.inStock;
-        price = getPrice(productInfo.prices, this.context.currency);
+        currentPrice = getPrice(productInfo.prices, this.context.currency);
         symbol = getSymbol(productInfo.prices, this.context.currency);
         return <ShopCartContext.Consumer>
             {({addProduct}) => {
@@ -50,7 +50,7 @@ class ProductCart extends Component<RouteComponentProps<{}> & ProductCartProps> 
                             {!available && <OutOfStock>Out of stock</OutOfStock>}
                         </ImageContainer>
                         <Name>{productInfo.brand} {productInfo.name}</Name>
-                        <Price>{symbol} {price?.toString()}</Price>
+                        <Price>{symbol} {currentPrice?.toString()}</Price>
 
                         {this.state.show && <>{productInfo?.inStock
                             && <XCase onClick={(event) => {

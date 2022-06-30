@@ -12,19 +12,20 @@ export type CurrencyType = {
     label: string
     symbol: string
 }
+type PriceType = (MainPageQuery_category_products_prices[] | undefined) | number
 
 export interface ShopCartProduct {
     id: string,
     selectedAttributes: object,
     photo: string[],
     allAttributes?: MainPageQuery_category_products_attributes[] | undefined,
-    price: CurrencyType[] | any,
+    price: PriceType,
     quantity: number
 }
 
 interface ShopCartState {
-    addProduct: (id: string, selectedAttributes: object, allAttributes: MainPageQuery_category_products_attributes[] | undefined, price: MainPageQuery_category_products_prices[], photo: string[]) => void,
-    removeProduct: (id: string, selectedAttributes: object, allAttributes: MainPageQuery_category_products_attributes[] | undefined, price: MainPageQuery_category_products_prices[], photo: string[]) => void,
+    addProduct: (id: string, selectedAttributes: object, allAttributes: MainPageQuery_category_products_attributes[] | undefined, price: PriceType, photo: string[]) => void,
+    removeProduct: (id: string, selectedAttributes: object, allAttributes: MainPageQuery_category_products_attributes[] | undefined, price: PriceType, photo: string[]) => void,
     products: ShopCartProduct[]
 }
 
@@ -39,7 +40,7 @@ class ShopCartContextProvider extends Component<{}, ShopCartInternalState> {
 
     static contextType = CurrencyContext;
 
-    addProduct(id: string, selectedAttributes: object, allAttributes: MainPageQuery_category_products_attributes[] | undefined, price: MainPageQuery_category_products_prices[], photo: string[]) {
+    addProduct(id: string, selectedAttributes: object, allAttributes: MainPageQuery_category_products_attributes[] | undefined, price: PriceType, photo: string[]) {
         const existingProduct = this.state.products.find((x: ShopCartProduct) => x.id === id && isEqual(x.selectedAttributes, selectedAttributes));
         if (existingProduct) {
             existingProduct.quantity += 1;
@@ -83,7 +84,7 @@ class ShopCartContextProvider extends Component<{}, ShopCartInternalState> {
                     products: this.state.products.map((product) => {
                         return {
                             ...product,
-                            price: product.price.find((price: MainPageQuery_category_products_prices) => price?.currency.label === this.context.currency.label).amount
+                            price: typeof product.price !== "number" ? product.price?.find((price: MainPageQuery_category_products_prices) => price?.currency.label === this.context.currency.label)?.amount : undefined
                         }
                     }),
                 }}

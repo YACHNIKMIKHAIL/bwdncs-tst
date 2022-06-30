@@ -59,7 +59,7 @@ class ShopCartMini extends Component<RouteComponentProps<{}, StaticContext, unkn
                                         return <Product key={product?.id + product.photo + i}>
                                             <ProductInfo>
                                                 <ProductName>{product?.id}</ProductName>
-                                                <Amount>{this.context.currency.symbol + product?.price.toString()}</Amount>
+                                                <Amount>{(this.context.currency.symbol + Number(product?.price)).toString()}</Amount>
                                                 <AttributeSet>
                                                     {values(product.allAttributes).map((attribute, i) => (
                                                         <Name key={i}>{attribute.id}:
@@ -140,8 +140,9 @@ class ShopCartMini extends Component<RouteComponentProps<{}, StaticContext, unkn
                                     <Bag>Total: </Bag>
                                     <TotalAmount>
                                         {this.context.currency.symbol + products.reduce((sum, product) =>
-                                            sum + product.price * product.quantity +
-                                            (product.price * 0.21 * product.quantity), 0).toFixed(2).toString()}
+                                            sum + Number(product.price) * product.quantity +
+                                            (Number(product.price) * 0.21 * product.quantity), 0).toFixed(2).toString()
+                                        }
                                     </TotalAmount>
                                 </Total>
                             </ContentContainer>

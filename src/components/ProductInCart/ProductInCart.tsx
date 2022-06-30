@@ -61,7 +61,7 @@ class ProductInCart extends Component<ProductInCartProps> {
                     return <Product key={this.props.product.id}>
                         <Info>
                             <Name>{this.props.product.id}</Name>
-                            <Price>{this.context.currency.symbol + this.props.product.price * this.props.product.quantity}</Price>
+                            <Price>{this.context.currency.symbol + Number(this.props.product.price) * this.props.product.quantity}</Price>
                             <XCase>
                                 {values(this.props.product.allAttributes).map((attribute, i) => (
                                     <NameX key={i}>{attribute.id.toUpperCase()}:
