@@ -21,7 +21,6 @@ class FullShopCart extends Component<RouteComponentProps<{}, StaticContext, unkn
         return (
             <ShopCartContext.Consumer>
                 {({products}) => {
-
                     return (
                         <MainDiv>
                             <Header showOverlay={showOverlay}/>

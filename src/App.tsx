@@ -28,6 +28,7 @@ const client = new ApolloClient({
 const history = createBrowserHistory();
 
 function App() {
+  
     return (
         <Router history={history}>
             <ApolloProvider client={client}>
