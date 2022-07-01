@@ -27,10 +27,9 @@ const client = new ApolloClient({
 
 const history = createBrowserHistory();
 
-function App() {
-  
-    return (
-        <Router history={history}>
+class App extends React.Component {
+    render() {
+        return <Router history={history}>
             <ApolloProvider client={client}>
                 <CurrencyContextProvider>
                     <ShopCardContextProvider>
@@ -45,7 +44,7 @@ function App() {
                 <GlobalStyle/>
             </ApolloProvider>
         </Router>
-    );
+    }
 }
 
 export default App;

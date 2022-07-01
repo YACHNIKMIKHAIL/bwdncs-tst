@@ -12,19 +12,26 @@ class Order extends Component {
         return (
             <ShopCartContext.Consumer>
                 {({products}) => {
-                    const result=findMyInfo(products)
+                    const result = findMyInfo(products)
                     return <ProductsBlock>
                         <OrderProduct>
                             <OrderInfo>
                                 <OrderBlock>
                                     <OrderD>Tax
-                                        21%:</OrderD><OrderP>{this.context.currency.symbol} {result.tax.toFixed(2)}</OrderP>
+                                        21%:</OrderD>
+                                    <OrderP>
+                                        {this.context.currency.symbol} {result.tax.toFixed(2)}
+                                    </OrderP>
                                 </OrderBlock>
                                 <OrderBlock>
                                     <OrderD>Quantity:</OrderD><OrderP>{result.qua}</OrderP>
                                 </OrderBlock>
                                 <OrderBlock>
-                                    <OrderD>Total:</OrderD><OrderP>{this.context.currency.symbol} {result.totalPrice.toFixed(2)}</OrderP>
+                                    <OrderD>Total:</OrderD>
+                                    <OrderP>
+                                        {this.context.currency.symbol}
+                                        {result.totalPrice.toFixed(2)}
+                                    </OrderP>
                                 </OrderBlock>
                                 <OrderButton
                                     onClick={() => {
