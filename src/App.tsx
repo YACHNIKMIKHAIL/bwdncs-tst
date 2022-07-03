@@ -12,6 +12,7 @@ import MainPage from './pages/MainPage/MainPage';
 import FullProductInfo from './pages/FullProductInfo/FullProductInfo';
 import ShopCardContextProvider from './context/shopCart.context';
 import FullShopCard from './pages/FullShopCart/FullShopCart';
+import {ShopRoutes} from "./Routes";
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -34,10 +35,11 @@ class App extends React.Component {
                 <CurrencyContextProvider>
                     <ShopCardContextProvider>
                         <Switch>
-                            <Route path="/product" component={FullProductInfo}/>
-                            <Route path="/shopcart" component={FullShopCard}/>
-                            <Route path="/:category" component={MainPage}/>
-                            <Route path="/" component={MainPage}/>
+                            <Route path={ShopRoutes.product} component={FullProductInfo}/>
+                            <Route path={ShopRoutes.shopcart} component={FullShopCard}/>
+                            <Route path={ShopRoutes.category} component={MainPage}/>
+                            <Route path={ShopRoutes.all} component={MainPage}/>
+                            <Route path={ShopRoutes.notFound} component={() => <div>Sorry</div>}/>
                         </Switch>
                     </ShopCardContextProvider>
                 </CurrencyContextProvider>

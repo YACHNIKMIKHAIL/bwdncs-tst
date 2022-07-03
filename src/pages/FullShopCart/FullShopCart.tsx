@@ -7,6 +7,7 @@ import {ShopCartContext} from '../../context/shopCart.context';
 import ProductInCart from "../../components/ProductInCart/ProductInCart";
 import Order from "./Order/Order";
 import {RouteComponentProps, StaticContext} from "react-router";
+import {ShopRoutes} from "../../Routes";
 
 class FullShopCart extends Component<RouteComponentProps<{}, StaticContext, unknown>, { showOverlay: boolean }> {
     state = {showOverlay: false};
@@ -30,7 +31,7 @@ class FullShopCart extends Component<RouteComponentProps<{}, StaticContext, unkn
                                     <Cart>Cart</Cart>
                                     {products.length === 0
                                         ? <NoItems>
-                                            <Link to={'/'} style={{color: '#79D383'}}>
+                                            <Link to={ShopRoutes.all} style={{color: '#79D383'}}>
                                                 No items in basket =(
                                             </Link>
                                         </NoItems>

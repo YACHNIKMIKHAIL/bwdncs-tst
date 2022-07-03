@@ -11,6 +11,7 @@ import {Image, ImageContainer, MainDiv, Name, OutOfStock, Price, XCase} from './
 import {AddProductType, ShopCartContext} from '../../context/shopCart.context';
 import {compact} from "lodash";
 import {ReactComponent as Buy} from "../../images/shop-cart.svg";
+import {ShopRoutes} from "../../Routes";
 
 interface ProductCartProps {
     product: MainPageQueryCategoryProducts
@@ -59,7 +60,7 @@ class ProductCart extends Component<RouteComponentProps<{}> & ProductCartProps> 
     }
 
     showCurrentProduct(id: string) {
-        this.props.history.push(`/product?${id}`)
+        this.props.history.push(`${ShopRoutes.product}?${id}`)
     }
 
     render() {
