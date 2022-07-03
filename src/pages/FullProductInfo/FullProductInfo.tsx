@@ -54,7 +54,7 @@ class FullProductInfo extends Component<ChildDataProps<RouteComponentProps<{}> &
     render() {
         const allProducts = this.props?.data.product;
         if (!allProducts) {
-            return <NotFound/>;
+            return <NotFound message={''}/>;
         }
 
         const productInfo: Product | null | undefined = allProducts

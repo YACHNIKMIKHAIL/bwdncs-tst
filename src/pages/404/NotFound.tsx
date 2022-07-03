@@ -6,12 +6,15 @@ import styled from "styled-components";
 type NotFoundStateType = {
     message: string
 }
+type NotFoundPropsType = {
+    message: string
+}
 
-class NotFound extends Component<{}, NotFoundStateType> {
-    constructor() {
-        super({});
+class NotFound extends Component<NotFoundPropsType, NotFoundStateType> {
+    constructor(props: NotFoundPropsType) {
+        super(props);
         this.state = {
-            message: ''
+            message: this.props.message
         }
     }
 
