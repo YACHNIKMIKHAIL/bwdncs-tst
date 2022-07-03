@@ -27,16 +27,10 @@ class MainPage extends Component<ChildDataProps<MainPageProps, MainPageQuery, {}
         let filteredProducts = this.props?.data?.category?.products;
         const {category} = this.props.match.params;
         const allCategories = this.context.categories.map((m: { name: string }) => m.name)
-        // console.log('allCategories', allCategories)
-        // console.log('category', category.toString())
-        // console.log('allCategories.include(category)',allCategories.include(category.toString()))
         if (allCategories) {
             if (allCategories.includes(category) || category === undefined) {
-                console.log('includes')
             } else {
-                console.log('no!!',this.props)
                 this.props.history.push(ShopRoutes.all)
-                // this.props.history.push(ShopRoutes.notFound)
             }
         }
 

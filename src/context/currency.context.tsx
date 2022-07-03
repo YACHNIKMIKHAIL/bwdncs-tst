@@ -21,7 +21,6 @@ class CurrencyContextProvider extends Component<GraphDataType, CurrencyDataType>
     state: CurrencyDataType = {} as CurrencyDataType;
 
     render() {
-        // console.log('CurrencyContextProvider',this.props.data.categories)
         return (
             <CurrencyContext.Provider value={{
                 currency: this.state.currency || this.props?.data?.currencies?.[0],

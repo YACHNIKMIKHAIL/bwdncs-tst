@@ -60,8 +60,6 @@ class ProductCart extends Component<RouteComponentProps<{}> & ProductCartProps> 
     }
 
     showCurrentProduct(id: string) {
-        console.log('product id',this.props.product.id)
-        console.log('url',this.props.history.location)
         this.props.history.push(`${ShopRoutes.product}?${id}`)
     }
 

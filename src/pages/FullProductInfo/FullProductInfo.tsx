@@ -34,7 +34,6 @@ import {ShopCartContext} from '../../context/shopCart.context';
 import {getPrice} from '../../Utils';
 import {compact} from "lodash";
 import {DisabledAttribute} from "../../components/Attribute/DisabledAttribute";
-import {ShopRoutes} from "../../Routes";
 import NotFound from "../404/NotFound";
 
 interface FullProductInfoProps {
@@ -49,36 +48,14 @@ class FullProductInfo extends Component<ChildDataProps<RouteComponentProps<{}> &
         selectedAttributes: {} as { [index: string]: string },
         mainPhoto: null,
         isSelected: false,
-        attribX: []
+        attribX: [],
     };
-
-
-    // componentDidMount() {
-    //     if (!this.props?.data.product && this.props?.data.product?.id !== this.props.location.search.slice(1)) {
-    //         this.props.history.push(`${ShopRoutes.notFound}`)
-    //     }
-    // }
 
     render() {
         const allProducts = this.props?.data.product;
-        console.log('allProducts', allProducts?.id)
-        const currentID = allProducts?.id
-        console.log('url', this.props.location.search.slice(1))
-        console.log('categ', allProducts?.category)
-        const category = allProducts?.category
-
-        if (!allProducts && currentID !== this.props.location.search.slice(1)) {
-            <NotFound/>
-        }
         if (!allProducts) {
-            return <div>Waaaaaaaaaait...</div>;
+            return <NotFound/>;
         }
-        // this.props.history.push(`${ShopRoutes.all}`)
-
-        // if (currentID === this.props.location.search.slice(1)) {
-        //     this.props.history.push(`${ShopRoutes.all}`)
-        // }
-
 
         const productInfo: Product | null | undefined = allProducts
         const photo = this.state.mainPhoto || productInfo?.gallery?.[0];
