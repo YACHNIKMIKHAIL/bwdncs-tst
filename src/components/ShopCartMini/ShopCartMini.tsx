@@ -15,6 +15,7 @@ import {
 } from './ShopCartMiniStyle';
 import {RouteComponentProps, StaticContext} from "react-router";
 import {ProductesMap} from "./ProductsMap";
+import {ShopRoutes} from "../../Routes";
 
 
 class ShopCartMini extends Component<RouteComponentProps<{}, StaticContext, unknown>, Readonly<typeof ShopCartMini>> {
@@ -49,7 +50,7 @@ class ShopCartMini extends Component<RouteComponentProps<{}, StaticContext, unkn
                                 </Total>
                             </ContentContainer>
                             <Buttons>
-                                <ViewBag onClick={() => this.props.history.push('/shopcart')}>VIEW BAG</ViewBag>
+                                <ViewBag onClick={() => this.props.history.push(ShopRoutes.shopcart)}>VIEW BAG</ViewBag>
                                 <CheckOut>CHECK OUT</CheckOut>
                             </Buttons>
                         </MainContainer>

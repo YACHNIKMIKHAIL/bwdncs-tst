@@ -61,6 +61,7 @@ class Header extends Component<HeaderMainType> {
         document.removeEventListener('mousedown', this.handleClickOutside as EventListenerOrEventListenerObject);
     }
 
+
     render() {
         const currencies = this.context?.currencies;
         const products = this.props.data.categories
@@ -74,7 +75,6 @@ class Header extends Component<HeaderMainType> {
                 }
             }
         }
-
         return (
             <ShopCartContext.Consumer>
                 {

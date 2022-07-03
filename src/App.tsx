@@ -13,6 +13,7 @@ import FullProductInfo from './pages/FullProductInfo/FullProductInfo';
 import ShopCardContextProvider from './context/shopCart.context';
 import FullShopCard from './pages/FullShopCart/FullShopCart';
 import {ShopRoutes} from "./Routes";
+import NotFound from "./pages/404/NotFound";
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -39,7 +40,7 @@ class App extends React.Component {
                             <Route path={ShopRoutes.shopcart} component={FullShopCard}/>
                             <Route path={ShopRoutes.category} component={MainPage}/>
                             <Route path={ShopRoutes.all} component={MainPage}/>
-                            <Route path={ShopRoutes.notFound} component={() => <div>Sorry</div>}/>
+                            <Route path={ShopRoutes.notFound} component={NotFound}/>
                         </Switch>
                     </ShopCardContextProvider>
                 </CurrencyContextProvider>

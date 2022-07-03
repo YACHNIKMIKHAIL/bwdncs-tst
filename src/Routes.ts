@@ -3,5 +3,5 @@ export enum ShopRoutes {
     shopcart = '/shopcart',
     category = '/:category',
     all = '/',
-    notFound = '/*',
+    notFound = '404',
 }
