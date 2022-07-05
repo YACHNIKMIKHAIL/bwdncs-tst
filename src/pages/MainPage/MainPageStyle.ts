@@ -26,22 +26,47 @@ export const CategoryName = styled.div`
   max-width: 1200px;
   padding: 15px;
   box-sizing: border-box;
+
+  @media (max-width: 1250px) {
+    margin-bottom: 1px;
+  }
+`;
+
+export const FakeList = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  min-width: 1030px;
+
+  @media (max-width: 1250px) {
+    justify-content: flex-start;
+    min-width: 1000px;
+  }
+  @media (max-width: 1027px) {
+    justify-content: center;
+  }
+  @media (max-width: 630px) {
+    justify-content: center;
+    min-width: 0;
+  }
+
 `;
 
 export const ProductList = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  align-items: center; 
+  align-items: center;
   max-width: 1030px;
 
   @media (max-width: 1250px) {
     justify-content: flex-start;
-  }  
+  }
   @media (max-width: 1027px) {
     justify-content: center;
   }
-  
+
 `;
 
 export const Container = styled.div`

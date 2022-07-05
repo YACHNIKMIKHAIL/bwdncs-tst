@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {CategoryAndProducts, CategoryName, Container, MainDiv, Overlay, ProductList} from './MainPageStyle';
+import {CategoryAndProducts, CategoryName, Container, FakeList, MainDiv, Overlay, ProductList} from './MainPageStyle';
 import {RouteComponentProps} from 'react-router';
 import {ChildDataProps, graphql, QueryControls} from '@apollo/client/react/hoc';
 import ProductCard from '../../components/ProductCart/ProductCart';
@@ -29,9 +29,9 @@ class MainPage extends Component<ChildDataProps<MainPageProps, MainPageQuery, {}
         const allCategories = this.context.categories.map((m: { name: string }) => m.name)
         if (allCategories) {
             if (allCategories.includes(category) || category === undefined) {
-               if(category === undefined) {
-                   category = 'all'
-               }
+                if (category === undefined) {
+                    category = 'all'
+                }
             } else {
                 this.props.history.push(ShopRoutes.all)
             }
@@ -47,11 +47,13 @@ class MainPage extends Component<ChildDataProps<MainPageProps, MainPageQuery, {}
                     {this.state.showOverlay && <Overlay/>}
                     <CategoryAndProducts>
                         <CategoryName>{capitalize(category)}</CategoryName>
-                        <ProductList>
-                            {filteredProducts?.map((product, i) => (
-                                <ProductCard key={i + 1} product={product!}/>
-                            ))}
-                        </ProductList>
+                        <FakeList>
+                            <ProductList>
+                                {filteredProducts?.map((product, i) => (
+                                    <ProductCard key={i + 1} product={product!}/>
+                                ))}
+                            </ProductList>
+                        </FakeList>
                     </CategoryAndProducts>
                 </Container>
             </MainDiv>

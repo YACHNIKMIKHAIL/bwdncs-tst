@@ -4,13 +4,14 @@ export const MainContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 80px;
+  min-height: 80px;
   flex-wrap: wrap;
   width: 100%;
   max-width: 1200px;
   font-family: Raleway, serif;
   padding: 15px;
   box-sizing: border-box;
+  height: fit-content;
 `;
 
 export const LogoStyle = styled.div`
