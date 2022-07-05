@@ -5,17 +5,19 @@ import {NamesMapProps} from "./HeaderInterfaces";
 
 export class NamesMap extends Component<NamesMapProps> {
     render() {
+        const {category = 'all'} = this.props
         return (
             <Categories>
                 {this.props.categoriesNames.map(
-                    (name, i) => (
-                        <Name
+                    (name, i) => {
+                        let routeTo: string = name !== 'all' ? name : ''
+                        return <Name
                             nameOfCategory={name}
                             key={i}
-                            currentlyChosen={name !== this.props.category}
-                            to={`/${name}`}
+                            currentlyChosen={name !== category}
+                            to={`/${routeTo}`}
                         />
-                    ),
+                    },
                 )}
             </Categories>
         );
